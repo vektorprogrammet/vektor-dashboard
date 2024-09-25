@@ -1,7 +1,6 @@
+import { AppShell, Center } from "@mantine/core";
 import type { MetaFunction } from "@remix-run/node";
-import type { ReactNode } from "react";
-import { ModeToggle } from "~/components/mode-toggle";
-import { Button } from "~/components/ui/button";
+import { Link } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -9,12 +8,11 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
+
 export default function Index() {
   return (
-    <>
-      <main className="h-dvh">
-        <Button>Hello world</Button>
-      </main>
-    </>
+    <Center mih="100dvh">
+      <Link to={"/dashboard"}>Dashboard</Link>
+    </Center>
   );
 }
