@@ -1,4 +1,4 @@
-import { Link, Outlet } from "@remix-run/react";
+import { Link, Outlet, redirect } from "@remix-run/react";
 import { ActionToggle } from "./ActionToggle";
 import { AppShell, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
@@ -17,6 +17,7 @@ import {
 } from "@tabler/icons-react";
 import classes from "./DoubleNavbar.module.css";
 import { useClickOutside } from "@mantine/hooks";
+import { useAuth } from "@clerk/remix";
 
 const mainLinksMockdata = [
   { icon: IconHome2, label: "Home", route: "/" },
@@ -126,6 +127,16 @@ function DoubleNavbar() {
 
 export default function Layout() {
   const [opened, { toggle }] = useDisclosure();
+  const { isLoaded, userId } = useAuth();
+
+  if (!isLoaded) {
+    return <p>Loading...</p>;
+  }
+
+  if (!userId) {
+    return redirect("/sign-in");
+  }
+
   return (
     <AppShell
       padding="md"
@@ -151,6 +162,7 @@ export default function Layout() {
       </AppShell.Navbar>
 
       <AppShell.Main>
+        <div>Hello, {userId}!</div>
         <Outlet />
       </AppShell.Main>
     </AppShell>
