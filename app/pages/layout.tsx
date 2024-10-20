@@ -442,13 +442,13 @@ export default function Layout() {
     <SidebarProvider>
       <Sidebar collapsible="icon">
         <SidebarHeader>
-          <SidebarMenu>
-            <UserMenu user={user} />
-          </SidebarMenu>
+          <UserMenu user={user} />
         </SidebarHeader>
         <SidebarContent>
-          <NavMain items={mainLinks} />
-          <NavProjects projects={projectsData} />
+          <nav>
+            <NavMain items={mainLinks} />
+            <NavProjects projects={projectsData} />
+          </nav>
         </SidebarContent>
         <SidebarFooter>
           <LocationSwitcher locations={["Trondheim", "Bergen", "Ås"]} />
