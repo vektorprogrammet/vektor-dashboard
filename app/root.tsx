@@ -1,8 +1,5 @@
-// Import styles of packages that you've installed.
-// All packages except `@mantine/hooks` require styles imports
 import "./globals.css";
 
-import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import type { ReactNode } from "react";
 import {
   Links,
@@ -29,10 +26,9 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider>{children}</MantineProvider>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>
