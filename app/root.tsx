@@ -2,18 +2,10 @@
 // All packages except `@mantine/hooks` require styles imports
 import "./globals.css";
 
-import {
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "@remix-run/react";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import type { ReactNode } from "react";
-import type { MetaFunction, LoaderFunction } from "@remix-run/node";
-import { rootAuthLoader } from "@clerk/remix/ssr.server";
-import { ClerkApp } from "@clerk/remix";
+import type { MetaFunction, LoaderFunction } from "@react-router/node";
 
 export const meta: MetaFunction = () => [
   {

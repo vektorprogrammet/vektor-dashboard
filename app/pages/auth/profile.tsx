@@ -1,4 +1,4 @@
-import { type LoaderFunction, redirect } from "@remix-run/node";
+import { type LoaderFunction, redirect } from "@react-router/node";
 import { getAuth } from "@clerk/remix/ssr.server";
 import { createClerkClient } from "@clerk/remix/api.server";
 

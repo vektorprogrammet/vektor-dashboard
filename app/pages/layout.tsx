@@ -1,4 +1,4 @@
-import { Outlet } from "@remix-run/react";
+import { Outlet } from "react-router";
 import { Separator } from "@radix-ui/react-separator";
 
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/ui/sidebar";
