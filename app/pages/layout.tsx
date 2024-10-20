@@ -54,15 +54,14 @@ const user = {
 
 function UserMenu({
   user,
-  isMobile,
 }: {
   user: {
     name: string;
     email: string;
     avatar: string;
   };
-  isMobile: boolean;
 }) {
+  const isMobile = useSidebar();
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -294,15 +293,14 @@ const projectsData = [
 ];
 function NavProjects({
   projects,
-  isMobile,
 }: {
   projects: {
     name: string;
     url: string;
     icon: ReactElement;
   }[];
-  isMobile?: boolean;
 }) {
+  const isMobile = useSidebar();
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>Projects</SidebarGroupLabel>
@@ -369,12 +367,11 @@ function NavProjects({
 
 function LocationSwitcher({
   locations,
-  isMobile,
 }: {
   locations: string[];
-  isMobile?: boolean;
 }) {
   const [activeLocation, setActiveLocation] = useState(locations[0]);
+  const isMobile = useSidebar();
 
   return (
     <SidebarMenu>
@@ -418,7 +415,6 @@ function LocationSwitcher({
 }
 
 export default function Layout() {
-  const { isMobile } = useSidebar();
   /* const [opened, { toggle }] = useDisclosure();
   const { isLoaded, userId } = useAuth();
 
@@ -434,18 +430,15 @@ export default function Layout() {
       <Sidebar collapsible="icon">
         <SidebarHeader>
           <SidebarMenu>
-            <UserMenu user={user} isMobile={isMobile} />
+            <UserMenu user={user} />
           </SidebarMenu>
         </SidebarHeader>
         <SidebarContent>
           <NavMain items={mainLinks} />
-          <NavProjects projects={projectsData} isMobile={isMobile} />
+          <NavProjects projects={projectsData} />
         </SidebarContent>
         <SidebarFooter>
-          <LocationSwitcher
-            locations={["Trondheim", "Bergen", "Ås"]}
-            isMobile={isMobile}
-          />
+          <LocationSwitcher locations={["Trondheim", "Bergen", "Ås"]} />
         </SidebarFooter>
         <SidebarRail />
       </Sidebar>
