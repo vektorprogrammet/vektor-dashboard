@@ -2,10 +2,16 @@
 // All packages except `@mantine/hooks` require styles imports
 import "./globals.css";
 
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import {
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  type MetaFunction,
+} from "react-router";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import type { ReactNode } from "react";
-import type { MetaFunction, LoaderFunction } from "@react-router/node";
 
 export const meta: MetaFunction = () => [
   {
