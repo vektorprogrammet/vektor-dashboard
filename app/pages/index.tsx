@@ -1,6 +1,6 @@
+import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/remix";
 import { getAuth } from "@clerk/remix/ssr.server";
-import { Center } from "@mantine/core";
 import type { MetaFunction, LoaderFunction } from "react-router";
 import { redirect } from "react-router";
 import { Link } from "react-router";
@@ -12,6 +12,9 @@ import { Link } from "react-router";
   }
   return {};
 }; */
+export const loader: LoaderFunction = async () => {
+  return redirect("/dashboard");
+};
 
 export const meta: MetaFunction = () => {
   return [
@@ -22,9 +25,10 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <Center mih="100dvh">
-      <h1>Index route</h1>
-      <Link to={"/dashboard"}>Dashboard</Link>
-    </Center>
+    <main className="h-dvh grid place-items-center">
+      <Button variant={"default"} role="link">
+        <Link to={"/dashboard"}>Log in</Link>
+      </Button>
+    </main>
   );
 }
