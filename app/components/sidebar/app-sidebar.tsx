@@ -1,6 +1,7 @@
-import type { ComponentProps } from "react";
 import { Icon } from "@iconify-icon/react";
+import type { ComponentProps } from "react";
 
+import { ComboBoxResponsive } from "@/components/combobox";
 import { NavMain } from "@/components/sidebar/nav-main";
 import { NavProjects } from "@/components/sidebar/nav-projects";
 import { NavUser } from "@/components/sidebar/nav-user";
@@ -12,7 +13,6 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/ui/sidebar";
-import { ComboBoxResponsive } from "@/components/combobox";
 import { LocationPicker } from "./location-picker";
 
 // This is sample data.

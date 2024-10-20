@@ -1,5 +1,5 @@
-import type { ReactElement } from "react";
 import { Icon } from "@iconify-icon/react";
+import type { ReactElement } from "react";
 
 import {
   Collapsible,

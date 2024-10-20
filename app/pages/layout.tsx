@@ -1,17 +1,17 @@
-import { Outlet } from "react-router";
 import { Separator } from "@radix-ui/react-separator";
+import { Outlet } from "react-router";
 
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/ui/sidebar";
 import { ComboBoxResponsive } from "@/components/combobox";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import {
   Breadcrumb,
-  BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbSeparator,
+  BreadcrumbList,
   BreadcrumbPage,
+  BreadcrumbSeparator,
 } from "@/ui/breadcrumb";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/ui/sidebar";
 
 const routes = [
   { name: "Home", path: "/home" },

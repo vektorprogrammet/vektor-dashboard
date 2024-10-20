@@ -1,9 +1,9 @@
 import {
   type RouteConfig,
-  route,
   index,
   layout,
   prefix,
+  route,
 } from "@react-router/dev/routes";
 
 export const routes: RouteConfig = [

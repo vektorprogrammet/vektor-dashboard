@@ -1,9 +1,9 @@
-import { Center } from "@mantine/core";
-import type { MetaFunction } from "@react-router/node";
-import { Link } from "react-router";
 import { UserButton } from "@clerk/remix";
 import { getAuth } from "@clerk/remix/ssr.server";
-import { type LoaderFunction, redirect } from "@react-router/node";
+import { Center } from "@mantine/core";
+import type { MetaFunction, LoaderFunction } from "react-router";
+import { redirect } from "react-router";
+import { Link } from "react-router";
 
 /* export const loader: LoaderFunction = async (args) => {
   const { userId } = await getAuth(args);
