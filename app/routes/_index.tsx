@@ -5,13 +5,13 @@ import { UserButton } from "@clerk/remix";
 import { getAuth } from "@clerk/remix/ssr.server";
 import { type LoaderFunction, redirect } from "@remix-run/node";
 
-export const loader: LoaderFunction = async (args) => {
+/* export const loader: LoaderFunction = async (args) => {
   const { userId } = await getAuth(args);
   if (!userId) {
     return redirect("/sign-in");
   }
   return {};
-};
+}; */
 
 export const meta: MetaFunction = () => {
   return [
@@ -24,7 +24,6 @@ export default function Index() {
   return (
     <Center mih="100dvh">
       <h1>Index route</h1>
-      <p>You are signed in!</p>
       <UserButton />
       <Link to={"/dashboard"}>Dashboard</Link>
     </Center>
