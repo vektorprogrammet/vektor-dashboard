@@ -1,6 +1,5 @@
 import type { ComponentProps, ReactElement } from "react";
 import { Icon } from "@iconify-icon/react";
-import { Link } from "react-router";
 import {
   Collapsible,
   CollapsibleTrigger,
@@ -29,25 +28,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/ui/dropdown-menu";
-import { Button } from "@/ui/button";
 import { ComboBoxResponsive } from "@/components/combobox";
-
-const profileRoutes = [
-  { title: "Min side", url: "#" },
-  { title: "Min profil", url: "#" },
-  { title: "Mine utlegg", url: "#" },
-  { title: "Logg ut", url: "#" },
-];
-
-const user = {
-  name: "shadcn",
-  profilePicture: "",
-};
 
 export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
   const { isMobile } = useSidebar();
@@ -56,7 +43,7 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <SidebarMenu>
-          <ProfileMenu isMobile={isMobile} />
+          <UserMenu user={data.user} isMobile={isMobile} />
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
@@ -71,49 +58,83 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
   );
 }
 
-function ProfileMenu({ isMobile }: { isMobile?: boolean }) {
+function UserMenu({
+  user,
+  isMobile,
+}: {
+  user: {
+    name: string;
+    email: string;
+    avatar: string;
+  };
+  isMobile: boolean;
+}) {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <SidebarMenuButton
-          size="lg"
-          className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-        >
-          <Avatar>
-            <AvatarImage
-              // should fetch the user's avatar from the server
-              src={user.profilePicture}
-              className="bg-transparent"
-            />
-            <AvatarFallback className="bg-transparent">
-              <Icon icon="lucide:user" height={24} />
-            </AvatarFallback>
-          </Avatar>
-          <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
-        </SidebarMenuButton>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
-        className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-        align="start"
-        side={isMobile ? "bottom" : "right"}
-        sideOffset={4}
-      >
-        <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
-        {profileRoutes.map((item) => (
-          <Link to={item.url} key={item.title}>
-            <DropdownMenuItem key={item.title} className="gap-2 p-2 ">
-              <Button
-                role="link"
-                variant="secondary"
-                className="w-full text-left"
-              >
-                {item.title}
-              </Button>
+    <SidebarMenu>
+      <SidebarMenuItem>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <SidebarMenuButton
+              size="lg"
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+            >
+              <Avatar className="h-8 w-8 rounded-lg">
+                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+              </Avatar>
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-semibold">{user.name}</span>
+                <span className="truncate text-xs">{user.email}</span>
+              </div>
+              <Icon icon="lucide:chevrons-up-down" className="ml-auto size-4" />
+            </SidebarMenuButton>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+            side={isMobile ? "bottom" : "right"}
+            align="end"
+            sideOffset={4}
+          >
+            <DropdownMenuLabel className="p-0 font-normal">
+              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                <Avatar className="h-8 w-8 rounded-lg">
+                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                </Avatar>
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-semibold">{user.name}</span>
+                  <span className="truncate text-xs">{user.email}</span>
+                </div>
+              </div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                <Icon icon="lucide:badge-check" />
+                Konto
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Icon icon="lucide:user" />
+                Profil
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Icon icon="lucide:credit-card" />
+                Utlegg
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Icon icon="lucide:bell" />
+                Notifikasjoner
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Icon icon="lucide:log-out" />
+              Logg ut
             </DropdownMenuItem>
-          </Link>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </SidebarMenuItem>
+    </SidebarMenu>
   );
 }
 
