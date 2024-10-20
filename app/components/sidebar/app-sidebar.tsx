@@ -11,10 +11,10 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
+  SidebarMenuItem,
   SidebarRail,
   useSidebar,
 } from "@/ui/sidebar";
-import { LocationPicker } from "./location-picker";
 import { data } from "./data";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import {
@@ -25,6 +25,7 @@ import {
   DropdownMenuTrigger,
 } from "@/ui/dropdown-menu";
 import { Button } from "@/ui/button";
+import { ComboBoxResponsive } from "@/components/combobox";
 
 const profileRoutes = [
   { title: "Min side", url: "#" },
@@ -53,7 +54,7 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <LocationPicker />
+        <LocationPicker isMobile={isMobile} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
@@ -103,5 +104,27 @@ function ProfileMenu({ isMobile }: { isMobile?: boolean }) {
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
+  );
+}
+
+function LocationPicker({ isMobile }: { isMobile?: boolean }) {
+  return (
+    <SidebarMenu>
+      <SidebarMenuItem>
+        <SidebarMenuButton
+          size="lg"
+          className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+        >
+          <ComboBoxResponsive
+            items={[
+              { label: "Trondheim", value: "trondheim" },
+              { label: "Bergen", value: "bergen" },
+              { label: "Ås", value: "ås" },
+            ]}
+            defaultItem={{ label: "Trondheim", value: "trondheim" }}
+          />
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+    </SidebarMenu>
   );
 }
