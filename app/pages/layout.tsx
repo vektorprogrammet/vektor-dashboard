@@ -1,3 +1,8 @@
+import { Outlet } from "@remix-run/react";
+import { Separator } from "@radix-ui/react-separator";
+
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/ui/sidebar";
+import { ComboBoxResponsive } from "@/components/combobox";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import {
   Breadcrumb,
@@ -6,8 +11,7 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
   BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@radix-ui/react-separator";
+} from "@/ui/breadcrumb";
 
 const routes = [
   { name: "Home", path: "/home" },
@@ -55,6 +59,7 @@ export default function Layout() {
           </div>
         </header>
         <Outlet />
+
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
           <div className="grid auto-rows-min gap-4 md:grid-cols-3">
             <div className="aspect-video rounded-xl bg-muted/50" />
