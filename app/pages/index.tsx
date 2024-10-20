@@ -24,7 +24,6 @@ export default function Index() {
   return (
     <Center mih="100dvh">
       <h1>Index route</h1>
-      <UserButton />
       <Link to={"/dashboard"}>Dashboard</Link>
     </Center>
   );

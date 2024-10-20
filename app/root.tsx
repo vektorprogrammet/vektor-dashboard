@@ -23,8 +23,6 @@ export const meta: MetaFunction = () => [
   },
 ];
 
-export const loader: LoaderFunction = (args) => rootAuthLoader(args);
-
 export function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
@@ -48,4 +46,4 @@ function App() {
   return <Outlet />;
 }
 
-export default ClerkApp(App);
+export default App;
