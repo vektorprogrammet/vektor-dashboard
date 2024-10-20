@@ -7,7 +7,6 @@ import {
   CollapsibleContent,
 } from "@radix-ui/react-collapsible";
 
-import { NavProjects } from "@/components/sidebar/nav-projects";
 import {
   Sidebar,
   SidebarContent,
@@ -16,6 +15,7 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
@@ -31,6 +31,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/ui/dropdown-menu";
 import { Button } from "@/ui/button";
@@ -60,13 +61,59 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavProjects projects={data.projects} isMobile={isMobile} />
       </SidebarContent>
       <SidebarFooter>
         <LocationPicker isMobile={isMobile} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
+  );
+}
+
+function ProfileMenu({ isMobile }: { isMobile?: boolean }) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <SidebarMenuButton
+          size="lg"
+          className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+        >
+          <Avatar>
+            <AvatarImage
+              // should fetch the user's avatar from the server
+              src={user.profilePicture}
+              className="bg-transparent"
+            />
+            <AvatarFallback className="bg-transparent">
+              <Icon icon="lucide:user" height={24} />
+            </AvatarFallback>
+          </Avatar>
+          <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
+        </SidebarMenuButton>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+        align="start"
+        side={isMobile ? "bottom" : "right"}
+        sideOffset={4}
+      >
+        <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
+        {profileRoutes.map((item) => (
+          <Link to={item.url} key={item.title}>
+            <DropdownMenuItem key={item.title} className="gap-2 p-2 ">
+              <Button
+                role="link"
+                variant="secondary"
+                className="w-full text-left"
+              >
+                {item.title}
+              </Button>
+            </DropdownMenuItem>
+          </Link>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 
@@ -127,49 +174,78 @@ function NavMain({
   );
 }
 
-function ProfileMenu({ isMobile }: { isMobile?: boolean }) {
+function NavProjects({
+  projects,
+  isMobile,
+}: {
+  projects: {
+    name: string;
+    url: string;
+    icon: ReactElement;
+  }[];
+  isMobile?: boolean;
+}) {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <SidebarMenuButton
-          size="lg"
-          className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-        >
-          <Avatar>
-            <AvatarImage
-              // should fetch the user's avatar from the server
-              src={user.profilePicture}
-              className="bg-transparent"
-            />
-            <AvatarFallback className="bg-transparent">
-              <Icon icon="lucide:user" height={24} />
-            </AvatarFallback>
-          </Avatar>
-          <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
-        </SidebarMenuButton>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
-        className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-        align="start"
-        side={isMobile ? "bottom" : "right"}
-        sideOffset={4}
-      >
-        <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
-        {profileRoutes.map((item) => (
-          <Link to={item.url} key={item.title}>
-            <DropdownMenuItem key={item.title} className="gap-2 p-2 ">
-              <Button
-                role="link"
-                variant="secondary"
-                className="w-full text-left"
+    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+      <SidebarGroupLabel>Projects</SidebarGroupLabel>
+      <SidebarMenu>
+        {projects.map((item) => (
+          <SidebarMenuItem key={item.name}>
+            <SidebarMenuButton asChild>
+              <a href={item.url}>
+                {item.icon}
+                <span>{item.name}</span>
+              </a>
+            </SidebarMenuButton>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuAction showOnHover>
+                  <Icon icon="lucide:more-horizontal" />
+                  <span className="sr-only">More</span>
+                </SidebarMenuAction>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                className="w-48 rounded-lg"
+                side={isMobile ? "bottom" : "right"}
+                align={isMobile ? "end" : "start"}
               >
-                {item.title}
-              </Button>
-            </DropdownMenuItem>
-          </Link>
+                <DropdownMenuItem>
+                  <Icon
+                    icon="lucide:folder"
+                    className="text-muted-foreground"
+                  />
+                  <span>View Project</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Icon
+                    icon="lucide:forward"
+                    className="text-muted-foreground"
+                  />
+                  <span>Share Project</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Icon
+                    icon="lucide:trash-2"
+                    className="text-muted-foreground"
+                  />
+                  <span>Delete Project</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
         ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton className="text-sidebar-foreground/70">
+            <Icon
+              icon="lucide:more-horizontal"
+              className="text-sidebar-foreground/70"
+            />
+            <span>More</span>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
+    </SidebarGroup>
   );
 }
 
