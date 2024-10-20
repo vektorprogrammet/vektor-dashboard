@@ -1,27 +1,4 @@
-import { Link, Outlet, redirect } from "@remix-run/react";
-import { AppShell, Burger, Group } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { MantineLogo } from "@mantinex/mantine-logo";
-import { useState } from "react";
-import { UnstyledButton, Tooltip, Title, rem } from "@mantine/core";
-import { useClickOutside } from "@mantine/hooks";
-import { useAuth } from "@clerk/remix";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarInset,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbList,

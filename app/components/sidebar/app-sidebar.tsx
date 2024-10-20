@@ -1,10 +1,10 @@
 import type { ComponentProps } from "react";
 import { Icon } from "@iconify-icon/react";
 
-import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
-import { NavUser } from "@/components/nav-user";
-import { TeamSwitcher } from "@/components/team-switcher";
+import { NavMain } from "@/components/sidebar/nav-main";
+import { NavProjects } from "@/components/sidebar/nav-projects";
+import { NavUser } from "@/components/sidebar/nav-user";
+import { TeamSwitcher } from "@/components/sidebar/team-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -12,6 +12,8 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/ui/sidebar";
+import { ComboBoxResponsive } from "@/components/combobox";
+import { LocationPicker } from "./location-picker";
 
 // This is sample data.
 const data = {
@@ -23,17 +25,25 @@ const data = {
   teams: [
     {
       name: "Acme Inc",
-      logo: <Icon icon={"lucide:gallery-vertical-end"} />, // GalleryVerticalEnd,
+      logo: (
+        <Icon
+          icon="lucide:gallery-vertical-end"
+          height={24}
+          className="shrink-0"
+        />
+      ), // GalleryVerticalEnd,
       plan: "Enterprise",
     },
     {
       name: "Acme Corp.",
-      logo: <Icon icon="lucide:audio-waveform" />, // AudioWaveform,
+      logo: (
+        <Icon icon="lucide:audio-waveform" height={24} className="shrink-0" />
+      ), // AudioWaveform,
       plan: "Startup",
     },
     {
       name: "Evil Corp.",
-      logo: <Icon icon="lucide:command" />, // Command,
+      logo: <Icon icon="lucide:command" height={24} className="shrink-0" />, // Command,
       plan: "Free",
     },
   ],
@@ -41,7 +51,7 @@ const data = {
     {
       title: "Playground",
       url: "#",
-      icon: <Icon icon="lucide:square-terminal" />, // SquareTerminal,
+      icon: <Icon icon="lucide:square-terminal" height={24} />, // SquareTerminal,
       isActive: true,
       items: [
         {
@@ -61,7 +71,7 @@ const data = {
     {
       title: "Models",
       url: "#",
-      icon: <Icon icon="lucide:bot" />, // Bot,
+      icon: <Icon icon="lucide:bot" height={24} />, // Bot,
       items: [
         {
           title: "Genesis",
@@ -80,7 +90,7 @@ const data = {
     {
       title: "Documentation",
       url: "#",
-      icon: <Icon icon="lucide:book-open" />, // BookOpen,
+      icon: <Icon icon="lucide:book-open" height={24} />, // BookOpen,
       items: [
         {
           title: "Introduction",
@@ -103,7 +113,7 @@ const data = {
     {
       title: "Settings",
       url: "#",
-      icon: <Icon icon="lucide:settings2" />, // Settings2,
+      icon: <Icon icon="lucide:settings2" height={24} />, // Settings2,
       items: [
         {
           title: "General",
@@ -128,17 +138,17 @@ const data = {
     {
       name: "Design Engineering",
       url: "#",
-      icon: <Icon icon="lucide:frame" />, // Frame,
+      icon: <Icon icon="lucide:frame" height={24} />, // Frame,
     },
     {
       name: "Sales & Marketing",
       url: "#",
-      icon: <Icon icon="lucide:pie-chart" />, // PieChart,
+      icon: <Icon icon="lucide:pie-chart" height={24} />, // PieChart,
     },
     {
       name: "Travel",
       url: "#",
-      icon: <Icon icon="lucide:map-icon" />, // MapIcon,
+      icon: <Icon icon="lucide:map-icon" height={24} />, // MapIcon,
     },
   ],
 };
@@ -154,7 +164,7 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <LocationPicker />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
