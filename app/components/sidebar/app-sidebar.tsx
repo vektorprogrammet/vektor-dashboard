@@ -113,7 +113,7 @@ const data = {
     {
       title: "Settings",
       url: "#",
-      icon: <Icon icon="lucide:settings2" height={24} />, // Settings2,
+      icon: <Icon icon="lucide:settings" height={24} />, // Settings2,
       items: [
         {
           title: "General",
@@ -148,7 +148,7 @@ const data = {
     {
       name: "Travel",
       url: "#",
-      icon: <Icon icon="lucide:map-icon" height={24} />, // MapIcon,
+      icon: <Icon icon="lucide:map" height={24} />, // MapIcon,
     },
   ],
 };
