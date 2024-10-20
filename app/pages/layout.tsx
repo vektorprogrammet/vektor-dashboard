@@ -51,7 +51,7 @@ import {
 const user = {
   name: "shadcn",
   email: "m@example.com",
-  avatar: "/avatars/shadcn.jpg",
+  avatar: "",
 };
 
 function UserMenu({
@@ -134,74 +134,94 @@ function UserMenu({
 }
 const mainLinks = [
   {
-    title: "Playground",
+    title: "Opptak",
     url: "#",
-    icon: <Icon icon="lucide:square-terminal" height={24} />, // SquareTerminal,
+    icon: <Icon icon="lucide:notebook-pen" height={24} />,
     isActive: true,
     items: [
       {
-        title: "History",
+        title: "Intervjufordeling",
         url: "#",
       },
       {
-        title: "Starred",
-        url: "#",
-      },
-      {
-        title: "Settings",
+        title: "Intervjuskjema",
         url: "#",
       },
     ],
   },
   {
-    title: "Models",
+    title: "Statistikk",
     url: "#",
-    icon: <Icon icon="lucide:bot" height={24} />, // Bot,
+    icon: <Icon icon="lucide:chart-line" height={24} />,
     items: [
       {
-        title: "Genesis",
+        title: "Opptak",
         url: "#",
       },
       {
-        title: "Explorer",
-        url: "#",
-      },
-      {
-        title: "Quantum",
+        title: "Utlegg",
         url: "#",
       },
     ],
   },
   {
-    title: "Documentation",
+    title: "Informasjon",
     url: "#",
-    icon: <Icon icon="lucide:book-open" height={24} />, // BookOpen,
+    icon: <Icon icon="lucide:info" height={24} />, // Settings2,
     items: [
       {
-        title: "Introduction",
-        url: "#",
-      },
-      {
-        title: "Get Started",
-        url: "#",
-      },
-      {
-        title: "Tutorials",
+        title: "Artikler",
         url: "#",
       },
       {
         title: "Changelog",
         url: "#",
       },
+      {
+        title: "Stand",
+        url: "#",
+      },
     ],
   },
   {
-    title: "Settings",
+    title: "Data",
     url: "#",
-    icon: <Icon icon="lucide:settings" height={24} />, // Settings2,
+    icon: <Icon icon="lucide:database" height={24} />, // BookOpen,
     items: [
       {
-        title: "General",
+        title: "Arrangementer",
+        url: "#",
+      },
+      {
+        title: "Attester",
+        url: "#",
+      },
+      {
+        title: "Assistenter",
+        url: "#",
+      },
+      {
+        title: "Avdelinger",
+        url: "#",
+      },
+      {
+        title: "Brukere",
+        url: "#",
+      },
+      {
+        title: "Brukergruppesamlinger",
+        url: "#",
+      },
+      {
+        title: "Hovedstyret",
+        url: "#",
+      },
+      {
+        title: "Opptak",
+        url: "#",
+      },
+      {
+        title: "Opptaksperioder",
         url: "#",
       },
       {
@@ -209,11 +229,59 @@ const mainLinks = [
         url: "#",
       },
       {
-        title: "Billing",
+        title: "Teaminteresse",
         url: "#",
       },
       {
-        title: "Limits",
+        title: "Sponsorer",
+        url: "#",
+      },
+      {
+        title: "Skoler",
+        url: "#",
+      },
+      {
+        title: "Linjer",
+        url: "#",
+      },
+      {
+        title: "Undersøkelser",
+        url: "#",
+      },
+      {
+        title: "Vikarer",
+        url: "#",
+      },
+    ],
+  },
+  {
+    title: "Feedback",
+    url: "#",
+    icon: <Icon icon="lucide:thumbs-up" height={24} />,
+  },
+  {
+    title: "Annet",
+    url: "#",
+    icon: <Icon icon="lucide:settings" height={24} />, // Settings2,
+    items: [
+      {
+        title: "Access Control",
+        url: "#",
+      },
+      {
+        title: "Kontrollpanel",
+        url: "#",
+      },
+      {
+        title: "Timeplan",
+        url: "#",
+      },
+      {
+        title: "Epostlister",
+        url: "#",
+      },
+      {
+        title: "Slab",
         url: "#",
       },
     ],
@@ -378,6 +446,8 @@ function NavProjects({
   );
 }
 
+const departments = ["Trondheim", "Bergen", "Ås"];
+
 function LocationSwitcher({
   locations,
 }: {
@@ -451,7 +521,7 @@ export default function Layout() {
           </nav>
         </SidebarContent>
         <SidebarFooter>
-          <LocationSwitcher locations={["Trondheim", "Bergen", "Ås"]} />
+          <LocationSwitcher locations={departments} />
         </SidebarFooter>
         <SidebarRail />
       </Sidebar>
