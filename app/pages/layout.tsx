@@ -138,7 +138,7 @@ const mainLinks = [
     url: "#",
     icon: <Icon icon="lucide:notebook-pen" height={24} />,
     isActive: true,
-    items: [
+    links: [
       {
         title: "Intervjufordeling",
         url: "#",
@@ -153,7 +153,7 @@ const mainLinks = [
     title: "Statistikk",
     url: "#",
     icon: <Icon icon="lucide:chart-line" height={24} />,
-    items: [
+    links: [
       {
         title: "Opptak",
         url: "#",
@@ -168,7 +168,7 @@ const mainLinks = [
     title: "Informasjon",
     url: "#",
     icon: <Icon icon="lucide:info" height={24} />, // Settings2,
-    items: [
+    links: [
       {
         title: "Artikler",
         url: "#",
@@ -187,7 +187,7 @@ const mainLinks = [
     title: "Data",
     url: "#",
     icon: <Icon icon="lucide:database" height={24} />, // BookOpen,
-    items: [
+    links: [
       {
         title: "Arrangementer",
         url: "#",
@@ -263,7 +263,7 @@ const mainLinks = [
     title: "Annet",
     url: "#",
     icon: <Icon icon="lucide:settings" height={24} />, // Settings2,
-    items: [
+    links: [
       {
         title: "Access Control",
         url: "#",
@@ -288,15 +288,15 @@ const mainLinks = [
   },
 ];
 
-function NavMain({
-  items,
+function NavLinks({
+  links,
 }: {
-  items: {
+  links: {
     title: string;
     url: string;
     icon?: ReactElement;
     isActive?: boolean;
-    items?: {
+    links?: {
       title: string;
       url: string;
     }[];
@@ -306,28 +306,28 @@ function NavMain({
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
-        {items.map((item) =>
-          !item.items ? (
-            <SidebarMenuItem key={item.title}>
+        {links.map((link) =>
+          !link.links ? (
+            <SidebarMenuItem key={link.title}>
               <SidebarMenuButton asChild>
-                <a href={item.url}>
-                  {item.icon}
-                  <span>{item.title}</span>
+                <a href={link.url}>
+                  {link.icon}
+                  <span>{link.title}</span>
                 </a>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ) : (
             <Collapsible
-              key={item.title}
+              key={link.title}
               asChild
-              defaultOpen={item.isActive}
+              defaultOpen={link.isActive}
               className="group/collapsible"
             >
               <SidebarMenuItem>
                 <CollapsibleTrigger asChild>
-                  <SidebarMenuButton tooltip={item.title}>
-                    {item.icon}
-                    <span>{item.title}</span>
+                  <SidebarMenuButton tooltip={link.title}>
+                    {link.icon}
+                    <span>{link.title}</span>
                     <Icon
                       icon="lucide:chevron-right"
                       className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
@@ -336,11 +336,11 @@ function NavMain({
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <SidebarMenuSub>
-                    {item.items?.map((subItem) => (
-                      <SidebarMenuSubItem key={subItem.title}>
+                    {link.links?.map((subLink) => (
+                      <SidebarMenuSubItem key={subLink.title}>
                         <SidebarMenuSubButton asChild>
-                          <a href={subItem.url}>
-                            <span>{subItem.title}</span>
+                          <a href={subLink.url}>
+                            <span>{subLink.title}</span>
                           </a>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
@@ -372,10 +372,10 @@ const projectsData = [
     icon: <Icon icon="lucide:map" height={24} />, // MapIcon,
   },
 ];
-function NavProjects({
-  projects,
+function NavItems({
+  items,
 }: {
-  projects: {
+  items: {
     name: string;
     url: string;
     icon: ReactElement;
@@ -386,7 +386,7 @@ function NavProjects({
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>Projects</SidebarGroupLabel>
       <SidebarMenu>
-        {projects.map((item) => (
+        {items.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <a href={item.url}>
@@ -448,12 +448,12 @@ function NavProjects({
 
 const departments = ["Trondheim", "Bergen", "Ås"];
 
-function LocationSwitcher({
-  locations,
+function StatusSelector({
+  status,
 }: {
-  locations: string[];
+  status: string[];
 }) {
-  const [activeLocation, setActiveLocation] = useState(locations[0]);
+  const [activeStatus, setActiveStatus] = useState(status[0]);
   const isMobile = useSidebar();
 
   return (
@@ -467,7 +467,7 @@ function LocationSwitcher({
             >
               <Icon icon="lucide:map-pinned" height={24} />
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{activeLocation}</span>
+                <span className="truncate font-semibold">{activeStatus}</span>
               </div>
               <Icon icon="lucide:chevrons-up-down" className="ml-auto" />
             </SidebarMenuButton>
@@ -481,13 +481,13 @@ function LocationSwitcher({
             <DropdownMenuLabel className="text-xs text-muted-foreground">
               Avdelinger
             </DropdownMenuLabel>
-            {locations.map((location) => (
+            {status.map((status) => (
               <DropdownMenuItem
-                key={location}
-                onClick={() => setActiveLocation(location)}
+                key={status}
+                onClick={() => setActiveStatus(status)}
                 className="gap-2 p-2"
               >
-                {location}
+                {status}
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
@@ -516,12 +516,12 @@ export default function Layout() {
         </SidebarHeader>
         <SidebarContent>
           <nav>
-            <NavMain items={mainLinks} />
-            <NavProjects projects={projectsData} />
+            <NavLinks links={mainLinks} />
+            <NavItems items={projectsData} />
           </nav>
         </SidebarContent>
         <SidebarFooter>
-          <LocationSwitcher locations={departments} />
+          <StatusSelector status={departments} />
         </SidebarFooter>
         <SidebarRail />
       </Sidebar>
@@ -546,16 +546,18 @@ export default function Layout() {
             </Breadcrumb>
           </div>
         </header>
-        <Outlet />
 
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
+        <main>
+          <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+            <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+              <div className="aspect-video rounded-xl bg-muted/50" />
+              <div className="aspect-video rounded-xl bg-muted/50" />
+              <div className="aspect-video rounded-xl bg-muted/50" />
+            </div>
+            <Outlet />
+            <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
           </div>
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
-        </div>
+        </main>
       </SidebarInset>
     </SidebarProvider>
   );
