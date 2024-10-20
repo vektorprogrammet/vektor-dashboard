@@ -68,8 +68,19 @@ Configure the VSCode workspace settings:
 ```jsonc
 // .vscode/settings.json
 {
+  // Set default formatter to Biome
   "editor.defaultFormatter": "biomejs.biome",
+  // Format on save
   "editor.formatOnSave": true,
+  // On save:
+  "editor.codeActionsOnSave": {
+    // add missing imports
+    "source.addMissingImports.ts": "always",
+    // organise imports
+    "source.organizeImports": "always",
+    // sort imports
+    "source.sortImports": "always"
+  },
 }
 ```
 
