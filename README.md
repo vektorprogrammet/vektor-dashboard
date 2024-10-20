@@ -84,6 +84,40 @@ Configure the VSCode workspace settings:
 }
 ```
 
+### Testing
+
+Install required browsers for running e2e tests:
+
+```sh
+pnpm e2e:install
+```
+
+Run all tests:
+
+```sh
+pnpm e2e:test
+```
+
+Use the `ui` flag to watch the tests:
+
+```sh
+pnpm exec playwright test --ui
+```
+
+Run tests for individual browsers:
+
+| Google Chrome | Firefox | Safari |
+| --- | --- | --- |
+|`pnpm e2e:test:chromium`|`pnpm e2e:test:firefox`|`pnpm e2e:test:webkit`|
+
+Generate tests interactively:
+
+```sh
+pnpm e2e:test:generate
+```
+
+Read more in the [docs](https://playwright.dev/docs/codegen).
+
 ### Deployment
 
 First, build your app for production:
