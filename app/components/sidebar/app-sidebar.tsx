@@ -24,7 +24,6 @@ import {
   SidebarRail,
   useSidebar,
 } from "@/ui/sidebar";
-import { data } from "./data";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import {
   DropdownMenu,
@@ -36,30 +35,11 @@ import {
   DropdownMenuTrigger,
 } from "@/ui/dropdown-menu";
 
-export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
-  const { isMobile } = useSidebar();
-
-  return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <SidebarMenu>
-          <UserMenu user={data.user} isMobile={isMobile} />
-        </SidebarMenu>
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} isMobile={isMobile} />
-      </SidebarContent>
-      <SidebarFooter>
-        <LocationSwitcher
-          locations={["Trondheim", "Bergen", "Ås"]}
-          isMobile={isMobile}
-        />
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
-  );
-}
+const user = {
+  name: "shadcn",
+  email: "m@example.com",
+  avatar: "/avatars/shadcn.jpg",
+};
 
 function UserMenu({
   user,
@@ -121,7 +101,7 @@ function UserMenu({
                 Profil
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Icon icon="lucide:credit-card" />
+                <Icon icon="lucide:receipt" />
                 Utlegg
               </DropdownMenuItem>
               <DropdownMenuItem>
@@ -140,6 +120,93 @@ function UserMenu({
     </SidebarMenu>
   );
 }
+const mainLinks = [
+  {
+    title: "Playground",
+    url: "#",
+    icon: <Icon icon="lucide:square-terminal" height={24} />, // SquareTerminal,
+    isActive: true,
+    items: [
+      {
+        title: "History",
+        url: "#",
+      },
+      {
+        title: "Starred",
+        url: "#",
+      },
+      {
+        title: "Settings",
+        url: "#",
+      },
+    ],
+  },
+  {
+    title: "Models",
+    url: "#",
+    icon: <Icon icon="lucide:bot" height={24} />, // Bot,
+    items: [
+      {
+        title: "Genesis",
+        url: "#",
+      },
+      {
+        title: "Explorer",
+        url: "#",
+      },
+      {
+        title: "Quantum",
+        url: "#",
+      },
+    ],
+  },
+  {
+    title: "Documentation",
+    url: "#",
+    icon: <Icon icon="lucide:book-open" height={24} />, // BookOpen,
+    items: [
+      {
+        title: "Introduction",
+        url: "#",
+      },
+      {
+        title: "Get Started",
+        url: "#",
+      },
+      {
+        title: "Tutorials",
+        url: "#",
+      },
+      {
+        title: "Changelog",
+        url: "#",
+      },
+    ],
+  },
+  {
+    title: "Settings",
+    url: "#",
+    icon: <Icon icon="lucide:settings" height={24} />, // Settings2,
+    items: [
+      {
+        title: "General",
+        url: "#",
+      },
+      {
+        title: "Team",
+        url: "#",
+      },
+      {
+        title: "Billing",
+        url: "#",
+      },
+      {
+        title: "Limits",
+        url: "#",
+      },
+    ],
+  },
+];
 
 function NavMain({
   items,
@@ -197,7 +264,23 @@ function NavMain({
     </SidebarGroup>
   );
 }
-
+const projectsData = [
+  {
+    name: "Design Engineering",
+    url: "#",
+    icon: <Icon icon="lucide:frame" height={24} />, // Frame,
+  },
+  {
+    name: "Sales & Marketing",
+    url: "#",
+    icon: <Icon icon="lucide:pie-chart" height={24} />, // PieChart,
+  },
+  {
+    name: "Travel",
+    url: "#",
+    icon: <Icon icon="lucide:map" height={24} />, // MapIcon,
+  },
+];
 function NavProjects({
   projects,
   isMobile,
@@ -272,7 +355,6 @@ function NavProjects({
     </SidebarGroup>
   );
 }
-
 function LocationSwitcher({
   locations,
   isMobile,
@@ -320,5 +402,30 @@ function LocationSwitcher({
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
+  );
+}
+
+export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
+  const { isMobile } = useSidebar();
+
+  return (
+    <Sidebar collapsible="icon" {...props}>
+      <SidebarHeader>
+        <SidebarMenu>
+          <UserMenu user={user} isMobile={isMobile} />
+        </SidebarMenu>
+      </SidebarHeader>
+      <SidebarContent>
+        <NavMain items={mainLinks} />
+        <NavProjects projects={projectsData} isMobile={isMobile} />
+      </SidebarContent>
+      <SidebarFooter>
+        <LocationSwitcher
+          locations={["Trondheim", "Bergen", "Ås"]}
+          isMobile={isMobile}
+        />
+      </SidebarFooter>
+      <SidebarRail />
+    </Sidebar>
   );
 }
