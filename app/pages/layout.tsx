@@ -1,14 +1,15 @@
-import { Separator } from "@radix-ui/react-separator";
-import { Outlet } from "react-router";
-import type { ReactElement } from "react";
-import { useState } from "react";
 import { Icon } from "@iconify-icon/react";
 import {
   Collapsible,
-  CollapsibleTrigger,
   CollapsibleContent,
+  CollapsibleTrigger,
 } from "@radix-ui/react-collapsible";
+import { Separator } from "@radix-ui/react-separator";
+import type { ReactElement } from "react";
+import { useState } from "react";
+import { Outlet } from "react-router";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -17,25 +18,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/ui/breadcrumb";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/ui/sidebar";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuAction,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-  SidebarRail,
-  useSidebar,
-} from "@/ui/sidebar";
-import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -45,6 +27,26 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/ui/dropdown-menu";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarTrigger,
+  useSidebar,
+} from "@/ui/sidebar";
 
 const user = {
   name: "shadcn",

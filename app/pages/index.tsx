@@ -1,9 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { UserButton } from "@clerk/remix";
-import { getAuth } from "@clerk/remix/ssr.server";
-import type { MetaFunction, LoaderFunction } from "react-router";
-import { redirect } from "react-router";
-import { Link } from "react-router";
+import type { LoaderFunction, MetaFunction } from "react-router";
+import { Link, redirect } from "react-router";
 
 /* export const loader: LoaderFunction = async (args) => {
   const { userId } = await getAuth(args);

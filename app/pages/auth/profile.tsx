@@ -1,6 +1,6 @@
-import { type LoaderFunction, redirect } from "@react-router/node";
-import { getAuth } from "@clerk/remix/ssr.server";
 import { createClerkClient } from "@clerk/remix/api.server";
+import { getAuth } from "@clerk/remix/ssr.server";
+import { type LoaderFunction, redirect } from "@react-router/node";
 
 export const loader: LoaderFunction = async (args) => {
   // Use getAuth() to retrieve the user's ID
