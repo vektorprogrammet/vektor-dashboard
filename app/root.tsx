@@ -4,10 +4,10 @@ import type { ReactNode } from "react";
 import {
   Links,
   Meta,
+  type MetaFunction,
   Outlet,
   Scripts,
   ScrollRestoration,
-  type MetaFunction,
 } from "react-router";
 
 export const meta: MetaFunction = () => [
