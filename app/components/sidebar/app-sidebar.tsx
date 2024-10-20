@@ -1,4 +1,5 @@
 import type { ComponentProps, ReactElement } from "react";
+import { useState } from "react";
 import { Icon } from "@iconify-icon/react";
 import {
   Collapsible,
@@ -34,7 +35,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/ui/dropdown-menu";
-import { ComboBoxResponsive } from "@/components/combobox";
 
 export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
   const { isMobile } = useSidebar();
@@ -51,7 +51,10 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} isMobile={isMobile} />
       </SidebarContent>
       <SidebarFooter>
-        <LocationPicker isMobile={isMobile} />
+        <LocationSwitcher
+          locations={["Trondheim", "Bergen", "Ås"]}
+          isMobile={isMobile}
+        />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
@@ -270,23 +273,51 @@ function NavProjects({
   );
 }
 
-function LocationPicker({ isMobile }: { isMobile?: boolean }) {
+function LocationSwitcher({
+  locations,
+  isMobile,
+}: {
+  locations: string[];
+  isMobile?: boolean;
+}) {
+  const [activeLocation, setActiveLocation] = useState(locations[0]);
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <SidebarMenuButton
-          size="lg"
-          className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-        >
-          <ComboBoxResponsive
-            items={[
-              { label: "Trondheim", value: "trondheim" },
-              { label: "Bergen", value: "bergen" },
-              { label: "Ås", value: "ås" },
-            ]}
-            defaultItem={{ label: "Trondheim", value: "trondheim" }}
-          />
-        </SidebarMenuButton>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <SidebarMenuButton
+              size="lg"
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+            >
+              <Icon icon="lucide:map-pinned" height={24} />
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-semibold">{activeLocation}</span>
+              </div>
+              <Icon icon="lucide:chevrons-up-down" className="ml-auto" />
+            </SidebarMenuButton>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+            align="start"
+            side={isMobile ? "bottom" : "right"}
+            sideOffset={4}
+          >
+            <DropdownMenuLabel className="text-xs text-muted-foreground">
+              Avdelinger
+            </DropdownMenuLabel>
+            {locations.map((location) => (
+              <DropdownMenuItem
+                key={location}
+                onClick={() => setActiveLocation(location)}
+                className="gap-2 p-2"
+              >
+                {location}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
   );
