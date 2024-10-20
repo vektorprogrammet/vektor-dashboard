@@ -21,6 +21,7 @@
     "e2e:install": "exec playwright install"
   },
   "dependencies": {
+    "@axe-core/playwright": "^4.10.0",
     "@clerk/remix": "^4.2.39",
     "@iconify-icon/react": "^2.1.0",
     "@mantine/core": "^7.13.0",
