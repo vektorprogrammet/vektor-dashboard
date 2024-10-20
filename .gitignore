@@ -5,3 +5,7 @@ node_modules
 .env
 
 .vscode
+e2e/results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
