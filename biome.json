@@ -1,24 +1,28 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
-	"organizeImports": { "enabled": true },
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"recommended": true,
-			"a11y": {
-				"noSvgWithoutTitle": "warn"
-			},
-			"correctness": {
-				"noUndeclaredVariables": "warn",
-				"noUnusedVariables": "warn"
-			},
-			"suspicious": {
-				"noEmptyBlockStatements": "warn"
-			}
-		}
-	},
-	"formatter": {
-		"enabled": true,
-		"indentStyle": "space"
-	}
+  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "organizeImports": { "enabled": true },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "noSvgWithoutTitle": "warn"
+      },
+      "correctness": {
+        "noUndeclaredVariables": "warn",
+        "noUnusedVariables": "warn"
+      },
+      "suspicious": {
+        "noEmptyBlockStatements": "warn"
+      }
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space"
+  },
+  "files": {
+    "include": ["./app/**/*"],
+    "ignore": ["./app/components/ui/*"]
+  }
 }
