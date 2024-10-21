@@ -505,8 +505,6 @@ export default function Layout() {
             <NavLinks links={mainLinks} />
             <NavItems items={projectsData} />
           </nav>
-        </SidebarContent>
-        <SidebarFooter>
           <SidebarGroup className="mt-auto">
             <SidebarGroupContent>
               <SidebarMenu>
@@ -529,6 +527,8 @@ export default function Layout() {
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
+        </SidebarContent>
+        <SidebarFooter>
           <StatusMenu status={departments} />
         </SidebarFooter>
         <SidebarRail />
