@@ -124,7 +124,7 @@ const mainLinks = [
   {
     title: "Opptak",
     url: "#",
-    icon: <Icon icon="lucide:notebook-pen" height={24} />,
+    icon: <Icon icon="lucide:notebook-pen" className="size-4 shrink-0" />,
     isActive: true,
     links: [
       {
@@ -140,7 +140,7 @@ const mainLinks = [
   {
     title: "Statistikk",
     url: "#",
-    icon: <Icon icon="lucide:chart-line" height={24} />,
+    icon: <Icon icon="lucide:chart-line" className="size-4 shrink-0" />,
     links: [
       {
         title: "Opptak",
@@ -155,7 +155,7 @@ const mainLinks = [
   {
     title: "Informasjon",
     url: "#",
-    icon: <Icon icon="lucide:info" height={24} />, // Settings2,
+    icon: <Icon icon="lucide:info" className="size-4 shrink-0" />,
     links: [
       {
         title: "Artikler",
@@ -174,7 +174,7 @@ const mainLinks = [
   {
     title: "Data",
     url: "#",
-    icon: <Icon icon="lucide:database" height={24} />, // BookOpen,
+    icon: <Icon icon="lucide:database" className="size-4 shrink-0" />,
     links: [
       {
         title: "Arrangementer",
@@ -245,7 +245,7 @@ const mainLinks = [
   {
     title: "Annet",
     url: "#",
-    icon: <Icon icon="lucide:settings" height={24} />, // Settings2,
+    icon: <Icon icon="lucide:settings" className="size-4 shrink-0" />,
     links: [
       {
         title: "Access Control",
@@ -342,17 +342,17 @@ const projectsData = [
   {
     name: "Design Engineering",
     url: "#",
-    icon: <Icon icon="lucide:frame" height={24} />, // Frame,
+    icon: <Icon icon="lucide:frame" className="size-4 shrink-0" />,
   },
   {
     name: "Sales & Marketing",
     url: "#",
-    icon: <Icon icon="lucide:pie-chart" height={24} />, // PieChart,
+    icon: <Icon icon="lucide:pie-chart" className="size-4 shrink-0" />,
   },
   {
     name: "Travel",
     url: "#",
-    icon: <Icon icon="lucide:map" height={24} />, // MapIcon,
+    icon: <Icon icon="lucide:map" className="size-4 shrink-0" />,
   },
 ];
 function NavItems({
@@ -448,7 +448,7 @@ function StatusSelector({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Icon icon="lucide:map-pinned" height={24} />
+              <Icon icon="lucide:map-pinned" className="size-4 shrink-0" />
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">{activeStatus}</span>
               </div>
