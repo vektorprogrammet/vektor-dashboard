@@ -243,11 +243,6 @@ const mainLinks = [
     ],
   },
   {
-    title: "Feedback",
-    url: "#",
-    icon: <Icon icon="lucide:thumbs-up" height={24} />,
-  },
-  {
     title: "Annet",
     url: "#",
     icon: <Icon icon="lucide:settings" height={24} />, // Settings2,
