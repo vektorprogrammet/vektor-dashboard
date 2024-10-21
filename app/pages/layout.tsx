@@ -496,7 +496,7 @@ export default function Layout() {
   } */
   return (
     <SidebarProvider>
-      <Sidebar collapsible="icon">
+      <Sidebar variant="inset" collapsible="icon">
         <SidebarHeader>
           <UserMenu user={user} />
         </SidebarHeader>
