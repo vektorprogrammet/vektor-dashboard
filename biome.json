@@ -21,6 +21,12 @@
     "enabled": true,
     "indentStyle": "space"
   },
+  "javascript": {
+    "formatter": {
+      "enabled": true,
+      "semicolons": "always"
+    }
+  },
   "files": {
     "include": ["./app/**/*"],
     "ignore": ["./app/components/ui/*"]
