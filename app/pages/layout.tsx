@@ -7,7 +7,7 @@ import {
 import { Separator } from "@radix-ui/react-separator";
 import type { ReactElement } from "react";
 import { useState } from "react";
-import { Outlet } from "react-router";
+import { Link, Outlet } from "react-router";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import {
@@ -32,6 +32,7 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
+  SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
   SidebarInset,
@@ -508,6 +509,28 @@ export default function Layout() {
           </nav>
         </SidebarContent>
         <SidebarFooter>
+          <SidebarGroup className="mt-auto">
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild size="sm">
+                    <Link to="#">
+                      <Icon icon="lucide:life-buoy" />
+                      <span>Support</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild size="sm">
+                    <Link to="#">
+                      <Icon icon="lucide:send" />
+                      <span>Feedback</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
           <StatusSelector status={departments} />
         </SidebarFooter>
         <SidebarRail />
