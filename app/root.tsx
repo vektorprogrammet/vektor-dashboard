@@ -1,6 +1,6 @@
 import "./globals.css";
 
-import type { ReactNode } from "react";
+import { type ReactNode, StrictMode } from "react";
 import {
   Links,
   Meta,
@@ -37,7 +37,11 @@ export function Layout({ children }: { children: ReactNode }) {
 }
 
 function App() {
-  return <Outlet />;
+  return (
+    <StrictMode>
+      <Outlet />
+    </StrictMode>
+  );
 }
 
 export default App;
