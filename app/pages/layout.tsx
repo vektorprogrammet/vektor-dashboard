@@ -293,10 +293,10 @@ function NavLinks({
           !link.links ? (
             <SidebarMenuItem key={link.title}>
               <SidebarMenuButton asChild>
-                <a href={link.url}>
+                <Link to={link.url}>
                   {link.icon}
                   <span>{link.title}</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ) : (
@@ -322,9 +322,9 @@ function NavLinks({
                     {link.links?.map((subLink) => (
                       <SidebarMenuSubItem key={subLink.title}>
                         <SidebarMenuSubButton asChild>
-                          <a href={subLink.url}>
+                          <Link to={subLink.url}>
                             <span>{subLink.title}</span>
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     ))}
@@ -372,10 +372,10 @@ function NavItems({
         {items.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
-              <a href={item.url}>
+              <Link to={item.url}>
                 {item.icon}
                 <span>{item.name}</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
