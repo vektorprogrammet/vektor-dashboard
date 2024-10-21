@@ -431,7 +431,7 @@ function NavItems({
 
 const departments = ["Trondheim", "Bergen", "Ås"];
 
-function StatusSelector({
+function StatusMenu({
   status,
 }: {
   status: string[];
@@ -529,7 +529,7 @@ export default function Layout() {
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
-          <StatusSelector status={departments} />
+          <StatusMenu status={departments} />
         </SidebarFooter>
         <SidebarRail />
       </Sidebar>
