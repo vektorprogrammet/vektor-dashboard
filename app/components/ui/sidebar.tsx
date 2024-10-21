@@ -1,7 +1,7 @@
-import * as React from "react";
 import { Icon } from "@iconify-icon/react";
 import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
+import * as React from "react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -39,7 +39,7 @@ const SidebarContext = React.createContext<SidebarContext | null>(null);
 function useSidebar() {
   const context = React.useContext(SidebarContext);
   if (!context) {
-    throw new Error("useSidebar must be used within a Sidebar.");
+    throw new Error("useSidebar must be used within a SidebarProvider.");
   }
 
   return context;
@@ -766,5 +766,6 @@ export {
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
-  useSidebar,
+  useSidebar
 };
+
