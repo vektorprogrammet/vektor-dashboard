@@ -14,7 +14,7 @@ test.describe("Dashboard sidebar", () => {
   test.describe("user menu", () => {
     const emailRegex = /.+@.+\..+/;
     test("skal eksistere", async ({ page }) => {
-      await expect(page.locator("body")).toContainText(emailRegex);
+      await expect(page.locator("aside")).toContainText(emailRegex);
     });
 
     test("skal ha en lenke til profil", async ({ page }) => {
@@ -37,17 +37,17 @@ test.describe("Dashboard sidebar", () => {
     test("trondheim bør kunne velges", async ({ page }) => {
       await page.getByRole("button", { name: "Avdeling" }).click();
       await page.getByRole("menuitem", { name: departments.bergen }).click();
-      await expect(page.locator("body")).toContainText(departments.bergen);
+      await expect(page.locator("aside")).toContainText(departments.bergen);
     });
     test("bergen bør kunne velges", async ({ page }) => {
       await page.getByRole("button", { name: "Avdeling" }).click();
       await page.getByRole("menuitem", { name: departments.aas }).click();
-      await expect(page.locator("body")).toContainText(departments.aas);
+      await expect(page.locator("aside")).toContainText(departments.aas);
     });
     test("ås bør kunne velges", async ({ page }) => {
       await page.getByRole("button", { name: "Avdeling" }).click();
       await page.getByRole("menuitem", { name: departments.trondheim }).click();
-      await expect(page.locator("body")).toContainText(departments.trondheim);
+      await expect(page.locator("aside")).toContainText(departments.trondheim);
     });
   });
 

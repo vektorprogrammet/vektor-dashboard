@@ -504,47 +504,53 @@ export default function Layout() {
   return (
     <SidebarProvider>
       <Sidebar variant="inset" collapsible="icon">
-        <SidebarHeader>
-          {/* User menu */}
-          <UserMenu user={user} />
-        </SidebarHeader>
-        <SidebarContent className="flex justify-between">
-          <nav aria-label="primary">
-            {/* Primary navigation */}
-            <NavLinks links={mainLinks} />
-            <NavItems items={projectsData} />
-          </nav>
-          <nav aria-label="secondary">
-            {/* Secondary navigation */}
-            <SidebarGroup className="mt-auto">
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {[
-                    { title: "Support", url: "#", icon: "lucide:life-buoy" },
-                    { title: "Feedback", url: "#", icon: "lucide:send" },
-                  ].map((link) => (
-                    <SidebarMenuItem key={link.title}>
-                      <SidebarMenuButton asChild size="sm" tooltip={link.title}>
-                        <Link to="#">
-                          <Icon icon={link.icon} />
-                          <span>{link.title}</span>
-                        </Link>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          </nav>
-        </SidebarContent>
-        <SidebarFooter>
-          <StatusMenu
-            subTitle="Avdeling"
-            label="Avdelinger"
-            icon="lucide:map-pinned"
-            status={departments}
-          />
-        </SidebarFooter>
+        <aside>
+          <SidebarHeader>
+            {/* User menu */}
+            <UserMenu user={user} />
+          </SidebarHeader>
+          <SidebarContent className="flex justify-between">
+            <nav aria-label="primary">
+              {/* Primary navigation */}
+              <NavLinks links={mainLinks} />
+              <NavItems items={projectsData} />
+            </nav>
+            <nav aria-label="secondary">
+              {/* Secondary navigation */}
+              <SidebarGroup className="mt-auto">
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    {[
+                      { title: "Support", url: "#", icon: "lucide:life-buoy" },
+                      { title: "Feedback", url: "#", icon: "lucide:send" },
+                    ].map((link) => (
+                      <SidebarMenuItem key={link.title}>
+                        <SidebarMenuButton
+                          asChild
+                          size="sm"
+                          tooltip={link.title}
+                        >
+                          <Link to="#">
+                            <Icon icon={link.icon} />
+                            <span>{link.title}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))}
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </SidebarGroup>
+            </nav>
+          </SidebarContent>
+          <SidebarFooter>
+            <StatusMenu
+              subTitle="Avdeling"
+              label="Avdelinger"
+              icon="lucide:map-pinned"
+              status={departments}
+            />
+          </SidebarFooter>
+        </aside>
       </Sidebar>
 
       <SidebarInset>
