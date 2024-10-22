@@ -72,6 +72,7 @@ function UserMenu({
             <SidebarMenuButton
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              tooltip="User menu"
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src={user.avatar} alt={user.name} />
@@ -452,6 +453,7 @@ function StatusMenu({
             <SidebarMenuButton
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              tooltip={label}
             >
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg">
                 <Icon icon={icon} className="size-4 shrink-0" />
@@ -518,7 +520,7 @@ export default function Layout() {
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild size="sm">
+                    <SidebarMenuButton asChild size="sm" tooltip="Support">
                       <Link to="#">
                         <Icon icon="lucide:life-buoy" />
                         <span>Support</span>
@@ -526,7 +528,7 @@ export default function Layout() {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild size="sm">
+                    <SidebarMenuButton asChild size="sm" tooltip="Feedback">
                       <Link to="#">
                         <Icon icon="lucide:send" />
                         <span>Feedback</span>
