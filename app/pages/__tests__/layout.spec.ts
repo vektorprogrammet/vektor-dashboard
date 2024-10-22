@@ -12,25 +12,23 @@ test.describe("Dashboard sidebar", () => {
   });
 
   test.describe("user menu", () => {
-    const user = {
-      name: "shadcn",
-    };
+    const emailRegex = /.+@.+\..+/;
     test("skal eksistere", async ({ page }) => {
-      await page.getByRole("button", { name: user.name });
+      await expect(page.locator("body")).toContainText(emailRegex);
     });
 
     test("skal ha en lenke til profil", async ({ page }) => {
-      await page.getByRole("button", { name: user.name }).click();
+      await page.getByRole("button", { name: emailRegex }).click();
       await page.getByRole("menuitem", { name: "Profil" }).click();
     });
 
     test("skal ha en logg ut lenke", async ({ page }) => {
-      await page.getByRole("button", { name: user.name }).click();
+      await page.getByRole("button", { name: emailRegex }).click();
       await page.getByRole("menuitem", { name: "Logg ut" }).click();
     });
 
     test("skal ha en lenke for utlegg", async ({ page }) => {
-      await page.getByRole("button", { name: user.name }).click();
+      await page.getByRole("button", { name: emailRegex }).click();
       await page.getByRole("menuitem", { name: "Utlegg" }).click();
     });
   });
