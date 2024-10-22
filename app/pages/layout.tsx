@@ -519,7 +519,7 @@ export default function Layout() {
           <SidebarFooter className="p-2 m-0">
             <nav aria-label="secondary">
               {/* Secondary navigation */}
-              <SidebarGroup className="mt-auto">
+              <SidebarGroup className="mt-auto group-data-[collapsible=icon]:p-0 transition-[padding]">
                 <SidebarGroupContent>
                   <SidebarMenu>
                     {[
