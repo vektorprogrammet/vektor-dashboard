@@ -26,7 +26,6 @@ test.describe("Dashboard sidebar", () => {
 
     test("skal ha en logg ut lenke", async ({ page }) => {
       await page.getByRole("button", { name: user.name }).click();
-
       await page.getByRole("menuitem", { name: "Logg ut" }).click();
     });
 
@@ -36,8 +35,8 @@ test.describe("Dashboard sidebar", () => {
     });
   });
 
-  test.describe("department selection", () => {
-    test("all departments should be selectable", async ({ page }) => {
+  test.describe("footer", () => {
+    test("alle avdelinger bør være velgbare", async ({ page }) => {
       await page.getByRole("button", { name: departments.trondheim }).click();
       await page.getByRole("menuitem", { name: departments.bergen }).click();
       await expect(page.locator("body")).toContainText(departments.bergen);
