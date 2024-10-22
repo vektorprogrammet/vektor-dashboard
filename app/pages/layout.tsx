@@ -456,7 +456,7 @@ function StatusMenu({
               tooltip={label}
             >
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg">
-                <Icon icon={icon} className="size-4 shrink-0" />
+                <Icon icon={icon} height={20} className="size-5 shrink-0" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">{activeStatus}</span>
@@ -533,7 +533,11 @@ export default function Layout() {
                           tooltip={link.title}
                         >
                           <Link to="#">
-                            <Icon icon={link.icon} />
+                            <Icon
+                              icon={link.icon}
+                              height={16}
+                              className="size-4"
+                            />
                             <span>{link.title}</span>
                           </Link>
                         </SidebarMenuButton>
