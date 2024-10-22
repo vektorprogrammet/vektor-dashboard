@@ -44,7 +44,6 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   SidebarProvider,
-  SidebarRail,
   SidebarTrigger,
   useSidebar,
 } from "@/ui/sidebar";
@@ -531,7 +530,6 @@ export default function Layout() {
         <SidebarFooter>
           <StatusMenu status={departments} />
         </SidebarFooter>
-        <SidebarRail />
       </Sidebar>
 
       <SidebarInset>
