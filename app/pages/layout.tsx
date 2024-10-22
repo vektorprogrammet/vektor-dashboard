@@ -509,12 +509,14 @@ export default function Layout() {
             {/* User menu */}
             <UserMenu user={user} />
           </SidebarHeader>
-          <SidebarContent className="flex justify-between">
+          <SidebarContent>
             <nav aria-label="primary">
               {/* Primary navigation */}
               <NavLinks links={mainLinks} />
               <NavItems items={projectsData} />
             </nav>
+          </SidebarContent>
+          <SidebarFooter className="p-2 m-0">
             <nav aria-label="secondary">
               {/* Secondary navigation */}
               <SidebarGroup className="mt-auto">
@@ -541,8 +543,6 @@ export default function Layout() {
                 </SidebarGroupContent>
               </SidebarGroup>
             </nav>
-          </SidebarContent>
-          <SidebarFooter>
             <StatusMenu
               subTitle="Avdeling"
               label="Avdelinger"
