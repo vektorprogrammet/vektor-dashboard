@@ -59,7 +59,6 @@ test.describe("Dashboard sidebar", () => {
       await page
         .getByRole("button", { name: "CN shadcn m@example.com" })
         .focus();
-      await page.getByText("User menuUser menu").focus();
       await expect(page.getByText("User menuUser menu")).toBeVisible();
     });
     test("for primary navigation", async ({ page }) => {
