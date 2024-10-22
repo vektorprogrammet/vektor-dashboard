@@ -519,22 +519,19 @@ export default function Layout() {
             <SidebarGroup className="mt-auto">
               <SidebarGroupContent>
                 <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild size="sm" tooltip="Support">
-                      <Link to="#">
-                        <Icon icon="lucide:life-buoy" />
-                        <span>Support</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild size="sm" tooltip="Feedback">
-                      <Link to="#">
-                        <Icon icon="lucide:send" />
-                        <span>Feedback</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
+                  {[
+                    { title: "Support", url: "#", icon: "lucide:life-buoy" },
+                    { title: "Feedback", url: "#", icon: "lucide:send" },
+                  ].map((link) => (
+                    <SidebarMenuItem key={link.title}>
+                      <SidebarMenuButton asChild size="sm" tooltip={link.title}>
+                        <Link to="#">
+                          <Icon icon={link.icon} />
+                          <span>{link.title}</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
