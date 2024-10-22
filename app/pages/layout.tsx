@@ -503,8 +503,8 @@ export default function Layout() {
   } */
   return (
     <SidebarProvider>
-      <Sidebar variant="inset" collapsible="icon">
-        <aside>
+      <aside>
+        <Sidebar variant="inset" collapsible="icon">
           <SidebarHeader>
             {/* User menu */}
             <UserMenu user={user} />
@@ -550,8 +550,8 @@ export default function Layout() {
               status={departments}
             />
           </SidebarFooter>
-        </aside>
-      </Sidebar>
+        </Sidebar>
+      </aside>
 
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
