@@ -1,22 +1,5 @@
 # Vektor Dashboard
 
-## Tools
-
-| Use case | Official docs | Our reasoning |
-| --- | --- | --- |
-| Programming language: | [TypeScript](https://www.typescriptlang.org/) | [the language of the web](#typescript-language-of-the-web) |
-| Component framework: | [React](https://react.dev/) | [helps us re-use code](#react-helps-us-re-use-code) |
-| Build tool: | [Vite](https://vite.dev/) | [makes build configuration a problem of the past](#vite-makes-build-configuration-a-problem-of-the-past) |
-| Router/Meta-framework: | [React Router v7](https://reactrouter.com/dev/guides) | [expands our app over multiple pages](#react-router-expands-our-app-over-multiple-pages) |
-| Style system: | [Tailwind](https://tailwindcss.com/) | [simplifies styling and makes everything pretty](#tailwind-simplifies-styling-and-makes-everything-pretty) |
-| Icon library: | [Iconify](https://iconify.design/) | [does for icons what Tailwind did for CSS](#iconify-centralises-icons-and-eliminates-the-need-for-any-more-icon-dependencies) |
-| Linter, Formatter: | [Biome](https://biomejs.dev/) | [eliminates bugs pre-emptively and keeps code consistent](#biome-eliminates-bugs-preemptively-and-keeps-code-consistent) |
-| Component collection: | [Shadcn/ui](https://ui.shadcn.com/) | [starts us off on the right foot](#shadcnui-starts-us-off-on-the-right-foot) |
-| Headless components: | [Radix UI](https://www.radix-ui.com/) | [provides functional and accessible primitives](#radix-primitives-provides-functional-and-accessible-primitives) |
-| e2e test runner | [Playwright](https://playwright.dev/) | [makes sure everything works as intended](#playwright-makes-sure-everything-works-as-intended)
-| Package manager: | [pnpm](https://pnpm.io/) | [reduces the black hole that is node_modules](#pnpm-reduces-the-black-hole-that-is-node_modules) |
-| All-in-one component library: | [Mantine](https://mantine.dev/) | [fills in the remaining holes](#mantine-fills-in-the-remaining-holes) |
-
 ## Workflow
 
 ### Programs needed to run project
@@ -192,6 +175,23 @@ When choosing what technologies to work with we evaluate:
 - Does this problem have a de facto standard solution?
   - If so, why are/aren't we choosing the standard?
 - Is this tool included in the web development curriculum at NTNU?
+
+## Tools
+
+| Use case | Official docs | Our reasoning |
+| --- | --- | --- |
+| Programming language: | [TypeScript](https://www.typescriptlang.org/) | [the language of the web](#typescript-language-of-the-web) |
+| Component framework: | [React](https://react.dev/) | [helps us re-use code](#react-helps-us-re-use-code) |
+| Build tool: | [Vite](https://vite.dev/) | [makes build configuration a problem of the past](#vite-makes-build-configuration-a-problem-of-the-past) |
+| Router/Meta-framework: | [React Router v7](https://reactrouter.com/dev/guides) | [expands our app over multiple pages](#react-router-expands-our-app-over-multiple-pages) |
+| Style system: | [Tailwind](https://tailwindcss.com/) | [simplifies styling and makes everything pretty](#tailwind-simplifies-styling-and-makes-everything-pretty) |
+| Icon library: | [Iconify](https://iconify.design/) | [does for icons what Tailwind did for CSS](#iconify-centralises-icons-and-eliminates-the-need-for-any-more-icon-dependencies) |
+| Linter, Formatter: | [Biome](https://biomejs.dev/) | [eliminates bugs pre-emptively and keeps code consistent](#biome-eliminates-bugs-preemptively-and-keeps-code-consistent) |
+| Component collection: | [Shadcn/ui](https://ui.shadcn.com/) | [starts us off on the right foot](#shadcnui-starts-us-off-on-the-right-foot) |
+| Headless components: | [Radix UI](https://www.radix-ui.com/) | [provides functional and accessible primitives](#radix-primitives-provides-functional-and-accessible-primitives) |
+| e2e test runner | [Playwright](https://playwright.dev/) | [makes sure everything works as intended](#playwright-makes-sure-everything-works-as-intended)
+| Package manager: | [pnpm](https://pnpm.io/) | [reduces the black hole that is node_modules](#pnpm-reduces-the-black-hole-that-is-node_modules) |
+| All-in-one component library: | [Mantine](https://mantine.dev/) | [fills in the remaining holes](#mantine-fills-in-the-remaining-holes) |
 
 ## Decisions
 
