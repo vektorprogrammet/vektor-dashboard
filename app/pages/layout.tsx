@@ -289,17 +289,20 @@ function NavLinks({
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
-        {links.map((link) =>
-          !link.links ? (
-            <SidebarMenuItem key={link.title}>
-              <SidebarMenuButton asChild>
-                <Link to={link.url}>
-                  {link.icon}
-                  <span>{link.title}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ) : (
+        {links.map((link) => {
+          if (!link.links) {
+            return (
+              <SidebarMenuItem key={link.title}>
+                <SidebarMenuButton asChild>
+                  <Link to={link.url}>
+                    {link.icon}
+                    <span>{link.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            );
+          }
+          return (
             <Collapsible
               key={link.title}
               asChild
@@ -332,8 +335,8 @@ function NavLinks({
                 </CollapsibleContent>
               </SidebarMenuItem>
             </Collapsible>
-          ),
-        )}
+          );
+        })}
       </SidebarMenu>
     </SidebarGroup>
   );
