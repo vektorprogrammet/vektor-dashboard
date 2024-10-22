@@ -5,7 +5,6 @@ import {
   CollapsibleTrigger,
 } from "@radix-ui/react-collapsible";
 import { Separator } from "@radix-ui/react-separator";
-import type { ReactElement } from "react";
 import { useState } from "react";
 import { Link, Outlet } from "react-router";
 
@@ -124,7 +123,7 @@ const mainLinks = [
   {
     title: "Opptak",
     url: "#",
-    icon: <Icon icon="lucide:notebook-pen" className="size-4 shrink-0" />,
+    icon: "lucide:notebook-pen",
     isActive: true,
     links: [
       {
@@ -140,7 +139,7 @@ const mainLinks = [
   {
     title: "Statistikk",
     url: "#",
-    icon: <Icon icon="lucide:chart-line" className="size-4 shrink-0" />,
+    icon: "lucide:chart-line",
     links: [
       {
         title: "Opptak",
@@ -155,7 +154,7 @@ const mainLinks = [
   {
     title: "Informasjon",
     url: "#",
-    icon: <Icon icon="lucide:info" className="size-4 shrink-0" />,
+    icon: "lucide:info",
     links: [
       {
         title: "Artikler",
@@ -174,7 +173,7 @@ const mainLinks = [
   {
     title: "Data",
     url: "#",
-    icon: <Icon icon="lucide:database" className="size-4 shrink-0" />,
+    icon: "lucide:database",
     links: [
       {
         title: "Arrangementer",
@@ -245,7 +244,7 @@ const mainLinks = [
   {
     title: "Annet",
     url: "#",
-    icon: <Icon icon="lucide:settings" className="size-4 shrink-0" />,
+    icon: "lucide:settings",
     links: [
       {
         title: "Access Control",
@@ -277,7 +276,7 @@ function NavLinks({
   links: {
     title: string;
     url: string;
-    icon?: ReactElement;
+    icon: string;
     isActive?: boolean;
     links?: {
       title: string;
@@ -290,12 +289,15 @@ function NavLinks({
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {links.map((link) => {
+          const iconComponent = (
+            <Icon icon={link.icon} height={16} className="size-4 shrink-0" />
+          );
           if (!link.links) {
             return (
               <SidebarMenuItem key={link.title}>
                 <SidebarMenuButton asChild>
                   <Link to={link.url}>
-                    {link.icon}
+                    {iconComponent}
                     <span>{link.title}</span>
                   </Link>
                 </SidebarMenuButton>
@@ -312,7 +314,7 @@ function NavLinks({
               <SidebarMenuItem>
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton tooltip={link.title}>
-                    {link.icon}
+                    {iconComponent}
                     <span>{link.title}</span>
                     <Icon
                       icon="lucide:chevron-right"
@@ -345,17 +347,17 @@ const projectsData = [
   {
     name: "Design Engineering",
     url: "#",
-    icon: <Icon icon="lucide:frame" className="size-4 shrink-0" />,
+    icon: "lucide:frame",
   },
   {
     name: "Sales & Marketing",
     url: "#",
-    icon: <Icon icon="lucide:pie-chart" className="size-4 shrink-0" />,
+    icon: "lucide:pie-chart",
   },
   {
     name: "Travel",
     url: "#",
-    icon: <Icon icon="lucide:map" className="size-4 shrink-0" />,
+    icon: "lucide:map",
   },
 ];
 function NavItems({
@@ -364,7 +366,7 @@ function NavItems({
   items: {
     name: string;
     url: string;
-    icon: ReactElement;
+    icon: string;
   }[];
 }) {
   const isMobile = useSidebar();
@@ -376,7 +378,11 @@ function NavItems({
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <Link to={item.url}>
-                {item.icon}
+                <Icon
+                  icon={item.icon}
+                  height={16}
+                  className="size-4 shrink-0"
+                />
                 <span>{item.name}</span>
               </Link>
             </SidebarMenuButton>
