@@ -497,35 +497,40 @@ export default function Layout() {
     <SidebarProvider>
       <Sidebar variant="inset" collapsible="icon">
         <SidebarHeader>
+          {/* User menu */}
           <UserMenu user={user} />
         </SidebarHeader>
-        <SidebarContent>
-          <nav>
+        <SidebarContent className="flex justify-between">
+          <nav aria-label="primary">
+            {/* Primary navigation */}
             <NavLinks links={mainLinks} />
             <NavItems items={projectsData} />
           </nav>
-          <SidebarGroup className="mt-auto">
-            <SidebarGroupContent>
-              <SidebarMenu>
-                <SidebarMenuItem>
-                  <SidebarMenuButton asChild size="sm">
-                    <Link to="#">
-                      <Icon icon="lucide:life-buoy" />
-                      <span>Support</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-                <SidebarMenuItem>
-                  <SidebarMenuButton asChild size="sm">
-                    <Link to="#">
-                      <Icon icon="lucide:send" />
-                      <span>Feedback</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
+          <nav aria-label="secondary">
+            {/* Secondary navigation */}
+            <SidebarGroup className="mt-auto">
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild size="sm">
+                      <Link to="#">
+                        <Icon icon="lucide:life-buoy" />
+                        <span>Support</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild size="sm">
+                      <Link to="#">
+                        <Icon icon="lucide:send" />
+                        <span>Feedback</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </nav>
         </SidebarContent>
         <SidebarFooter>
           <StatusMenu status={departments} />
