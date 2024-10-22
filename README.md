@@ -176,7 +176,9 @@ When choosing what technologies to work with we evaluate:
   - If so, why are/aren't we choosing the standard?
 - Is this tool included in the web development curriculum at NTNU?
 
-## Tools
+## Tech-stack
+
+### Technologies
 
 | Use case | Official docs | Our reasoning |
 | --- | --- | --- |
@@ -192,6 +194,14 @@ When choosing what technologies to work with we evaluate:
 | e2e test runner | [Playwright](https://playwright.dev/) | [makes sure everything works as intended](#playwright-makes-sure-everything-works-as-intended)
 | Package manager: | [pnpm](https://pnpm.io/) | [reduces the black hole that is node_modules](#pnpm-reduces-the-black-hole-that-is-node_modules) |
 | All-in-one component library: | [Mantine](https://mantine.dev/) | [fills in the remaining holes](#mantine-fills-in-the-remaining-holes) |
+
+### External Services
+
+| Use case | Official docs | Our reasoning |
+| --- | --- | --- |
+| Deployment | [DigitalOcean](https://www.digitalocean.com/) | [provides an all-in-one hosting solution with predictable prices](#digitalocean-provides-an-all-in-one-hosting-solution-with-predictable-prices) |
+| Auth management | [Clerk](https://clerk.com/) | [makes setting up auth fast and secure](#clerk-makes-setting-up-auth-fast-and-secure) |
+| Analytics and Feature flags | [Posthog](https://posthog.com/) | [gives insight into our users behavior](#posthog-gives-insight-into-our-users-behavior) |
 
 ## Decisions
 
@@ -290,3 +300,19 @@ Mantine does make it so you learn Mantine instead of React which is
 a major disadvantage for why we might step away from it in the future.\
 But as of now,
 it provides good general use defaults until a more specialised tool is needed.
+
+### DigitalOcean provides an all-in-one hosting solution with predictable prices
+
+DigitalOcean might not have a generous free tier,
+but it does have a platform for deploying web apps,
+websites, web workers, serverless functions and managed databases at predictable prices.
+Predictable prices makes sure our organisation doesn't overspend and
+protects us from being billed by DDOS.
+
+### Clerk makes setting up auth fast and secure
+
+TODO
+
+### Posthog gives insight into our users behavior
+
+TODO
