@@ -33,17 +33,19 @@ test.describe("Dashboard sidebar", () => {
     });
   });
 
-  test.describe("footer", () => {
-    test("alle avdelinger bør være velgbare", async ({ page }) => {
-      await page.getByRole("button", { name: departments.trondheim }).click();
+  test.describe("avdelingsvalg", () => {
+    test("trondheim bør kunne velges", async ({ page }) => {
+      await page.getByRole("button", { name: "Avdeling" }).click();
       await page.getByRole("menuitem", { name: departments.bergen }).click();
       await expect(page.locator("body")).toContainText(departments.bergen);
-
-      await page.getByRole("button", { name: departments.bergen }).click();
+    });
+    test("bergen bør kunne velges", async ({ page }) => {
+      await page.getByRole("button", { name: "Avdeling" }).click();
       await page.getByRole("menuitem", { name: departments.aas }).click();
       await expect(page.locator("body")).toContainText(departments.aas);
-
-      await page.getByRole("button", { name: departments.aas }).click();
+    });
+    test("ås bør kunne velges", async ({ page }) => {
+      await page.getByRole("button", { name: "Avdeling" }).click();
       await page.getByRole("menuitem", { name: departments.trondheim }).click();
       await expect(page.locator("body")).toContainText(departments.trondheim);
     });
