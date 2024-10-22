@@ -431,9 +431,15 @@ function NavItems({
 const departments = ["Trondheim", "Bergen", "Ås"];
 
 function StatusMenu({
+  subTitle,
+  label,
   status,
+  icon,
 }: {
+  subTitle: string;
+  label: string;
   status: string[];
+  icon: string;
 }) {
   const [activeStatus, setActiveStatus] = useState(status[0]);
   const isMobile = useSidebar();
@@ -448,11 +454,11 @@ function StatusMenu({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg">
-                <Icon icon="lucide:map-pinned" className="size-4 shrink-0" />
+                <Icon icon={icon} className="size-4 shrink-0" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">{activeStatus}</span>
-                <span className="truncate text-xs">Avdeling</span>
+                <span className="truncate text-xs">{subTitle}</span>
               </div>
               <Icon icon="lucide:chevrons-up-down" className="ml-auto" />
             </SidebarMenuButton>
@@ -464,7 +470,7 @@ function StatusMenu({
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-xs text-muted-foreground">
-              Avdelinger
+              {label}
             </DropdownMenuLabel>
             {status.map((status) => (
               <DropdownMenuItem
@@ -533,7 +539,12 @@ export default function Layout() {
           </nav>
         </SidebarContent>
         <SidebarFooter>
-          <StatusMenu status={departments} />
+          <StatusMenu
+            subTitle="Avdeling"
+            label="Avdelinger"
+            icon="lucide:map-pinned"
+            status={departments}
+          />
         </SidebarFooter>
       </Sidebar>
 
