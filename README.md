@@ -203,6 +203,12 @@ When choosing what technologies to work with we evaluate:
 | Auth management | [Clerk](https://clerk.com/) | [makes setting up auth fast and secure](#clerk-makes-setting-up-auth-fast-and-secure) |
 | Analytics and Feature flags | [Posthog](https://posthog.com/) | [gives insight into our users behavior](#posthog-gives-insight-into-our-users-behavior) |
 
+## Resources
+
+- Learn web dev by creating your own projects [The Odin Project](https://www.theodinproject.com/)
+- The unofficial web development bible [MDN Web Docs](https://developer.mozilla.org/en-US/)
+- Find out the standards on web accessibility [W3C Web Accessibility Initiative](https://www.w3.org/WAI/)
+
 ## Decisions
 
 ### TypeScript, language of the web
