@@ -102,6 +102,8 @@ you're working on or your different responsibilities with [VSCode Profiles](http
 
 ### VSCode Extensions
 
+Maintain consistent coding styles in teams [`EditorConfig.EditorConfig`](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+
 Make TypeScript errors readable with [`YoavBls.pretty-ts-errors`](https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors)
 
 #### Intellisense (Autocomplete)
