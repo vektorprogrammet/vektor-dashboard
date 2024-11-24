@@ -3,10 +3,9 @@ import {
   index,
   layout,
   prefix,
-  route,
 } from "@react-router/dev/routes";
 
-export const routes: RouteConfig = [
+export default [
   // renders into the root.tsx Outlet at /
   index("./pages/index.tsx"),
   ...prefix("/dashboard", [
@@ -15,7 +14,8 @@ export const routes: RouteConfig = [
       index("./pages/home.tsx"),
     ]),
   ]),
+
   // auth
   // route("/sign-in", "./pages/auth/sign-in.tsx", { index: true }),
   // route("/sign-up", "./pages/auth/sign-up.tsx", { index: true }),
-];
+] satisfies RouteConfig;
