@@ -11,3 +11,5 @@ e2e/results/
 /playwright/.cache/
 
 .react-router
+
+.DS_Store
