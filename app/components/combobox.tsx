@@ -1,7 +1,7 @@
 "use client";
 
-import { Icon } from "@iconify-icon/react";
 import { useMediaQuery } from "@mantine/hooks";
+import { MapPinned } from "lucide-react";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -80,7 +80,7 @@ export function ComboBoxResponsive({
             variant="outline"
             className={cn("min-w-min justify-start", className)}
           >
-            <Icon icon="lucide:map-pinned" />
+            <MapPinned />
             {selectedItem ? <>{selectedItem.label}</> : <>+ Set item</>}
           </Button>
         </PopoverTrigger>
@@ -98,7 +98,7 @@ export function ComboBoxResponsive({
           variant="outline"
           className={cn("min-w-min justify-start", className)}
         >
-          <Icon icon="lucide:map-pinned" />
+          <MapPinned />
           {selectedItem ? <>{selectedItem.label}</> : <>+ Set item</>}
         </Button>
       </DrawerTrigger>

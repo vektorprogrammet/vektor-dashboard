@@ -1,20 +1,42 @@
-import { Icon } from "@iconify-icon/react";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@radix-ui/react-collapsible";
 import { Separator } from "@radix-ui/react-separator";
-import { useState } from "react";
+import {
+  BadgeCheck,
+  Bell,
+  ChartLine,
+  ChevronRight,
+  ChevronsUpDown,
+  Database,
+  Folder,
+  Forward,
+  Frame,
+  Info,
+  LifeBuoy,
+  LogOut,
+  MapIcon,
+  MapPinned,
+  MoreHorizontal,
+  NotebookPen,
+  PieChart,
+  Receipt,
+  Send,
+  Settings,
+  Trash2,
+  User,
+} from "lucide-react";
+import { type ReactNode, useState } from "react";
 import { Link, Outlet } from "react-router";
+import { useLocation } from "react-router-dom";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/ui/breadcrumb";
 import {
@@ -81,7 +103,7 @@ function UserMenu({
                 <span className="truncate font-semibold">{user.name}</span>
                 <span className="truncate text-xs">{user.email}</span>
               </div>
-              <Icon icon="lucide:chevrons-up-down" className="ml-auto size-4" />
+              <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -92,25 +114,25 @@ function UserMenu({
           >
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Icon icon="lucide:badge-check" />
+                <BadgeCheck />
                 Konto
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Icon icon="lucide:user" />
+                <User />
                 Profil
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Icon icon="lucide:receipt" />
+                <Receipt />
                 Utlegg
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Icon icon="lucide:bell" />
+                <Bell />
                 Notifikasjoner
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Icon icon="lucide:log-out" />
+              <LogOut />
               Logg ut
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -123,7 +145,7 @@ const mainLinks = [
   {
     title: "Opptak",
     url: "#",
-    icon: "lucide:notebook-pen",
+    icon: <NotebookPen />,
     isActive: true,
     links: [
       {
@@ -139,7 +161,7 @@ const mainLinks = [
   {
     title: "Statistikk",
     url: "#",
-    icon: "lucide:chart-line",
+    icon: <ChartLine />,
     links: [
       {
         title: "Opptak",
@@ -154,7 +176,7 @@ const mainLinks = [
   {
     title: "Informasjon",
     url: "#",
-    icon: "lucide:info",
+    icon: <Info />,
     links: [
       {
         title: "Artikler",
@@ -173,7 +195,7 @@ const mainLinks = [
   {
     title: "Data",
     url: "#",
-    icon: "lucide:database",
+    icon: <Database />,
     links: [
       {
         title: "Arrangementer",
@@ -244,7 +266,7 @@ const mainLinks = [
   {
     title: "Annet",
     url: "#",
-    icon: "lucide:settings",
+    icon: <Settings />,
     links: [
       {
         title: "Access Control",
@@ -276,7 +298,7 @@ function NavLinks({
   links: {
     title: string;
     url: string;
-    icon: string;
+    icon: ReactNode;
     isActive?: boolean;
     links?: {
       title: string;
@@ -289,15 +311,12 @@ function NavLinks({
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {links.map((link) => {
-          const iconComponent = (
-            <Icon icon={link.icon} height={16} className="size-4 shrink-0" />
-          );
           if (!link.links) {
             return (
               <SidebarMenuItem key={link.title}>
                 <SidebarMenuButton asChild>
                   <Link to={link.url}>
-                    {iconComponent}
+                    {link.icon}
                     <span>{link.title}</span>
                   </Link>
                 </SidebarMenuButton>
@@ -314,12 +333,9 @@ function NavLinks({
               <SidebarMenuItem>
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton tooltip={link.title}>
-                    {iconComponent}
+                    {link.icon}
                     <span>{link.title}</span>
-                    <Icon
-                      icon="lucide:chevron-right"
-                      className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
-                    />
+                    <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
@@ -347,17 +363,17 @@ const projectsData = [
   {
     name: "Design Engineering",
     url: "#",
-    icon: "lucide:frame",
+    icon: <Frame />,
   },
   {
     name: "Sales & Marketing",
     url: "#",
-    icon: "lucide:pie-chart",
+    icon: <PieChart />,
   },
   {
     name: "Travel",
     url: "#",
-    icon: "lucide:map",
+    icon: <MapIcon />,
   },
 ];
 function NavItems({
@@ -366,7 +382,7 @@ function NavItems({
   items: {
     name: string;
     url: string;
-    icon: string;
+    icon: ReactNode;
   }[];
 }) {
   const isMobile = useSidebar();
@@ -378,18 +394,14 @@ function NavItems({
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <Link to={item.url}>
-                <Icon
-                  icon={item.icon}
-                  height={16}
-                  className="size-4 shrink-0"
-                />
+                {item.icon}
                 <span>{item.name}</span>
               </Link>
             </SidebarMenuButton>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuAction showOnHover>
-                  <Icon icon="lucide:more-horizontal" />
+                  <MoreHorizontal />
                   <span className="sr-only">More</span>
                 </SidebarMenuAction>
               </DropdownMenuTrigger>
@@ -399,25 +411,16 @@ function NavItems({
                 align={isMobile ? "end" : "start"}
               >
                 <DropdownMenuItem>
-                  <Icon
-                    icon="lucide:folder"
-                    className="text-muted-foreground"
-                  />
+                  <Folder />
                   <span>View Project</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Icon
-                    icon="lucide:forward"
-                    className="text-muted-foreground"
-                  />
+                  <Forward />
                   <span>Share Project</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Icon
-                    icon="lucide:trash-2"
-                    className="text-muted-foreground"
-                  />
+                  <Trash2 />
                   <span>Delete Project</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -426,10 +429,7 @@ function NavItems({
         ))}
         <SidebarMenuItem>
           <SidebarMenuButton className="text-sidebar-foreground/70">
-            <Icon
-              icon="lucide:more-horizontal"
-              className="text-sidebar-foreground/70"
-            />
+            <MoreHorizontal className="text-sidebar-foreground/70" />
             <span>More</span>
           </SidebarMenuButton>
         </SidebarMenuItem>
@@ -449,7 +449,7 @@ function StatusMenu({
   subTitle: string;
   label: string;
   status: string[];
-  icon: string;
+  icon: ReactNode;
 }) {
   const [activeStatus, setActiveStatus] = useState(status[0]);
   const isMobile = useSidebar();
@@ -465,13 +465,13 @@ function StatusMenu({
               tooltip={label}
             >
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg">
-                <Icon icon={icon} height={20} className="size-5 shrink-0" />
+                {icon}
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">{activeStatus}</span>
                 <span className="truncate text-xs">{subTitle}</span>
               </div>
-              <Icon icon="lucide:chevrons-up-down" className="ml-auto" />
+              <ChevronsUpDown className="ml-auto" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -496,6 +496,39 @@ function StatusMenu({
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
+  );
+}
+
+function Breadcrumbs() {
+  const { pathname } = useLocation();
+  const paths = pathname.split("/").filter((path) => path);
+  console.log(paths);
+  const Paths = paths.map((path, index, arr) => {
+    const fullPath = arr.slice(0, index + 1).join("/");
+    if (index !== paths.length - 1) {
+      return (
+        <div key={fullPath}>
+          <BreadcrumbItem key={fullPath} className="hidden md:block">
+            <Link to={fullPath}>{path}</Link>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator className="hidden md:block" />
+        </div>
+      );
+    }
+    return (
+      <BreadcrumbItem key={fullPath} className="hidden md:block">
+        <Link to={fullPath}>{path}</Link>
+      </BreadcrumbItem>
+    );
+  });
+
+  return (
+    <div className="flex items-center gap-2 px-4">
+      <Separator orientation="vertical" className="mr-2 h-4" />
+      <Breadcrumb>
+        <BreadcrumbList>{Paths}</BreadcrumbList>
+      </Breadcrumb>
+    </div>
   );
 }
 
@@ -532,8 +565,8 @@ export default function Layout() {
                 <SidebarGroupContent>
                   <SidebarMenu>
                     {[
-                      { title: "Support", url: "#", icon: "lucide:life-buoy" },
-                      { title: "Feedback", url: "#", icon: "lucide:send" },
+                      { title: "Support", url: "#", icon: <LifeBuoy /> },
+                      { title: "Feedback", url: "#", icon: <Send /> },
                     ].map((link) => (
                       <SidebarMenuItem key={link.title}>
                         <SidebarMenuButton
@@ -542,11 +575,7 @@ export default function Layout() {
                           tooltip={link.title}
                         >
                           <Link to="#">
-                            <Icon
-                              icon={link.icon}
-                              height={16}
-                              className="size-4"
-                            />
+                            {link.icon}
                             <span>{link.title}</span>
                           </Link>
                         </SidebarMenuButton>
@@ -559,7 +588,7 @@ export default function Layout() {
             <StatusMenu
               subTitle="Avdeling"
               label="Avdelinger"
-              icon="lucide:map-pinned"
+              icon={<MapPinned />}
               status={departments}
             />
           </SidebarFooter>
@@ -571,31 +600,11 @@ export default function Layout() {
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+            <Breadcrumbs />
           </div>
         </header>
 
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-          </div>
-          <Outlet />
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
-        </div>
+        <Outlet />
       </SidebarInset>
     </SidebarProvider>
   );
