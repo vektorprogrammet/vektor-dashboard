@@ -13,7 +13,7 @@ export default [
     layout("./pages/layout.tsx", [
       // renders into the dashboard.tsx Outlet at /dashboard
       index("./pages/home.tsx"),
-      route("/intervjufordeling", "./pages/intervjufordeling.tsx"),
+      route("/intervjufordeling", "./pages/sokere/sokere.tsx"),
     ]),
   ]),
 
