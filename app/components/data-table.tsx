@@ -67,7 +67,7 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col justify-between">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filtrer navn..."
@@ -106,7 +106,7 @@ export function DataTable<TData, TValue>({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border">
+      <div className="max-h-full overflow-scroll rounded-md">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
