@@ -1,8 +1,7 @@
-"use client"
-
-import { ColumnDef } from "@tanstack/react-table"
+import { sokere } from './data/sokere';
+import { DataTable } from "@/components/data-table"
+import type { ColumnDef } from "@tanstack/react-table"
 import { Checkbox } from "@/components/ui/checkbox"
-
 
 export type Soker = {
   id: string;
@@ -67,3 +66,13 @@ export const columns: ColumnDef<Soker>[] = [
     header: "Tildelt",
   },
 ]
+
+const intervjufordeling = () => {
+  return (
+    <main className="w-screen md:w-full h-full">
+      <DataTable columns={columns} data={sokere} />
+    </main>
+  );
+}
+
+export default intervjufordeling;

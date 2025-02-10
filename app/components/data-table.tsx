@@ -2,7 +2,7 @@
 import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { DataTablePagination } from "./pagination" 
+import { DataTablePagination } from "./data-table-pagination" 
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -11,14 +11,17 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import {
-  ColumnDef,
   flexRender,  
-  ColumnFiltersState,
-  VisibilityState,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   useReactTable,
+} from "@tanstack/react-table"
+
+import type {
+  ColumnDef,
+  ColumnFiltersState,
+  VisibilityState,
 } from "@tanstack/react-table"
 
 import {
@@ -64,7 +67,7 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div>
+    <div className="h-full">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filtrer navn..."
