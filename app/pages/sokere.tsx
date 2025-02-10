@@ -1,4 +1,4 @@
-import { sokere } from './data/sokere';
+import { DataSokere } from './data/data-sokere';
 import { DataTable } from "@/components/data-table"
 import type { ColumnDef } from "@tanstack/react-table"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -67,12 +67,12 @@ export const columns: ColumnDef<Soker>[] = [
   },
 ]
 
-const intervjufordeling = () => {
+const sokere = () => {
   return (
     <main className="w-screen md:w-full h-full">
-      <DataTable columns={columns} data={sokere} />
+      <DataTable columns={columns} data={DataSokere} />
     </main>
   );
 }
 
-export default intervjufordeling;
+export default sokere;

@@ -9,7 +9,7 @@ type Soker = {
   assigned: string;
 }
 
-export const sokere: Soker[] = [
+export const DataSokere: Soker[] = [
   {
     id: "1",
     name: "Ole Normann",
