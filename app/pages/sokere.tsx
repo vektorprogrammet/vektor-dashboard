@@ -69,7 +69,7 @@ export const columns: ColumnDef<Soker>[] = [
 
 const sokere = () => {
   return (
-    <main className="w-screen md:w-full h-full overflow-clip">
+    <main className="w-screen md:w-full h-full overflow-clip p-6">
       <DataTable columns={columns} data={DataSokere} />
     </main>
   );
