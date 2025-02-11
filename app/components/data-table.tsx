@@ -76,7 +76,7 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-        <div className="max-h-full flex flex-col justify-between rounded-lg border bg-card text-card-foreground shadow-sm p-4">
+        <div className="w-full max-h-[80vh] flex flex-col justify-between rounded-lg border bg-card text-card-foreground shadow-sm p-4">
           <div className="flex items-center py-4">
             <Input
               placeholder="Filtrer navn..."
