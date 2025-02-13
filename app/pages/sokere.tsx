@@ -2,6 +2,8 @@ import { DataSokere } from './data/data-sokere';
 import { DataTable } from "@/components/data-table"
 import type { ColumnDef } from "@tanstack/react-table"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
 
 export type Soker = {
   id: string;
@@ -69,7 +71,15 @@ export const columns: ColumnDef<Soker>[] = [
 
 const sokere = () => {
   return (
-    <main className="w-screen md:w-full h-full flex flex-col justify-center overflow-clip p-1 md:p-6">
+    <main className="w-screen md:w-full h-full flex flex-col justify-center items-center gap-5 overflow-clip p-1 md:p-6">
+      <Tabs defaultValue="account" className="w-[400px]">
+        <TabsList>
+          <TabsTrigger value="sokere">Søkere</TabsTrigger>
+          <TabsTrigger value="tidligereAssistenter">Tidligere Assistenter</TabsTrigger>
+          <TabsTrigger value="intervjufordeling">Intervjufordeling</TabsTrigger>
+          <TabsTrigger value="intervjuer">Intervjuer</TabsTrigger>
+        </TabsList>
+      </Tabs>
       <DataTable columns={columns} data={DataSokere} />
     </main>
   );
