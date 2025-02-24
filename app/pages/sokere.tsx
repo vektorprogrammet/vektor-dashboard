@@ -73,6 +73,7 @@ const sokere = () => {
   return (
     <main className="w-screen md:w-full h-full flex flex-col justify-center items-center gap-5 overflow-clip p-1 md:p-6">
       <Tabs defaultValue="account" className="w-[400px]">
+        {/* Todo: Routing for Data tables */}
         <TabsList>
           <TabsTrigger value="sokere">Søkere</TabsTrigger>
           <TabsTrigger value="tidligereAssistenter">Tidligere Assistenter</TabsTrigger>
