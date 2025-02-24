@@ -150,7 +150,7 @@ const mainLinks = [
     links: [
       {
         title: "Intervjufordeling",
-        url: "#",
+        url: "/dashboard/intervjufordeling",
       },
       {
         title: "Intervjuskjema",
@@ -603,7 +603,10 @@ export default function Layout() {
             <Breadcrumbs />
           </div>
         </header>
+<<<<<<< HEAD
+=======
 
+>>>>>>> main
         <Outlet />
       </SidebarInset>
     </SidebarProvider>

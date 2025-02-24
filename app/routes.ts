@@ -3,6 +3,7 @@ import {
   index,
   layout,
   prefix,
+  route,
 } from "@react-router/dev/routes";
 
 export default [
@@ -12,6 +13,7 @@ export default [
     layout("./pages/layout.tsx", [
       // renders into the dashboard.tsx Outlet at /dashboard
       index("./pages/home.tsx"),
+      route("/intervjufordeling", "./pages/sokere.tsx"),
     ]),
   ]),
 
