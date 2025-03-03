@@ -24,7 +24,7 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <main className="h-dvh grid place-items-center">
-      <Button variant={"default"} role="link">
+      <Button variant={"default"} asChild>
         <Link to={"/dashboard"}>Log in</Link>
       </Button>
     </main>
