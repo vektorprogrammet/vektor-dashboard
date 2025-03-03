@@ -1,9 +1,8 @@
-import { DataSokere } from './data/data-sokere';
-import { DataTable } from "@/components/data-table"
-import type { ColumnDef } from "@tanstack/react-table"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-
+import { DataTable } from "@/components/data-table";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import type { ColumnDef } from "@tanstack/react-table";
+import { DataSokere } from "./data/data-sokere";
 
 export type Soker = {
   id: string;
@@ -14,7 +13,7 @@ export type Soker = {
   study: string;
   year: string;
   assigned: string;
-}
+};
 
 export const columns: Array<ColumnDef<Soker>> = [
   {
@@ -67,7 +66,7 @@ export const columns: Array<ColumnDef<Soker>> = [
     accessorKey: "assigned",
     header: "Tildelt",
   },
-]
+];
 
 // biome-ignore lint/style/noDefaultExport: Route Modules require default export https://reactrouter.com/start/framework/route-module
 export default function Sokere() {
@@ -77,7 +76,9 @@ export default function Sokere() {
         {/* Todo: Routing for Data tables */}
         <TabsList>
           <TabsTrigger value="sokere">Søkere</TabsTrigger>
-          <TabsTrigger value="tidligereAssistenter">Tidligere Assistenter</TabsTrigger>
+          <TabsTrigger value="tidligereAssistenter">
+            Tidligere Assistenter
+          </TabsTrigger>
           <TabsTrigger value="intervjufordeling">Intervjufordeling</TabsTrigger>
           <TabsTrigger value="intervjuer">Intervjuer</TabsTrigger>
         </TabsList>

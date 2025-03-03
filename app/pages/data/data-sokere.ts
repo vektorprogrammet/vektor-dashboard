@@ -7,7 +7,7 @@ type Soker = {
   study: string;
   year: string;
   assigned: string;
-}
+};
 
 export const DataSokere: Array<Soker> = [
   {
@@ -230,6 +230,4 @@ export const DataSokere: Array<Soker> = [
     year: "3",
     assigned: "Johannes",
   },
-
-
 ];
