@@ -16,7 +16,7 @@ export type Soker = {
   assigned: string;
 }
 
-export const columns: ColumnDef<Soker>[] = [
+export const columns: Array<ColumnDef<Soker>> = [
   {
     id: "select",
     header: ({ table }) => (

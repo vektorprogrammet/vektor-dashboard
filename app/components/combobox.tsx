@@ -23,7 +23,7 @@ type Item = {
 };
 
 type ComboBoxProps = {
-  items: Item[];
+  items: Array<Item>;
   defaultItem?: Item;
   className?: string;
 };

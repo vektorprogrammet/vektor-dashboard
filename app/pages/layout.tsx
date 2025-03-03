@@ -295,16 +295,16 @@ const mainLinks = [
 function NavLinks({
   links,
 }: {
-  links: {
+  links: Array<{
     title: string;
     url: string;
     icon: ReactNode;
     isActive?: boolean;
-    links?: {
+    links?: Array<{
       title: string;
       url: string;
-    }[];
-  }[];
+    }>;
+  }>;
 }) {
   return (
     <SidebarGroup>
@@ -379,11 +379,11 @@ const projectsData = [
 function NavItems({
   items,
 }: {
-  items: {
+  items: Array<{
     name: string;
     url: string;
     icon: ReactNode;
-  }[];
+  }>;
 }) {
   const isMobile = useSidebar();
   return (
@@ -448,7 +448,7 @@ function StatusMenu({
 }: {
   subTitle: string;
   label: string;
-  status: string[];
+  status: Array<string>;
   icon: ReactNode;
 }) {
   const [activeStatus, setActiveStatus] = useState(status[0]);
