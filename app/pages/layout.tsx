@@ -29,8 +29,7 @@ import {
   User,
 } from "lucide-react";
 import { type ReactNode, useState } from "react";
-import { Link, Outlet } from "react-router";
-import { useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import {
