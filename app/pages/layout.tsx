@@ -95,10 +95,12 @@ function UserMenu({
                 <Icon icon="lucide:badge-check" />
                 Konto
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Icon icon="lucide:user" />
-                Profil
-              </DropdownMenuItem>
+							<Link to={"dashboard/profile"}>
+								<DropdownMenuItem>
+									<Icon icon="lucide:user" />
+									Profil
+								</DropdownMenuItem>
+							</Link>
               <DropdownMenuItem>
                 <Icon icon="lucide:receipt" />
                 Utlegg
@@ -586,16 +588,7 @@ export default function Layout() {
             </Breadcrumb>
           </div>
         </header>
-
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-          </div>
-          <Outlet />
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
-        </div>
+        <Outlet />
       </SidebarInset>
     </SidebarProvider>
   );
