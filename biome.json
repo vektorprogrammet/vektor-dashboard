@@ -1,34 +1,70 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignore": ["package.json", ".vscode", "app/components/ui/*", "*.config.ts"]
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "attributePosition": "auto"
+  },
   "organizeImports": { "enabled": true },
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
+      "all": true,
       "a11y": {
         "noSvgWithoutTitle": "warn"
       },
       "correctness": {
-        "noUndeclaredVariables": "warn",
-        "noUnusedVariables": "warn"
+        "noNodejsModules": "off",
+        "useImportExtensions": "off"
+      },
+      "performance": {
+        "useTopLevelRegex": "off"
+      },
+      "style": {
+        "noImplicitBoolean": "off",
+        "useBlockStatements": "off",
+        "useConsistentArrayType": {
+          "level": "error",
+          "options": {
+            "syntax": "generic"
+          }
+        },
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": {
+            "filenameCases": ["kebab-case", "snake_case"]
+          }
+        },
+        "useShorthandArrayType": "off"
       },
       "suspicious": {
-        "noEmptyBlockStatements": "warn"
+        "noReactSpecificProps": "off"
       }
     }
-  },
-  "formatter": {
-    "enabled": true,
-    "indentStyle": "space"
   },
   "javascript": {
     "formatter": {
       "enabled": true,
-      "semicolons": "always"
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "semicolons": "always",
+      "arrowParentheses": "always",
+      "bracketSpacing": true,
+      "bracketSameLine": false,
+      "quoteStyle": "double",
+      "attributePosition": "auto"
     }
-  },
-  "files": {
-    "include": ["./app/**/*"],
-    "ignore": ["./app/components/ui/*"]
   }
 }
