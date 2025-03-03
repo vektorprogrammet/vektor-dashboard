@@ -69,7 +69,8 @@ export const columns: Array<ColumnDef<Soker>> = [
   },
 ]
 
-const sokere = () => {
+// biome-ignore lint/style/noDefaultExport: Route Modules require default export https://reactrouter.com/start/framework/route-module
+export default function Sokere() {
   return (
     <main className="w-screen md:w-full h-full flex flex-col justify-center items-center gap-5 overflow-clip p-1 md:p-6">
       <Tabs defaultValue="account" className="w-[400px]">
@@ -85,5 +86,3 @@ const sokere = () => {
     </main>
   );
 }
-
-export default sokere;
