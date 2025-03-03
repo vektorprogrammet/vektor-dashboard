@@ -3,8 +3,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
+import { linjer } from "./data/linjer";
+import { DataProfile } from "./data/data-profile";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
 	Form,
 	FormControl,
@@ -14,18 +16,27 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { useNavigate } from "react-router";
+
 
 const formSchema = z.object({
-	fornavn: z.string().min(3, {
-		message: "Username must be at least 3 characters.",
-	}),
+	fornavn: z.string(),
 	etternavn: z.string(),
 	epost: z.string(),
 	telefon: z.string(),
+	kontonummer: z.string(),
 });
 
 const redigerProfil = () => {
+	const navigate = useNavigate();
+
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -33,6 +44,7 @@ const redigerProfil = () => {
 			etternavn: "",
 			epost: "",
 			telefon: "",
+			kontonummer: "",
 		},
 	});
 
@@ -53,7 +65,7 @@ const redigerProfil = () => {
 					</button>
 				</div>
 				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 lg:col-span-2 bg-gray-50 rounded-lg p-4 lg:mr-20 max-w-3xl">
+					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 lg:col-span-2 bg-gray-50 rounded-lg p-4 lg:mr-20 max-w-2xl">
 						<div className=" grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 							<div className="sm:col-span-3">
 								<FormField
@@ -63,7 +75,7 @@ const redigerProfil = () => {
 										<FormItem>
 											<FormLabel>Fornavn</FormLabel>
 											<FormControl>
-												<Input className="bg-white" placeholder="shadcn" {...field} />
+												<Input className="bg-white" placeholder={DataProfile.firstname} {...field} />
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -78,7 +90,7 @@ const redigerProfil = () => {
 										<FormItem>
 											<FormLabel>Etternavn</FormLabel>
 											<FormControl>
-												<Input className="bg-white" placeholder="shadcn" {...field} />
+												<Input className="bg-white" placeholder={DataProfile.lastname} {...field} />
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -93,7 +105,7 @@ const redigerProfil = () => {
 											<FormItem>
 												<FormLabel>E-post</FormLabel>
 												<FormControl>
-													<Input className="bg-white" placeholder="shadcn" {...field} />
+													<Input className="bg-white" placeholder={DataProfile.email} {...field} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -101,21 +113,54 @@ const redigerProfil = () => {
 										/>
 								</div>
 								<div className="sm:col-span-full">
-								<FormField
+									<FormField
 										control={form.control}
 										name="telefon"
 										render={({ field }) => (
 											<FormItem>
 												<FormLabel>Telefon</FormLabel>
 												<FormControl>
-													<Input className="bg-white" placeholder="shadcn" {...field} />
+													<Input className="bg-white" placeholder={DataProfile.tlf} {...field} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
 										)}
 										/>
 								</div>
-							<Button type="submit">Submit</Button>
+								<div className="sm:col-span-3">
+									<Select>
+										<FormLabel>Linje</FormLabel>
+										<SelectTrigger className="w-[180px] bg-white">
+											<SelectValue placeholder={DataProfile.study} />
+										</SelectTrigger>
+										<SelectContent>
+											{linjer.map((linje) => (
+												<SelectItem value={linje}>
+													{linje}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
+								</div>
+								<div className="sm:col-span-full">
+									<FormField
+										control={form.control}
+										name="kontonummer"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Kontonummer</FormLabel>
+												<FormControl>
+													<Input className="bg-white" placeholder={DataProfile.accountnumber} {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+										/>
+								</div>
+								<div className="sm:col-span-full flex justify-between">
+									<Button	type="button" onClick={() => navigate("/dashboard/profile")}>Avbryt</Button>
+									<Button type="submit">Lagre</Button>
+								</div>
 						</div>
 					</form>
 				</Form>
