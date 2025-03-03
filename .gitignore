@@ -4,7 +4,6 @@ node_modules
 /build
 .env
 
-.vscode
 e2e/results/
 /playwright-report/
 /blob-report/
