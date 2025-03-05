@@ -108,8 +108,8 @@ const profile = () => {
 										</tr>
 									</thead>
 									<tbody>
-										{DataProfile.hovedstyreHistory.map((row) => (
-											<tr>
+										{DataProfile.hovedstyreHistory.map((row, index) => (
+											<tr key={index}>
 												<td className="p-2">{row.stilling}</td>
 												<td className="p-2">{row.start}</td>
 												<td className="p-2">{row.slutt}</td>
@@ -130,8 +130,8 @@ const profile = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{DataProfile.teamHistory.map((row) => (
-									<tr>
+								{DataProfile.teamHistory.map((row, index) => (
+									<tr key={index}>
 										<td className="p-2">{row.team}</td>
 										<td className="p-2">{row.stilling}</td>
 										<td className="p-2">{row.start}</td>
@@ -149,8 +149,8 @@ const profile = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{DataProfile.assistentHistory.map((row) => (
-									<tr>
+								{DataProfile.assistentHistory.map((row, index) => (
+									<tr key={index}>
 										<td className="p-2">{row.school}</td>
 										<td className="p-2">{row.semester}</td>
 									</tr>
