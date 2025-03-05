@@ -5,7 +5,6 @@ export const linjer = [
 	"ÅSØK",
 	"BBI",
 	"BDIGSEC",
-	"MTDT",
 	"BELDIG",
 	"BFY",
 	"BGEOL",
