@@ -501,7 +501,6 @@ function StatusMenu({
 function Breadcrumbs() {
   const { pathname } = useLocation();
   const paths = pathname.split("/").filter((path) => path);
-  console.log(paths);
   const Paths = paths.map((path, index, arr) => {
     const fullPath = arr.slice(0, index + 1).join("/");
     if (index !== paths.length - 1) {
