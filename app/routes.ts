@@ -6,6 +6,7 @@ import {
   route,
 } from "@react-router/dev/routes";
 
+// biome-ignore lint/style/noDefaultExport: React Router 7 RouteConfig requires default export https://reactrouter.com/start/framework/routing
 export default [
   // renders into the root.tsx Outlet at /
   index("./pages/index.tsx"),
