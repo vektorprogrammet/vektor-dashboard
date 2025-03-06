@@ -9,7 +9,7 @@ import { Link, redirect } from "react-router";
   }
   return {};
 }; */
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = () => {
   return redirect("/dashboard");
 };
 
