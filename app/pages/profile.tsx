@@ -89,7 +89,7 @@ const profile = () => {
 							<h2 className="text-xl font-semibold mt-2">
 								Aktivitet i vektorprogrammet
 							</h2>
-							{DataProfile.hovedstyreHistory.length != 0 ? (
+							{DataProfile.boardHistory.length != 0 ? (
 								<h3 className="font-medium text-lg mt-4 mb-2">
 									Medlem i hovedstyret
 								</h3>
@@ -97,7 +97,7 @@ const profile = () => {
 								<h3 className="font-medium text-lg mt-4 mb-2">Teamhistorikk</h3>
 							)}
 						</div>
-						{DataProfile.hovedstyreHistory.length != 0 && (
+						{DataProfile.boardHistory.length != 0 && (
 							<>
 								<table className="w-full bg-gray-50 rounded-lg overflow-hidden">
 									<thead className="text-left bg-gray-200 rounded-t-lg">
@@ -108,11 +108,11 @@ const profile = () => {
 										</tr>
 									</thead>
 									<tbody>
-										{DataProfile.hovedstyreHistory.map((row, index) => (
+										{DataProfile.boardHistory.map((row, index) => (
 											<tr key={index}>
-												<td className="p-2">{row.stilling}</td>
+												<td className="p-2">{row.position}</td>
 												<td className="p-2">{row.start}</td>
-												<td className="p-2">{row.slutt}</td>
+												<td className="p-2">{row.end}</td>
 											</tr>
 										))}
 									</tbody>
@@ -133,9 +133,9 @@ const profile = () => {
 								{DataProfile.teamHistory.map((row, index) => (
 									<tr key={index}>
 										<td className="p-2">{row.team}</td>
-										<td className="p-2">{row.stilling}</td>
+										<td className="p-2">{row.position}</td>
 										<td className="p-2">{row.start}</td>
-										<td className="p-2">{row.slutt}</td>
+										<td className="p-2">{row.end}</td>
 									</tr>
 								))}
 							</tbody>

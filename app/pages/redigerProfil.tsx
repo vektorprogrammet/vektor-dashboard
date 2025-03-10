@@ -45,7 +45,7 @@ const redigerProfil = () => {
 			etternavn: DataProfile.lastname,
 			epost: DataProfile.email,
 			telefon: DataProfile.tlf,
-			kontonummer: DataProfile.accountnumber,
+			kontonummer: DataProfile.accountNumber,
 		},
 	});
 
@@ -208,7 +208,7 @@ const redigerProfil = () => {
 												<FormControl>
 													<Input
 														className="bg-white"
-														placeholder={DataProfile.accountnumber}
+														placeholder={DataProfile.accountNumber}
 														{...field}
 													/>
 												</FormControl>

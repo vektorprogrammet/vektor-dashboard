@@ -5,15 +5,15 @@ type AssisentHistory = {
 
 type TeamHistory = {
 	team: string;
-	stilling: string;
+	position: string;
 	start: string;
-	slutt: string;
+	end: string;
 };
 
-type HovedstyreHistory = {
-	stilling: string;
+type BoardHistory = {
+	position: string;
 	start: string;
-	slutt: string;
+	end: string;
 };
 
 type Profile = {
@@ -24,10 +24,11 @@ type Profile = {
 	tlf: string;
 	study: string;
 	department: string;
-	accountnumber: string,
+	accountNumber: string,
+	profileImage: string,
 	assistentHistory: AssisentHistory[];
 	teamHistory: TeamHistory[];
-	hovedstyreHistory: HovedstyreHistory[];
+	boardHistory: BoardHistory[];
 };
 
 export const DataProfile: Profile = {
@@ -35,10 +36,11 @@ export const DataProfile: Profile = {
 	lastname: "Dai",
 	vektorEmail: "julia@vektorprogrammet.no",
 	email: "julia@gmail.com",
-	tlf: "466 668 88",
+	tlf: "466 66 888",
 	study: "MTDT",
 	department: "IT",
-	accountnumber: "0000 000 0000",
+	accountNumber: "0000 00 00000",
+	profileImage: "https://vektorprogrammet.no/media/cache/profile_img/images/Profile%20photos/6407131bab385.jpeg",
 	assistentHistory: [
 		{
 			school: "Charlottenlund",
@@ -52,16 +54,16 @@ export const DataProfile: Profile = {
 	teamHistory: [
 		{
 			team: "IT",
-			stilling: "Utvikler",
+			position: "Utvikler",
 			start: "Vår 2023",
-			slutt: "Fortsatt aktiv"
+			end: "Fortsatt aktiv"
 		}
 	],
-	hovedstyreHistory: [
+	boardHistory: [
 		{
-			stilling: "Medlem",
+			position: "Medlem",
 			start: "Vår 2022",
-			slutt: "Høst 2022"
+			end: "Høst 2022"
 		}
 	],
 };
