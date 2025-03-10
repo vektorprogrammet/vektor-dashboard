@@ -7,21 +7,36 @@ import { linjer } from "./data/linjer";
 import { DataProfile } from "./data/data-profile";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/components/ui/form";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { useNavigate } from "react-router";
+import { useState } from "react";
 
 const formSchema = z.object({
-	fornavn: z.string().optional(),
-	etternavn: z.string().optional(),
-	epost: z.string().optional(),
-	telefon: z.string().optional(),
-	kontonummer: z.string().optional(),
+	fornavn: z.string(),
+	etternavn: z.string(),
+	epost: z.string().email("Ugyldig e-post"),
+	telefon: z.string().regex(/^(\d{3} \d{2} \d{3}|\d{8})$/, "Telefonnummeret er på feil format"),
+	kontonummer: z.string().regex(/^(\d{4}[ .]?\d{2}[ .]?\d{5}|\d{11})$/, "Ugyldig kontonummer-format"),
 	profilbilde: z.instanceof(File).optional(),
 });
 
 const redigerProfil = () => {
 	const navigate = useNavigate();
+	const [imagePreview, setImagePreview] = useState<string | null>(null);
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -34,11 +49,20 @@ const redigerProfil = () => {
 		},
 	});
 
+	const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const file = event.target.files?.[0];
+		if (file) {
+			const previewUrl = URL.createObjectURL(file);
+			setImagePreview(previewUrl);
+		}
+	};
+
 	// 2. Define a submit handler.
 	function onSubmit(values: z.infer<typeof formSchema>) {
 		// Do something with the form values.
 		// ✅ This will be type-safe and validated.
 		console.log(values);
+		navigate("/dashboard/profile");
 	}
 
 	return (
@@ -48,28 +72,37 @@ const redigerProfil = () => {
 					<section className="lg:flex-row lg:grid lg:grid-cols-3 gap-4 items-center mb-8">
 						<div className="items-center flex flex-col self-start mb-4">
 							<img
-								className="rounded-full max-h-48 justify-self-center mb-4"
+								className="rounded-full h-40 w-40 object-cover justify-self-center mb-4"
 								alt="profilbilde"
-								src={DataProfile.profileImage}
+								src={imagePreview || DataProfile.profileImage}
 							/>
 							<div className="grid lg:max-w-sm max-w-sm items-center gap-1.5">
 								<FormField
-										control={form.control}
-										name="profilbilde"
-										render={() => (
-											<FormItem>
-												<FormLabel htmlFor="picture">Last opp profilbilde</FormLabel>
-												<FormControl>
-													<Input
-														id="picture"
-														type="file"
-														accept="image/png,image/jpeg"
-													/>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
+									control={form.control}
+									name="profilbilde"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel htmlFor="picture">
+												Last opp profilbilde
+											</FormLabel>
+											<FormControl>
+												<Input
+													id="picture"
+													type="file"
+													accept="image/png,image/jpeg"
+													onChange={(e) => {
+														const file = e.target.files?.[0];
+														if (file) {
+															handleImageChange(e);
+															field.onChange(file);
+														}
+													}}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 							</div>
 						</div>
 						<div className="space-y-8 lg:col-span-2 bg-gray-50 rounded-lg p-4 lg:mx-20 w-full sm:max-w-xl justify-self-center">
