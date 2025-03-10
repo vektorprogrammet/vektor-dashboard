@@ -33,21 +33,18 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-interface DataTableProps<data, value> {
-  columns: Array<ColumnDef<data, value>>;
-  data: Array<data>;
+interface DataTableProps<Data, Value> {
+  columns: Array<ColumnDef<Data, Value>>;
+  data: Array<Data>;
 }
 
-export function DataTable<data, value>({
+export function DataTable<Data, Value>({
   columns,
   data,
-}: DataTableProps<data, value>) {
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
-    [],
-  );
+}: DataTableProps<Data, Value>) {
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
-  const [columnVisibility, setColumnVisibility] =
-    useState<VisibilityState>({});
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
