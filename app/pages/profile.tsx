@@ -22,7 +22,7 @@ const profile = () => {
             <p className="lg:mb-4">
               <a
                 href="mailto:julia@vektorprogrammet.no"
-                className="text-blue-600"
+                className="text-blue-600 hover:underline"
               >
                 {DataProfile.vektorEmail}
               </a>
@@ -46,7 +46,7 @@ const profile = () => {
             <div className="flex flex-col">
               <button
                 type="button"
-                className="bg-gray-50 rounded-t-lg font-medium text-left px-4 py-2 flex flex-row justify-between"
+                className="bg-gray-50 hover:bg-gray-100 rounded-t-lg font-medium text-left px-4 py-2 flex flex-row justify-between"
                 onClick={() => navigate("/dashboard/profile/rediger")}
               >
                 Rediger profil
@@ -54,7 +54,7 @@ const profile = () => {
               </button>
               <button
                 type="button"
-                className="bg-gray-50 rounded-b-lg font-medium text-left px-4 py-2 flex flex-row justify-between"
+                className="bg-gray-50 hover:bg-gray-100 rounded-b-lg font-medium text-left px-4 py-2 flex flex-row justify-between"
               >
                 Bytt passord
                 <ChevronRight />
@@ -77,7 +77,10 @@ const profile = () => {
                 <tr>
                   <td className="font-medium w-2/5">E-post:</td>
                   <td className="truncate">
-                    <a className="text-blue-600" href="mailto:julia@gmail.com">
+                    <a
+                      className="text-blue-600 hover:underline"
+                      href="mailto:julia@gmail.com"
+                    >
                       {DataProfile.email}
                     </a>
                   </td>
