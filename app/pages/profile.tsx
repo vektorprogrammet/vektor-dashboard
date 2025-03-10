@@ -10,9 +10,9 @@ const profile = () => {
 			<div className="flex flex-col mt-10 mx-10">
 				<section className="lg:flex-row lg:grid lg:grid-cols-3 gap-4 items-center lg:mb-8">
 					<img
-						className="rounded-full max-h-48 justify-self-center self-end"
+						className="rounded-full h-40 w-40 object-cover justify-self-center self-end"
 						alt="profilbilde"
-						src="https://vektorprogrammet.no/media/cache/profile_img/images/Profile%20photos/6407131bab385.jpeg"
+						src={DataProfile.profileImage}
 					/>
 					<div className="flex flex-col items-center lg:items-start self-end">
 						<h1 className="text-2xl lg:text-4xl font-semibold lg:mb-4 mb-2">
@@ -34,7 +34,7 @@ const profile = () => {
 						<h2 className="text-xl font-semibold mt-2">
 							Aktivitet i vektorprogrammet
 						</h2>
-						{DataProfile.hovedstyreHistory.length != 0 ? (
+						{DataProfile.boardHistory.length != 0 ? (
 							<h3 className="font-medium text-lg mt-2">Medlem i hovedstyret</h3>
 						) : (
 							<h3 className="font-medium text-lg mt-2">Teamhistorikk</h3>
@@ -56,25 +56,25 @@ const profile = () => {
 								<ChevronRight />
 							</button>
 						</div>
-						<table className="w-full bg-gray-50 mt-8 p-4 rounded-lg border-separate border-spacing-1">
+						<table className="table-fixed w-full bg-gray-50 mt-8 p-4 rounded-lg border-separate border-spacing-1">
 							<tbody className="">
 								<tr className="">
-									<td className="font-medium">Avdeling:</td>
-									<td>{DataProfile.department}</td>
+									<td className="font-medium w-2/5">Avdeling:</td>
+									<td className="truncate">{DataProfile.department}</td>
 								</tr>
 								<tr>
-									<td className="font-medium">Linje:</td>
-									<td>{DataProfile.study}</td>
+									<td className="font-medium w-2/5">Linje:</td>
+									<td className="truncate">{DataProfile.study}</td>
 								</tr>
 								<tr>
-									<td className="font-medium">Telefon:</td>
-									<td>{DataProfile.tlf}</td>
+									<td className="font-medium w-2/5">Telefon:</td>
+									<td className="truncate">{DataProfile.tlf}</td>
 								</tr>
 								<tr>
-									<td className="font-medium">E-post:</td>
-									<td>
+									<td className="font-medium w-2/5">E-post:</td>
+									<td className="truncate">
 										<a
-											className="text-blue-600 truncate"
+											className="text-blue-600"
 											href="mailto:julia@gmail.com"
 										>
 											{DataProfile.email}
