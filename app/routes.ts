@@ -3,7 +3,7 @@ import {
   index,
   layout,
   prefix,
-	route,
+  route,
 } from "@react-router/dev/routes";
 
 export default [
@@ -13,8 +13,8 @@ export default [
     layout("./pages/layout.tsx", [
       // renders into the dashboard.tsx Outlet at /dashboard
       index("./pages/home.tsx"),
-			route("/profile", "./pages/profile.tsx"),
-			route("/profile/rediger", "./pages/redigerProfil.tsx")
+      route("/profile", "./pages/profile.tsx"),
+      route("/profile/rediger", "./pages/redigerProfil.tsx"),
     ]),
   ]),
 

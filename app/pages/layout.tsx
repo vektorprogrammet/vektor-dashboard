@@ -95,12 +95,12 @@ function UserMenu({
                 <Icon icon="lucide:badge-check" />
                 Konto
               </DropdownMenuItem>
-							<Link to={"dashboard/profile"}>
-								<DropdownMenuItem>
-									<Icon icon="lucide:user" />
-									Profil
-								</DropdownMenuItem>
-							</Link>
+              <Link to={"dashboard/profile"}>
+                <DropdownMenuItem>
+                  <Icon icon="lucide:user" />
+                  Profil
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem>
                 <Icon icon="lucide:receipt" />
                 Utlegg
