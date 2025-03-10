@@ -1,9 +1,5 @@
 "use client";
 
-import { Icon } from "@iconify-icon/react";
-import { useMediaQuery } from "@mantine/hooks";
-import * as React from "react";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/ui/button";
 import {
@@ -16,6 +12,9 @@ import {
 } from "@/ui/command";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/ui/drawer";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
+import { useMediaQuery } from "@mantine/hooks";
+import { MapPinned } from "lucide-react";
+import { useState } from "react";
 
 type Item = {
   value: string;
@@ -23,7 +22,7 @@ type Item = {
 };
 
 type ComboBoxProps = {
-  items: Item[];
+  items: Array<Item>;
   defaultItem?: Item;
   className?: string;
 };
@@ -33,9 +32,9 @@ export function ComboBoxResponsive({
   defaultItem,
   className,
 }: ComboBoxProps) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
-  const [selectedItem, setSelectedItem] = React.useState<Item | null>(
+  const [selectedItem, setSelectedItem] = useState<Item | null>(
     defaultItem ?? null,
   );
 
@@ -80,7 +79,7 @@ export function ComboBoxResponsive({
             variant="outline"
             className={cn("min-w-min justify-start", className)}
           >
-            <Icon icon="lucide:map-pinned" />
+            <MapPinned />
             {selectedItem ? <>{selectedItem.label}</> : <>+ Set item</>}
           </Button>
         </PopoverTrigger>
@@ -98,7 +97,7 @@ export function ComboBoxResponsive({
           variant="outline"
           className={cn("min-w-min justify-start", className)}
         >
-          <Icon icon="lucide:map-pinned" />
+          <MapPinned />
           {selectedItem ? <>{selectedItem.label}</> : <>+ Set item</>}
         </Button>
       </DrawerTrigger>

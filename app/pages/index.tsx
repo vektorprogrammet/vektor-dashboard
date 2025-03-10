@@ -9,7 +9,7 @@ import { Link, redirect } from "react-router";
   }
   return {};
 }; */
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = () => {
   return redirect("/dashboard");
 };
 
@@ -20,10 +20,11 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+// biome-ignore lint/style/noDefaultExport: Route Modules require default export https://reactrouter.com/start/framework/route-module
 export default function Index() {
   return (
     <main className="h-dvh grid place-items-center">
-      <Button variant={"default"} role="link">
+      <Button variant={"default"} asChild>
         <Link to={"/dashboard"}>Log in</Link>
       </Button>
     </main>
