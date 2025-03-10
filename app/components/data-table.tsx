@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import * as React from "react";
+import React from "react";
 import { DataTablePagination } from "./data-table-pagination";
 
 import {
@@ -33,15 +33,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+interface DataTableProps<Tdata, Tvalue> {
+  columns: Array<ColumnDef<Tdata, Tvalue>>;
+  data: Array<Tdata>;
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<Tdata, Tvalue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<Tdata, Tvalue>) {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
   );
@@ -125,7 +125,7 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows?.length > 0 ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
