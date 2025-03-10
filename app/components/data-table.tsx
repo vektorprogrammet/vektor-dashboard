@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import React from "react";
+import { useState } from "react";
 import { DataTablePagination } from "./data-table-pagination";
 
 import {
@@ -33,22 +33,22 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-interface DataTableProps<Tdata, Tvalue> {
-  columns: Array<ColumnDef<Tdata, Tvalue>>;
-  data: Array<Tdata>;
+interface DataTableProps<data, value> {
+  columns: Array<ColumnDef<data, value>>;
+  data: Array<data>;
 }
 
-export function DataTable<Tdata, Tvalue>({
+export function DataTable<data, value>({
   columns,
   data,
-}: DataTableProps<Tdata, Tvalue>) {
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+}: DataTableProps<data, value>) {
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
     [],
   );
 
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
+    useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
     data,
