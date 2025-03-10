@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
@@ -197,8 +198,8 @@ const redigerProfil = () => {
                       <SelectValue placeholder={DataProfile.study} />
                     </SelectTrigger>
                     <SelectContent>
-                      {linjer.map((linje, index) => (
-                        <SelectItem key={index} value={linje}>
+                      {linjer.map((linje) => (
+                        <SelectItem key={linje} value={linje}>
                           {linje}
                         </SelectItem>
                       ))}

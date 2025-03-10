@@ -34,7 +34,7 @@ const profile = () => {
             <h2 className="text-xl font-semibold mt-2">
               Aktivitet i vektorprogrammet
             </h2>
-            {DataProfile.boardHistory.length != 0 ? (
+            {DataProfile.boardHistory.length !== 0 ? (
               <h3 className="font-medium text-lg mt-2">Medlem i hovedstyret</h3>
             ) : (
               <h3 className="font-medium text-lg mt-2">Teamhistorikk</h3>
@@ -45,13 +45,17 @@ const profile = () => {
           <div className="col-span-1 mt-8 lg:mt-0">
             <div className="flex flex-col">
               <button
+                type="button"
                 className="bg-gray-50 rounded-t-lg font-medium text-left px-4 py-2 flex flex-row justify-between"
                 onClick={() => navigate("/dashboard/profile/rediger")}
               >
                 Rediger profil
                 <ChevronRight />
               </button>
-              <button className="bg-gray-50 rounded-b-lg font-medium text-left px-4 py-2 flex flex-row justify-between">
+              <button
+                type="button"
+                className="bg-gray-50 rounded-b-lg font-medium text-left px-4 py-2 flex flex-row justify-between"
+              >
                 Bytt passord
                 <ChevronRight />
               </button>
@@ -86,7 +90,7 @@ const profile = () => {
               <h2 className="text-xl font-semibold mt-2">
                 Aktivitet i vektorprogrammet
               </h2>
-              {DataProfile.boardHistory.length != 0 ? (
+              {DataProfile.boardHistory.length !== 0 ? (
                 <h3 className="font-medium text-lg mt-4 mb-2">
                   Medlem i hovedstyret
                 </h3>
@@ -94,7 +98,7 @@ const profile = () => {
                 <h3 className="font-medium text-lg mt-4 mb-2">Teamhistorikk</h3>
               )}
             </div>
-            {DataProfile.boardHistory.length != 0 && (
+            {DataProfile.boardHistory.length !== 0 && (
               <>
                 <table className="w-full bg-gray-50 rounded-lg overflow-hidden">
                   <thead className="text-left bg-gray-200 rounded-t-lg">
@@ -105,8 +109,8 @@ const profile = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {DataProfile.boardHistory.map((row, index) => (
-                      <tr key={index}>
+                    {DataProfile.boardHistory.map((row) => (
+                      <tr key={`${row.position}-${row.start}-${row.end}`}>
                         <td className="p-2">{row.position}</td>
                         <td className="p-2">{row.start}</td>
                         <td className="p-2">{row.end}</td>
@@ -127,8 +131,10 @@ const profile = () => {
                 </tr>
               </thead>
               <tbody>
-                {DataProfile.teamHistory.map((row, index) => (
-                  <tr key={index}>
+                {DataProfile.teamHistory.map((row) => (
+                  <tr
+                    key={`${row.team}-${row.position}-${row.start}-${row.end}`}
+                  >
                     <td className="p-2">{row.team}</td>
                     <td className="p-2">{row.position}</td>
                     <td className="p-2">{row.start}</td>
@@ -148,8 +154,8 @@ const profile = () => {
                 </tr>
               </thead>
               <tbody>
-                {DataProfile.assistentHistory.map((row, index) => (
-                  <tr key={index}>
+                {DataProfile.assistentHistory.map((row) => (
+                  <tr key={`${row.school}-${row.semester}`}>
                     <td className="p-2">{row.school}</td>
                     <td className="p-2">{row.semester}</td>
                   </tr>
