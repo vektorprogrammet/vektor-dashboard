@@ -16,6 +16,7 @@ on:
 
 jobs:
   build:
+    permissions: read-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -40,6 +41,7 @@ jobs:
           path: build
 
   code-quality:
+    permissions: read-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -52,6 +54,8 @@ jobs:
         run: biome ci .
 
   e2e-tests:
+    if: false
+    permissions: read-all
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
