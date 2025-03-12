@@ -1,4 +1,3 @@
-"use client";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -7,23 +6,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { DataTablePagination } from "./data-table-pagination";
-
-import {
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
-
-import type {
-  ColumnDef,
-  ColumnFiltersState,
-  VisibilityState,
-} from "@tanstack/react-table";
-
 import {
   Table,
   TableBody,
@@ -32,6 +14,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import type {
+  ColumnDef,
+  ColumnFiltersState,
+  VisibilityState,
+} from "@tanstack/react-table";
+import {
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { useState } from "react";
+import { DataTablePagination } from "./data-table-pagination";
 
 interface DataTableProps<Data, Value> {
   columns: Array<ColumnDef<Data, Value>>;
