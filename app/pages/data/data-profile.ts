@@ -17,8 +17,8 @@ type BoardHistory = {
 };
 
 type Profile = {
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   vektorEmail: string;
   email: string;
   tlf: string;
@@ -26,14 +26,14 @@ type Profile = {
   department: string;
   accountNumber: string;
   profileImage: string;
-  assistentHistory: AssisentHistory[];
-  teamHistory: TeamHistory[];
-  boardHistory: BoardHistory[];
+  assistentHistory: Array<AssisentHistory>;
+  teamHistory: Array<TeamHistory>;
+  boardHistory: Array<BoardHistory>;
 };
 
-export const DataProfile: Profile = {
-  firstname: "Julia",
-  lastname: "Dai",
+export const dataProfile: Profile = {
+  firstName: "Julia",
+  lastName: "Dai",
   vektorEmail: "julia@vektorprogrammet.no",
   email: "julia@gmail.com",
   tlf: "466 66 888",

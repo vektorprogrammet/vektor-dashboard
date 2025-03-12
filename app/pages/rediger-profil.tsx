@@ -23,7 +23,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { z } from "zod";
-import { DataProfile } from "./data/data-profile";
+import { dataProfile } from "./data/data-profile";
 import { linjer } from "./data/linjer";
 
 const formSchema = z.object({
@@ -42,18 +42,18 @@ const formSchema = z.object({
   profilbilde: z.instanceof(File).optional(),
 });
 
-const redigerProfil = () => {
+export default function RedigerProfil() {
   const navigate = useNavigate();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fornavn: DataProfile.firstname,
-      etternavn: DataProfile.lastname,
-      epost: DataProfile.email,
-      telefon: DataProfile.tlf,
-      kontonummer: DataProfile.accountNumber,
+      fornavn: dataProfile.firstName,
+      etternavn: dataProfile.lastName,
+      epost: dataProfile.email,
+      telefon: dataProfile.tlf,
+      kontonummer: dataProfile.accountNumber,
     },
   });
 
@@ -82,7 +82,7 @@ const redigerProfil = () => {
               <img
                 className="rounded-full h-40 w-40 object-cover justify-self-center mb-4"
                 alt="profilbilde"
-                src={imagePreview || DataProfile.profileImage}
+                src={imagePreview || dataProfile.profileImage}
               />
               <div className="grid lg:max-w-sm max-w-sm items-center gap-1.5">
                 <FormField
@@ -125,7 +125,7 @@ const redigerProfil = () => {
                         <FormControl>
                           <Input
                             className="bg-white"
-                            placeholder={DataProfile.firstname}
+                            placeholder={dataProfile.firstName}
                             {...field}
                           />
                         </FormControl>
@@ -144,7 +144,7 @@ const redigerProfil = () => {
                         <FormControl>
                           <Input
                             className="bg-white"
-                            placeholder={DataProfile.lastname}
+                            placeholder={dataProfile.lastName}
                             {...field}
                           />
                         </FormControl>
@@ -163,7 +163,7 @@ const redigerProfil = () => {
                         <FormControl>
                           <Input
                             className="bg-white"
-                            placeholder={DataProfile.email}
+                            placeholder={dataProfile.email}
                             {...field}
                           />
                         </FormControl>
@@ -182,7 +182,7 @@ const redigerProfil = () => {
                         <FormControl>
                           <Input
                             className="bg-white"
-                            placeholder={DataProfile.tlf}
+                            placeholder={dataProfile.tlf}
                             {...field}
                           />
                         </FormControl>
@@ -195,7 +195,7 @@ const redigerProfil = () => {
                   <Select>
                     <FormLabel>Linje</FormLabel>
                     <SelectTrigger className="w-[180px] bg-white">
-                      <SelectValue placeholder={DataProfile.study} />
+                      <SelectValue placeholder={dataProfile.study} />
                     </SelectTrigger>
                     <SelectContent>
                       {linjer.map((linje) => (
@@ -216,7 +216,7 @@ const redigerProfil = () => {
                         <FormControl>
                           <Input
                             className="bg-white"
-                            placeholder={DataProfile.accountNumber}
+                            placeholder={dataProfile.accountNumber}
                             {...field}
                           />
                         </FormControl>
@@ -241,6 +241,4 @@ const redigerProfil = () => {
       </Form>
     </div>
   );
-};
-
-export default redigerProfil;
+}

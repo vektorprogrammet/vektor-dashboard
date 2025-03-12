@@ -1,8 +1,8 @@
 import { ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router";
-import { DataProfile } from "./data/data-profile";
+import { dataProfile } from "./data/data-profile";
 
-const profile = () => {
+export default function Profile() {
   const navigate = useNavigate();
 
   return (
@@ -12,11 +12,11 @@ const profile = () => {
           <img
             className="rounded-full h-40 w-40 object-cover justify-self-center self-end"
             alt="profilbilde"
-            src={DataProfile.profileImage}
+            src={dataProfile.profileImage}
           />
           <div className="flex flex-col items-center lg:items-start self-end">
             <h1 className="text-2xl lg:text-4xl font-semibold lg:mb-4 mb-2">
-              {DataProfile.firstname} {DataProfile.lastname}
+              {dataProfile.firstName} {dataProfile.lastName}
             </h1>
             <h3 className="font-medium lg:text-xl">Teammedlem</h3>
             <p className="lg:mb-4">
@@ -24,7 +24,7 @@ const profile = () => {
                 href="mailto:julia@vektorprogrammet.no"
                 className="text-blue-600 hover:underline"
               >
-                {DataProfile.vektorEmail}
+                {dataProfile.vektorEmail}
               </a>
             </p>
           </div>
@@ -34,7 +34,7 @@ const profile = () => {
             <h2 className="text-xl font-semibold mt-2">
               Aktivitet i vektorprogrammet
             </h2>
-            {DataProfile.boardHistory.length !== 0 ? (
+            {dataProfile.boardHistory.length > 0 ? (
               <h3 className="font-medium text-lg mt-2">Medlem i hovedstyret</h3>
             ) : (
               <h3 className="font-medium text-lg mt-2">Teamhistorikk</h3>
@@ -64,15 +64,15 @@ const profile = () => {
               <tbody className="">
                 <tr className="">
                   <td className="font-medium w-2/5">Avdeling:</td>
-                  <td className="truncate">{DataProfile.department}</td>
+                  <td className="truncate">{dataProfile.department}</td>
                 </tr>
                 <tr>
                   <td className="font-medium w-2/5">Linje:</td>
-                  <td className="truncate">{DataProfile.study}</td>
+                  <td className="truncate">{dataProfile.study}</td>
                 </tr>
                 <tr>
                   <td className="font-medium w-2/5">Telefon:</td>
-                  <td className="truncate">{DataProfile.tlf}</td>
+                  <td className="truncate">{dataProfile.tlf}</td>
                 </tr>
                 <tr>
                   <td className="font-medium w-2/5">E-post:</td>
@@ -81,7 +81,7 @@ const profile = () => {
                       className="text-blue-600 hover:underline"
                       href="mailto:julia@gmail.com"
                     >
-                      {DataProfile.email}
+                      {dataProfile.email}
                     </a>
                   </td>
                 </tr>
@@ -93,7 +93,7 @@ const profile = () => {
               <h2 className="text-xl font-semibold mt-2">
                 Aktivitet i vektorprogrammet
               </h2>
-              {DataProfile.boardHistory.length !== 0 ? (
+              {dataProfile.boardHistory.length > 0 ? (
                 <h3 className="font-medium text-lg mt-4 mb-2">
                   Medlem i hovedstyret
                 </h3>
@@ -101,7 +101,7 @@ const profile = () => {
                 <h3 className="font-medium text-lg mt-4 mb-2">Teamhistorikk</h3>
               )}
             </div>
-            {DataProfile.boardHistory.length !== 0 && (
+            {dataProfile.boardHistory.length > 0 && (
               <>
                 <table className="w-full bg-gray-50 rounded-lg overflow-hidden">
                   <thead className="text-left bg-gray-200 rounded-t-lg">
@@ -112,7 +112,7 @@ const profile = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {DataProfile.boardHistory.map((row) => (
+                    {dataProfile.boardHistory.map((row) => (
                       <tr key={`${row.position}-${row.start}-${row.end}`}>
                         <td className="p-2">{row.position}</td>
                         <td className="p-2">{row.start}</td>
@@ -134,7 +134,7 @@ const profile = () => {
                 </tr>
               </thead>
               <tbody>
-                {DataProfile.teamHistory.map((row) => (
+                {dataProfile.teamHistory.map((row) => (
                   <tr
                     key={`${row.team}-${row.position}-${row.start}-${row.end}`}
                   >
@@ -157,7 +157,7 @@ const profile = () => {
                 </tr>
               </thead>
               <tbody>
-                {DataProfile.assistentHistory.map((row) => (
+                {dataProfile.assistentHistory.map((row) => (
                   <tr key={`${row.school}-${row.semester}`}>
                     <td className="p-2">{row.school}</td>
                     <td className="p-2">{row.semester}</td>
@@ -170,6 +170,4 @@ const profile = () => {
       </div>
     </>
   );
-};
-
-export default profile;
+}
