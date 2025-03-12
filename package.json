@@ -3,12 +3,14 @@
   "private": true,
   "sideEffects": false,
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve build/server/index.js",
     "typecheck": "react-router typegen && tsc",
-
     "check": "biome check",
     "check:fix": "biome check --write",
     "check:fix:unsafe": "biome check --write --unsafe",
@@ -17,7 +19,6 @@
     "lint:fix:unsafe": "biome lint --write --unsafe",
     "format": "biome format",
     "format:fix": "biome format --write",
-
     "e2e:test": "exec playwright test",
     "e2e:test:ui": "exec playwright test --ui",
     "e2e:test:chrome": "exec playwright test --project=chromium",
@@ -69,6 +70,5 @@
     "@types/react-dom": "^19.0.4",
     "typescript": "^5.8.2",
     "vite": "^6.2.1"
-  },
-  "engines": {}
+  }
 }
