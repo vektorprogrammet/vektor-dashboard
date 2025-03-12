@@ -60,7 +60,7 @@ export function DataTable<Data, Value>({
   });
 
   return (
-    <div className="w-full max-h-[80vh] flex flex-col justify-between rounded-lg border bg-card text-card-foreground shadow-sm p-4">
+    <div className="flex max-h-[80vh] w-full flex-col justify-between rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filtrer navn..."
