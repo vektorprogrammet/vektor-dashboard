@@ -71,7 +71,7 @@ export const columns: Array<ColumnDef<Soker>> = [
 // biome-ignore lint/style/noDefaultExport: Route Modules require default export https://reactrouter.com/start/framework/route-module
 export default function Sokere() {
   return (
-    <main className="w-screen md:w-full h-full flex flex-col justify-center items-center gap-5 overflow-clip p-1 md:p-6">
+    <main className="flex h-full w-screen flex-col items-center justify-center gap-5 overflow-clip p-1 md:w-full md:p-6">
       <Tabs defaultValue="account" className="w-[400px]">
         {/* Todo: Routing for Data tables */}
         <TabsList>

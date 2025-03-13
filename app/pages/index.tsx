@@ -23,7 +23,7 @@ export const meta: MetaFunction = () => {
 // biome-ignore lint/style/noDefaultExport: Route Modules require default export https://reactrouter.com/start/framework/route-module
 export default function Index() {
   return (
-    <main className="h-dvh grid place-items-center">
+    <main className="grid h-dvh place-items-center">
       <Button variant={"default"} asChild>
         <Link to={"/dashboard"}>Log in</Link>
       </Button>

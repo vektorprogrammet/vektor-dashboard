@@ -481,7 +481,7 @@ function StatusMenu({
             side={isMobile ? "bottom" : "right"}
             sideOffset={4}
           >
-            <DropdownMenuLabel className="text-xs text-muted-foreground">
+            <DropdownMenuLabel className="text-muted-foreground text-xs">
               {label}
             </DropdownMenuLabel>
             {status.map((status) => (
@@ -559,10 +559,10 @@ export default function Layout() {
               <NavItems items={projectsData} />
             </nav>
           </SidebarContent>
-          <SidebarFooter className="p-2 m-0">
+          <SidebarFooter className="m-0 p-2">
             <nav aria-label="secondary">
               {/* Secondary navigation */}
-              <SidebarGroup className="mt-auto group-data-[collapsible=icon]:p-0 transition-[padding]">
+              <SidebarGroup className="mt-auto transition-[padding] group-data-[collapsible=icon]:p-0">
                 <SidebarGroupContent>
                   <SidebarMenu>
                     {[

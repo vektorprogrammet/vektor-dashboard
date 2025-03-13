@@ -1,4 +1,3 @@
-"use client";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -7,23 +6,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import * as React from "react";
-import { DataTablePagination } from "./data-table-pagination";
-
-import {
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
-
-import type {
-  ColumnDef,
-  ColumnFiltersState,
-  VisibilityState,
-} from "@tanstack/react-table";
-
 import {
   Table,
   TableBody,
@@ -32,23 +14,34 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import type {
+  ColumnDef,
+  ColumnFiltersState,
+  VisibilityState,
+} from "@tanstack/react-table";
+import {
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { useState } from "react";
+import { DataTablePagination } from "./data-table-pagination";
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+interface DataTableProps<Data, Value> {
+  columns: Array<ColumnDef<Data, Value>>;
+  data: Array<Data>;
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<Data, Value>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
-  );
+}: DataTableProps<Data, Value>) {
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
     data,
@@ -67,7 +60,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="w-full max-h-[80vh] flex flex-col justify-between rounded-lg border bg-card text-card-foreground shadow-sm p-4">
+    <div className="flex max-h-[80vh] w-full flex-col justify-between rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filtrer navn..."
@@ -125,7 +118,7 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows?.length > 0 ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
