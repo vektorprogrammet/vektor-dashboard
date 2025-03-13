@@ -19,7 +19,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { z } from "zod";
 import { dataProfile } from "./data/data-profile";
 import { linjer } from "./data/linjer";
@@ -35,7 +35,7 @@ const formSchema = z.object({
     .string()
     .regex(
       /^(\d{4}[ .]?\d{2}[ .]?\d{5}|\d{11})$/,
-      "Ugyldig kontonummer-format",
+      "Ugyldig kontonummer-format"
     ),
   profilbilde: z.instanceof(File).optional(),
 });
@@ -63,11 +63,7 @@ export default function RedigerProfil() {
     }
   };
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
     navigate("/dashboard/profile");
   }
 
@@ -224,11 +220,8 @@ export default function RedigerProfil() {
                   />
                 </div>
                 <div className="sm:col-span-full flex justify-between">
-                  <Button
-                    type="button"
-                    onClick={() => navigate("/dashboard/profile")}
-                  >
-                    Avbryt
+                  <Button type="button">
+                    <NavLink to="/dashboard/profile">Avbryt</NavLink>
                   </Button>
                   <Button type="submit">Lagre</Button>
                 </div>

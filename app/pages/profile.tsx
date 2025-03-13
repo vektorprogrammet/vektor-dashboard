@@ -1,10 +1,17 @@
+import { Button } from "@/components/ui/button";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { ChevronRight } from "lucide-react";
-import { useNavigate } from "react-router";
+import { NavLink } from "react-router";
 import { dataProfile } from "./data/data-profile";
 
 export default function Profile() {
-  const navigate = useNavigate();
-
   return (
     <>
       <div className="flex flex-col mt-10 mx-10">
@@ -18,10 +25,10 @@ export default function Profile() {
             <h1 className="text-2xl lg:text-4xl font-semibold lg:mb-4 mb-2">
               {dataProfile.firstName} {dataProfile.lastName}
             </h1>
-            <h3 className="font-medium lg:text-xl">Teammedlem</h3>
+            <h2 className="font-medium lg:text-xl">Teammedlem</h2>
             <p className="lg:mb-4">
               <a
-                href="mailto:julia@vektorprogrammet.no"
+                href={`mailto:${dataProfile.vektorEmail}`}
                 className="text-blue-600 hover:underline"
               >
                 {dataProfile.vektorEmail}
@@ -44,49 +51,54 @@ export default function Profile() {
         <div className="lg:flex-row lg:grid lg:grid-cols-3 gap-8 mb-8">
           <div className="col-span-1 mt-8 lg:mt-0">
             <div className="flex flex-col">
-              <button
-                type="button"
-                className="bg-gray-50 hover:bg-gray-100 rounded-t-lg font-medium text-left px-4 py-2 flex flex-row justify-between"
-                onClick={() => navigate("/dashboard/profile/rediger")}
+              <Button
+                asChild
+                className="bg-gray-50 hover:bg-gray-100 rounded-t-lg font-medium text-left text-black px-4 py-2 flex flex-row justify-between"
               >
-                Rediger profil
-                <ChevronRight />
-              </button>
-              <button
+                <NavLink to="/dashboard/profile/rediger">
+                  Rediger profil
+                  <ChevronRight />
+                </NavLink>
+              </Button>
+              <Button
                 type="button"
-                className="bg-gray-50 hover:bg-gray-100 rounded-b-lg font-medium text-left px-4 py-2 flex flex-row justify-between"
+                className="bg-gray-50 hover:bg-gray-100 rounded-b-lg font-medium text-left text-black px-4 py-2 flex flex-row justify-between"
               >
                 Bytt passord
                 <ChevronRight />
-              </button>
+              </Button>
             </div>
-            <table className="table-fixed w-full bg-gray-50 mt-8 p-4 rounded-lg border-separate border-spacing-1">
-              <tbody className="">
-                <tr className="">
-                  <td className="font-medium w-2/5">Avdeling:</td>
-                  <td className="truncate">{dataProfile.department}</td>
-                </tr>
-                <tr>
-                  <td className="font-medium w-2/5">Linje:</td>
-                  <td className="truncate">{dataProfile.study}</td>
-                </tr>
-                <tr>
-                  <td className="font-medium w-2/5">Telefon:</td>
-                  <td className="truncate">{dataProfile.tlf}</td>
-                </tr>
-                <tr>
-                  <td className="font-medium w-2/5">E-post:</td>
-                  <td className="truncate">
+            <Table className="table-fixed w-full bg-gray-50 mt-8 rounded-lg border-separate">
+              <TableBody>
+                <TableRow>
+                  <TableCell className="font-medium w-2/5">Avdeling:</TableCell>
+                  <TableCell className="truncate">
+                    {dataProfile.department}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium w-2/5">Linje:</TableCell>
+                  <TableCell className="truncate">
+                    {dataProfile.study}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium w-2/5">Telefon:</TableCell>
+                  <TableCell className="truncate">{dataProfile.tlf}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium w-2/5">E-post:</TableCell>
+                  <TableCell className="truncate">
                     <a
                       className="text-blue-600 hover:underline"
-                      href="mailto:julia@gmail.com"
+                      href={`mailto:${dataProfile.email}`}
                     >
                       {dataProfile.email}
                     </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
           </div>
           <div className="col-span-2 max-w-3xl">
             <div className="block lg:hidden mt-8">
@@ -103,68 +115,66 @@ export default function Profile() {
             </div>
             {dataProfile.boardHistory.length > 0 && (
               <>
-                <table className="w-full bg-gray-50 rounded-lg overflow-hidden">
-                  <thead className="text-left bg-gray-200 rounded-t-lg">
-                    <tr>
-                      <th className="p-2">Stilling</th>
-                      <th className="p-2">Start</th>
-                      <th className="p-2">Slutt</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                <Table className="w-full bg-gray-50 rounded-lg overflow-hidden">
+                  <TableHeader className="text-left bg-gray-200 rounded-t-lg">
+                    <TableHead className="p-2 text-black">Stilling</TableHead>
+                    <TableHead className="p-2 text-black">Start</TableHead>
+                    <TableHead className="p-2 text-black">Slutt</TableHead>
+                  </TableHeader>
+                  <TableBody>
                     {dataProfile.boardHistory.map((row) => (
-                      <tr key={`${row.position}-${row.start}-${row.end}`}>
-                        <td className="p-2">{row.position}</td>
-                        <td className="p-2">{row.start}</td>
-                        <td className="p-2">{row.end}</td>
-                      </tr>
+                      <TableRow key={`${row.position}-${row.start}-${row.end}`}>
+                        <TableCell className="p-2">{row.position}</TableCell>
+                        <TableCell className="p-2">{row.start}</TableCell>
+                        <TableCell className="p-2">{row.end}</TableCell>
+                      </TableRow>
                     ))}
-                  </tbody>
-                </table>
+                  </TableBody>
+                </Table>
                 <h3 className="font-medium text-lg mt-8 mb-2">Teamhistorikk</h3>
               </>
             )}
-            <table className="w-full bg-gray-50 rounded-lg overflow-hidden mb-8">
-              <thead className="text-left bg-gray-200 rounded-t-lg">
-                <tr>
-                  <th className="p-2">Team</th>
-                  <th className="p-2">Stilling</th>
-                  <th className="p-2">Start</th>
-                  <th className="p-2">Slutt</th>
-                </tr>
-              </thead>
-              <tbody>
+            <Table className="w-full bg-gray-50 rounded-lg overflow-hidden mb-8">
+              <TableHeader className="text-left bg-gray-200 rounded-t-lg">
+                <TableHead className="p-2 text-black">Team</TableHead>
+                <TableHead className="p-2 text-black">Stilling</TableHead>
+                <TableHead className="p-2 text-black">Start</TableHead>
+                <TableHead className="p-2 text-black">Slutt</TableHead>
+              </TableHeader>
+              <TableBody>
                 {dataProfile.teamHistory.map((row) => (
-                  <tr
+                  <TableRow
                     key={`${row.team}-${row.position}-${row.start}-${row.end}`}
+                    className="border-none"
                   >
-                    <td className="p-2">{row.team}</td>
-                    <td className="p-2">{row.position}</td>
-                    <td className="p-2">{row.start}</td>
-                    <td className="p-2">{row.end}</td>
-                  </tr>
+                    <TableCell className="p-2">{row.team}</TableCell>
+                    <TableCell className="p-2">{row.position}</TableCell>
+                    <TableCell className="p-2">{row.start}</TableCell>
+                    <TableCell className="p-2">{row.end}</TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
             <h3 className="font-medium text-lg mt-8 mb-2">
               Assistenthistorikk
             </h3>
-            <table className="w-full bg-gray-50 rounded-lg overflow-hidden">
-              <thead className="text-left bg-gray-200 rounded-t-lg">
-                <tr>
-                  <th className="p-2">Skole</th>
-                  <th className="p-2">Semester</th>
-                </tr>
-              </thead>
-              <tbody>
+            <Table className="w-full bg-gray-50 rounded-lg overflow-hidden">
+              <TableHeader className="text-left bg-gray-200 rounded-t-lg">
+                <TableHead className="p-2 text-black">Skole</TableHead>
+                <TableHead className="p-2 text-black">Semester</TableHead>
+              </TableHeader>
+              <TableBody>
                 {dataProfile.assistentHistory.map((row) => (
-                  <tr key={`${row.school}-${row.semester}`}>
-                    <td className="p-2">{row.school}</td>
-                    <td className="p-2">{row.semester}</td>
-                  </tr>
+                  <TableRow
+                    key={`${row.school}-${row.semester}`}
+                    className="border-none"
+                  >
+                    <TableCell className="p-2">{row.school}</TableCell>
+                    <TableCell className="p-2">{row.semester}</TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
           </div>
         </div>
       </div>
