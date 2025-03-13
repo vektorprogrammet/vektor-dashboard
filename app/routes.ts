@@ -16,7 +16,7 @@ export default [
       index("./pages/home.tsx"),
       route("/intervjufordeling", "./pages/sokere.tsx"),
       route("/profile", "./pages/profile.tsx"),
-      route("/profile/rediger", "./pages/redigerProfil.tsx"),
+      route("/profile/rediger", "./pages/rediger-profil.tsx"),
     ]),
   ]),
 
