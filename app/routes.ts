@@ -15,6 +15,8 @@ export default [
       // renders into the dashboard.tsx Outlet at /dashboard
       index("./pages/home.tsx"),
       route("/intervjufordeling", "./pages/sokere.tsx"),
+      route("/profile", "./pages/profile.tsx"),
+      route("/profile/rediger", "./pages/rediger-profil.tsx"),
     ]),
   ]),
 
