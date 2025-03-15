@@ -75,6 +75,7 @@
       height: 0;
     }
   }
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 @utility container {
