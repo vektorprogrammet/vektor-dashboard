@@ -1,4 +1,4 @@
-type AssisentHistory = {
+type AssisantHistory = {
   school: string;
   semester: string;
 };
@@ -21,12 +21,12 @@ type Profile = {
   lastName: string;
   vektorEmail: string;
   email: string;
-  tlf: string;
+  phone: string;
   study: string;
   department: string;
   accountNumber: string;
   profileImage: string;
-  assistentHistory: Array<AssisentHistory>;
+  assistantHistory: Array<AssisantHistory>;
   teamHistory: Array<TeamHistory>;
   boardHistory: Array<BoardHistory>;
 };
@@ -36,13 +36,13 @@ export const dataProfile: Profile = {
   lastName: "Dai",
   vektorEmail: "julia@vektorprogrammet.no",
   email: "julia@gmail.com",
-  tlf: "466 66 888",
+  phone: "466 66 888",
   study: "MTDT",
   department: "IT",
   accountNumber: "0000 00 00000",
   profileImage:
     "https://vektorprogrammet.no/media/cache/profile_img/images/Profile%20photos/6407131bab385.jpeg",
-  assistentHistory: [
+  assistantHistory: [
     {
       school: "Charlottenlund",
       semester: "Vår 2023",

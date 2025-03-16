@@ -25,21 +25,22 @@ import { dataProfile } from "./data/data-profile";
 import { linjer } from "./data/linjer";
 
 const formSchema = z.object({
-  fornavn: z.string(),
-  etternavn: z.string(),
-  epost: z.string().email("Ugyldig e-post"),
-  telefon: z
+  firstName: z.string(),
+  lastName: z.string(),
+  email: z.string().email("Ugyldig e-post"),
+  phone: z
     .string()
     .regex(/^(\d{3} \d{2} \d{3}|\d{8})$/, "Telefonnummeret er på feil format"),
-  kontonummer: z
+  accountNumber: z
     .string()
     .regex(
       /^(\d{4}[ .]?\d{2}[ .]?\d{5}|\d{11})$/,
-      "Ugyldig kontonummer-format"
+      "Ugyldig kontonummer-format",
     ),
-  profilbilde: z.instanceof(File).optional(),
+  profileImage: z.instanceof(File).optional(),
 });
 
+// biome-ignore lint/style/noDefaultExport: Route Modules require default export https://reactrouter.com/start/framework/route-module
 export default function RedigerProfil() {
   const navigate = useNavigate();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -47,11 +48,11 @@ export default function RedigerProfil() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fornavn: dataProfile.firstName,
-      etternavn: dataProfile.lastName,
-      epost: dataProfile.email,
-      telefon: dataProfile.tlf,
-      kontonummer: dataProfile.accountNumber,
+      firstName: dataProfile.firstName,
+      lastName: dataProfile.lastName,
+      email: dataProfile.email,
+      phone: dataProfile.phone,
+      accountNumber: dataProfile.accountNumber,
     },
   });
 
@@ -68,20 +69,20 @@ export default function RedigerProfil() {
   }
 
   return (
-    <div className="flex flex-col mt-10 mx-10">
+    <div className="mx-10 mt-10 flex flex-col">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <section className="lg:flex-row lg:grid lg:grid-cols-3 gap-4 items-center mb-8">
-            <div className="items-center flex flex-col self-start mb-4">
+          <section className="mb-8 items-center gap-4 lg:grid lg:grid-cols-3 lg:flex-row">
+            <div className="mb-4 flex flex-col items-center self-start">
               <img
-                className="rounded-full h-40 w-40 object-cover justify-self-center mb-4"
+                className="mb-4 h-40 w-40 justify-self-center rounded-full object-cover"
                 alt="profilbilde"
-                src={imagePreview || dataProfile.profileImage}
+                src={imagePreview ?? dataProfile.profileImage}
               />
-              <div className="grid lg:max-w-sm max-w-sm items-center gap-1.5">
+              <div className="grid max-w-sm items-center gap-1.5 lg:max-w-sm">
                 <FormField
                   control={form.control}
-                  name="profilbilde"
+                  name="profileImage"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel htmlFor="picture">
@@ -107,12 +108,12 @@ export default function RedigerProfil() {
                 />
               </div>
             </div>
-            <div className="space-y-8 lg:col-span-2 bg-gray-50 rounded-lg p-4 lg:mx-20 w-full sm:max-w-xl justify-self-center">
+            <div className="w-full space-y-8 justify-self-center rounded-lg bg-gray-50 p-4 sm:max-w-xl lg:col-span-2 lg:mx-20">
               <div className=" grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <FormField
                     control={form.control}
-                    name="fornavn"
+                    name="firstName"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Fornavn</FormLabel>
@@ -131,7 +132,7 @@ export default function RedigerProfil() {
                 <div className="sm:col-span-3">
                   <FormField
                     control={form.control}
-                    name="etternavn"
+                    name="lastName"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Etternavn</FormLabel>
@@ -150,7 +151,7 @@ export default function RedigerProfil() {
                 <div className="sm:col-span-full">
                   <FormField
                     control={form.control}
-                    name="epost"
+                    name="email"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>E-post</FormLabel>
@@ -169,14 +170,14 @@ export default function RedigerProfil() {
                 <div className="sm:col-span-full">
                   <FormField
                     control={form.control}
-                    name="telefon"
+                    name="phone"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Telefon</FormLabel>
                         <FormControl>
                           <Input
                             className="bg-white"
-                            placeholder={dataProfile.tlf}
+                            placeholder={dataProfile.phone}
                             {...field}
                           />
                         </FormControl>
@@ -203,7 +204,7 @@ export default function RedigerProfil() {
                 <div className="sm:col-span-full">
                   <FormField
                     control={form.control}
-                    name="kontonummer"
+                    name="accountNumber"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Kontonummer</FormLabel>
@@ -219,7 +220,7 @@ export default function RedigerProfil() {
                     )}
                   />
                 </div>
-                <div className="sm:col-span-full flex justify-between">
+                <div className="flex justify-between sm:col-span-full">
                   <Button type="button">
                     <NavLink to="/dashboard/profile">Avbryt</NavLink>
                   </Button>

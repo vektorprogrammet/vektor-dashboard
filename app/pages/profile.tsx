@@ -11,18 +11,19 @@ import { ChevronRight } from "lucide-react";
 import { NavLink } from "react-router";
 import { dataProfile } from "./data/data-profile";
 
+// biome-ignore lint/style/noDefaultExport: Route Modules require default export https://reactrouter.com/start/framework/route-module
 export default function Profile() {
   return (
     <>
-      <div className="flex flex-col mt-10 mx-10">
-        <section className="lg:flex-row lg:grid lg:grid-cols-3 gap-4 items-center lg:mb-8">
+      <div className="mx-10 mt-10 flex flex-col">
+        <section className="items-center gap-4 lg:mb-8 lg:grid lg:grid-cols-3 lg:flex-row">
           <img
-            className="rounded-full h-40 w-40 object-cover justify-self-center self-end"
+            className="h-40 w-40 self-end justify-self-center rounded-full object-cover"
             alt="profilbilde"
             src={dataProfile.profileImage}
           />
-          <div className="flex flex-col items-center lg:items-start self-end">
-            <h1 className="text-2xl lg:text-4xl font-semibold lg:mb-4 mb-2">
+          <div className="flex flex-col items-center self-end lg:items-start">
+            <h1 className="mb-2 font-semibold text-2xl lg:mb-4 lg:text-4xl">
               {dataProfile.firstName} {dataProfile.lastName}
             </h1>
             <h2 className="font-medium lg:text-xl">Teammedlem</h2>
@@ -36,24 +37,24 @@ export default function Profile() {
             </p>
           </div>
         </section>
-        <div className="lg:grid lg:grid-cols-3 gap-8 hidden lg:block">
+        <div className="hidden gap-8 lg:block lg:grid lg:grid-cols-3">
           <div className="col-start-2 col-end-4">
-            <h2 className="text-xl font-semibold mt-2">
+            <h2 className="mt-2 font-semibold text-xl">
               Aktivitet i vektorprogrammet
             </h2>
             {dataProfile.boardHistory.length > 0 ? (
-              <h3 className="font-medium text-lg mt-2">Medlem i hovedstyret</h3>
+              <h3 className="mt-2 font-medium text-lg">Medlem i hovedstyret</h3>
             ) : (
-              <h3 className="font-medium text-lg mt-2">Teamhistorikk</h3>
+              <h3 className="mt-2 font-medium text-lg">Teamhistorikk</h3>
             )}
           </div>
         </div>
-        <div className="lg:flex-row lg:grid lg:grid-cols-3 gap-8 mb-8">
+        <div className="mb-8 gap-8 lg:grid lg:grid-cols-3 lg:flex-row">
           <div className="col-span-1 mt-8 lg:mt-0">
             <div className="flex flex-col">
               <Button
                 asChild
-                className="bg-gray-50 hover:bg-gray-100 rounded-t-lg font-medium text-left text-black px-4 py-2 flex flex-row justify-between"
+                className="flex flex-row justify-between rounded-t-lg bg-gray-50 px-4 py-2 text-left font-medium text-black hover:bg-gray-100"
               >
                 <NavLink to="/dashboard/profile/rediger">
                   Rediger profil
@@ -62,32 +63,34 @@ export default function Profile() {
               </Button>
               <Button
                 type="button"
-                className="bg-gray-50 hover:bg-gray-100 rounded-b-lg font-medium text-left text-black px-4 py-2 flex flex-row justify-between"
+                className="flex flex-row justify-between rounded-b-lg bg-gray-50 px-4 py-2 text-left font-medium text-black hover:bg-gray-100"
               >
                 Bytt passord
                 <ChevronRight />
               </Button>
             </div>
-            <Table className="table-fixed w-full bg-gray-50 mt-8 rounded-lg border-separate">
+            <Table className="mt-8 w-full table-fixed border-separate rounded-lg bg-gray-50">
               <TableBody>
                 <TableRow>
-                  <TableCell className="font-medium w-2/5">Avdeling:</TableCell>
+                  <TableCell className="w-2/5 font-medium">Avdeling:</TableCell>
                   <TableCell className="truncate">
                     {dataProfile.department}
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell className="font-medium w-2/5">Linje:</TableCell>
+                  <TableCell className="w-2/5 font-medium">Linje:</TableCell>
                   <TableCell className="truncate">
                     {dataProfile.study}
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell className="font-medium w-2/5">Telefon:</TableCell>
-                  <TableCell className="truncate">{dataProfile.tlf}</TableCell>
+                  <TableCell className="w-2/5 font-medium">Telefon:</TableCell>
+                  <TableCell className="truncate">
+                    {dataProfile.phone}
+                  </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell className="font-medium w-2/5">E-post:</TableCell>
+                  <TableCell className="w-2/5 font-medium">E-post:</TableCell>
                   <TableCell className="truncate">
                     <a
                       className="text-blue-600 hover:underline"
@@ -101,22 +104,22 @@ export default function Profile() {
             </Table>
           </div>
           <div className="col-span-2 max-w-3xl">
-            <div className="block lg:hidden mt-8">
-              <h2 className="text-xl font-semibold mt-2">
+            <div className="mt-8 block lg:hidden">
+              <h2 className="mt-2 font-semibold text-xl">
                 Aktivitet i vektorprogrammet
               </h2>
               {dataProfile.boardHistory.length > 0 ? (
-                <h3 className="font-medium text-lg mt-4 mb-2">
+                <h3 className="mt-4 mb-2 font-medium text-lg">
                   Medlem i hovedstyret
                 </h3>
               ) : (
-                <h3 className="font-medium text-lg mt-4 mb-2">Teamhistorikk</h3>
+                <h3 className="mt-4 mb-2 font-medium text-lg">Teamhistorikk</h3>
               )}
             </div>
             {dataProfile.boardHistory.length > 0 && (
               <>
-                <Table className="w-full bg-gray-50 rounded-lg overflow-hidden">
-                  <TableHeader className="text-left bg-gray-200 rounded-t-lg">
+                <Table className="w-full overflow-hidden rounded-lg bg-gray-50">
+                  <TableHeader className="rounded-t-lg bg-gray-200 text-left">
                     <TableHead className="p-2 text-black">Stilling</TableHead>
                     <TableHead className="p-2 text-black">Start</TableHead>
                     <TableHead className="p-2 text-black">Slutt</TableHead>
@@ -131,11 +134,11 @@ export default function Profile() {
                     ))}
                   </TableBody>
                 </Table>
-                <h3 className="font-medium text-lg mt-8 mb-2">Teamhistorikk</h3>
+                <h3 className="mt-8 mb-2 font-medium text-lg">Teamhistorikk</h3>
               </>
             )}
-            <Table className="w-full bg-gray-50 rounded-lg overflow-hidden mb-8">
-              <TableHeader className="text-left bg-gray-200 rounded-t-lg">
+            <Table className="mb-8 w-full overflow-hidden rounded-lg bg-gray-50">
+              <TableHeader className="rounded-t-lg bg-gray-200 text-left">
                 <TableHead className="p-2 text-black">Team</TableHead>
                 <TableHead className="p-2 text-black">Stilling</TableHead>
                 <TableHead className="p-2 text-black">Start</TableHead>
@@ -155,16 +158,16 @@ export default function Profile() {
                 ))}
               </TableBody>
             </Table>
-            <h3 className="font-medium text-lg mt-8 mb-2">
+            <h3 className="mt-8 mb-2 font-medium text-lg">
               Assistenthistorikk
             </h3>
-            <Table className="w-full bg-gray-50 rounded-lg overflow-hidden">
-              <TableHeader className="text-left bg-gray-200 rounded-t-lg">
+            <Table className="w-full overflow-hidden rounded-lg bg-gray-50">
+              <TableHeader className="rounded-t-lg bg-gray-200 text-left">
                 <TableHead className="p-2 text-black">Skole</TableHead>
                 <TableHead className="p-2 text-black">Semester</TableHead>
               </TableHeader>
               <TableBody>
-                {dataProfile.assistentHistory.map((row) => (
+                {dataProfile.assistantHistory.map((row) => (
                   <TableRow
                     key={`${row.school}-${row.semester}`}
                     className="border-none"
