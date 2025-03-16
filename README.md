@@ -41,7 +41,7 @@ pnpm install
 Run the dev server:
 
 ```sh
-pnpm run dev
+pnpm dev
 ```
 
 ### Linting and formatting
@@ -103,7 +103,7 @@ Read more in the [docs](https://playwright.dev/docs/codegen).
 First, build your app for production:
 
 ```sh
-pnpm run build
+pnpm build
 ```
 
 Then run the app in production mode:
