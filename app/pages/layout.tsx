@@ -7,17 +7,20 @@ import { Separator } from "@radix-ui/react-separator";
 import {
   BadgeCheck,
   Bell,
-  ChartLine,
+  BookUser,
   ChevronRight,
   ChevronsUpDown,
-  Info,
+  CircleEllipsis,
   LifeBuoy,
   LogOut,
   MapPinned,
   NotebookPen,
+  PiggyBank,
   Receipt,
   Send,
+  TrendingUp,
   User,
+  Users,
 } from "lucide-react";
 import { type ReactNode, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router";
@@ -134,7 +137,7 @@ const mainLinks = [
   {
     title: "Opptak",
     url: "#",
-    icon: <NotebookPen />,
+    icon: <TrendingUp />,
     isActive: false,
     links: [
       {
@@ -145,12 +148,24 @@ const mainLinks = [
         title: "Tidligere Assistenter",
         url: "#",
       },
+      {
+        title: "Intervjufordeling",
+        url: "#",
+      },
+      {
+        title: "Intervjuer",
+        url: "#",
+      },
+      {
+        title: "Opptak Statestikk",
+        url: "#",
+      },
     ],
   },
   {
     title: "Assistenter",
     url: "#",
-    icon: <ChartLine />,
+    icon: <BookUser />,
     isActive: false,
     links: [
       {
@@ -170,7 +185,7 @@ const mainLinks = [
   {
     title: "Brukere",
     url: "#",
-    icon: <Info />,
+    icon: <Users />,
     isActive: false,
     links: [
       {
@@ -204,7 +219,7 @@ const adminLinks = [
   {
     title: "Økonomi",
     url: "#",
-    icon: <ChartLine />,
+    icon: <PiggyBank />,
     isActive: false,
     links: [
       {
@@ -220,7 +235,7 @@ const adminLinks = [
   {
     title: "Annet",
     url: "#",
-    icon: <Info />,
+    icon: <CircleEllipsis />,
     isActive: false,
     links: [
       {
