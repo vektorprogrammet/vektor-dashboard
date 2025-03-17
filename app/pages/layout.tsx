@@ -10,22 +10,13 @@ import {
   ChartLine,
   ChevronRight,
   ChevronsUpDown,
-  Database,
-  Folder,
-  Forward,
-  Frame,
   Info,
   LifeBuoy,
   LogOut,
-  MapIcon,
   MapPinned,
-  MoreHorizontal,
   NotebookPen,
-  PieChart,
   Receipt,
   Send,
-  Settings,
-  Trash2,
   User,
 } from "lucide-react";
 import { type ReactNode, useState } from "react";
@@ -57,7 +48,6 @@ import {
   SidebarHeader,
   SidebarInset,
   SidebarMenu,
-  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
@@ -145,93 +135,62 @@ const mainLinks = [
     title: "Opptak",
     url: "#",
     icon: <NotebookPen />,
-    isActive: true,
+    isActive: false,
     links: [
       {
-        title: "Intervjufordeling",
+        title: "Nye Søkere",
         url: "/dashboard/intervjufordeling",
       },
       {
-        title: "Intervjuskjema",
+        title: "Tidligere Assistenter",
         url: "#",
       },
     ],
   },
   {
-    title: "Statistikk",
+    title: "Assistenter",
     url: "#",
     icon: <ChartLine />,
+    isActive: false,
     links: [
-      {
-        title: "Opptak",
-        url: "#",
-      },
-      {
-        title: "Utlegg",
-        url: "#",
-      },
-    ],
-  },
-  {
-    title: "Informasjon",
-    url: "#",
-    icon: <Info />,
-    links: [
-      {
-        title: "Artikler",
-        url: "#",
-      },
-      {
-        title: "Changelog",
-        url: "#",
-      },
-      {
-        title: "Stand",
-        url: "#",
-      },
-    ],
-  },
-  {
-    title: "Data",
-    url: "#",
-    icon: <Database />,
-    links: [
-      {
-        title: "Arrangementer",
-        url: "#",
-      },
-      {
-        title: "Attester",
-        url: "#",
-      },
       {
         title: "Assistenter",
         url: "#",
       },
       {
-        title: "Avdelinger",
+        title: "Vikarer",
         url: "#",
       },
       {
-        title: "Brukere",
+        title: "Skoler",
+        url: "#",
+      },
+    ],
+  },
+  {
+    title: "Brukere",
+    url: "#",
+    icon: <Info />,
+    isActive: false,
+    links: [
+      {
+        title: "Generer Epostliste",
         url: "#",
       },
       {
-        title: "Brukergruppesamlinger",
+        title: "Alle Brukere",
         url: "#",
       },
-      {
-        title: "Hovedstyret",
-        url: "#",
-      },
-      {
-        title: "Opptak",
-        url: "#",
-      },
-      {
-        title: "Opptaksperioder",
-        url: "#",
-      },
+    ],
+  },
+];
+const adminLinks = [
+  {
+    title: "Team",
+    url: "#",
+    icon: <NotebookPen />,
+    isActive: false,
+    links: [
       {
         title: "Team",
         url: "#",
@@ -240,24 +199,20 @@ const mainLinks = [
         title: "Teaminteresse",
         url: "#",
       },
+    ],
+  },
+  {
+    title: "Økonomi",
+    url: "#",
+    icon: <ChartLine />,
+    isActive: false,
+    links: [
+      {
+        title: "Utlegg",
+        url: "#",
+      },
       {
         title: "Sponsorer",
-        url: "#",
-      },
-      {
-        title: "Skoler",
-        url: "#",
-      },
-      {
-        title: "Linjer",
-        url: "#",
-      },
-      {
-        title: "Undersøkelser",
-        url: "#",
-      },
-      {
-        title: "Vikarer",
         url: "#",
       },
     ],
@@ -265,26 +220,27 @@ const mainLinks = [
   {
     title: "Annet",
     url: "#",
-    icon: <Settings />,
+    icon: <Info />,
+    isActive: false,
     links: [
       {
-        title: "Access Control",
+        title: "Attester",
         url: "#",
       },
       {
-        title: "Kontrollpanel",
+        title: "Intervjusjema",
         url: "#",
       },
       {
-        title: "Timeplan",
+        title: "Avdelinger",
         url: "#",
       },
       {
-        title: "Epostlister",
+        title: "Linjer",
         url: "#",
       },
       {
-        title: "Slab",
+        title: "Opptaksperioder",
         url: "#",
       },
     ],
@@ -306,134 +262,53 @@ function NavLinks({
   }>;
 }) {
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
-      <SidebarMenu>
-        {links.map((link) => {
-          if (!link.links) {
-            return (
-              <SidebarMenuItem key={link.title}>
-                <SidebarMenuButton asChild>
-                  <Link to={link.url}>
-                    {link.icon}
-                    <span>{link.title}</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            );
-          }
+    <SidebarMenu>
+      {links.map((link) => {
+        if (!link.links) {
           return (
-            <Collapsible
-              key={link.title}
-              asChild
-              defaultOpen={link.isActive}
-              className="group/collapsible"
-            >
-              <SidebarMenuItem>
-                <CollapsibleTrigger asChild>
-                  <SidebarMenuButton tooltip={link.title}>
-                    {link.icon}
-                    <span>{link.title}</span>
-                    <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                  </SidebarMenuButton>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <SidebarMenuSub>
-                    {link.links?.map((subLink) => (
-                      <SidebarMenuSubItem key={subLink.title}>
-                        <SidebarMenuSubButton asChild>
-                          <Link to={subLink.url}>
-                            <span>{subLink.title}</span>
-                          </Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    ))}
-                  </SidebarMenuSub>
-                </CollapsibleContent>
-              </SidebarMenuItem>
-            </Collapsible>
+            <SidebarMenuItem key={link.title}>
+              <SidebarMenuButton asChild>
+                <Link to={link.url}>
+                  {link.icon}
+                  <span>{link.title}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
           );
-        })}
-      </SidebarMenu>
-    </SidebarGroup>
-  );
-}
-const projectsData = [
-  {
-    name: "Design Engineering",
-    url: "#",
-    icon: <Frame />,
-  },
-  {
-    name: "Sales & Marketing",
-    url: "#",
-    icon: <PieChart />,
-  },
-  {
-    name: "Travel",
-    url: "#",
-    icon: <MapIcon />,
-  },
-];
-function NavItems({
-  items,
-}: {
-  items: Array<{
-    name: string;
-    url: string;
-    icon: ReactNode;
-  }>;
-}) {
-  const isMobile = useSidebar();
-  return (
-    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Projects</SidebarGroupLabel>
-      <SidebarMenu>
-        {items.map((item) => (
-          <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
-              <Link to={item.url}>
-                {item.icon}
-                <span>{item.name}</span>
-              </Link>
-            </SidebarMenuButton>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuAction showOnHover>
-                  <MoreHorizontal />
-                  <span className="sr-only">More</span>
-                </SidebarMenuAction>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className="w-48 rounded-lg"
-                side={isMobile ? "bottom" : "right"}
-                align={isMobile ? "end" : "start"}
-              >
-                <DropdownMenuItem>
-                  <Folder />
-                  <span>View Project</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Forward />
-                  <span>Share Project</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Trash2 />
-                  <span>Delete Project</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        ))}
-        <SidebarMenuItem>
-          <SidebarMenuButton className="text-sidebar-foreground/70">
-            <MoreHorizontal className="text-sidebar-foreground/70" />
-            <span>More</span>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-      </SidebarMenu>
-    </SidebarGroup>
+        }
+        return (
+          <Collapsible
+            key={link.title}
+            asChild
+            defaultOpen={link.isActive}
+            className="group/collapsible"
+          >
+            <SidebarMenuItem>
+              <CollapsibleTrigger asChild>
+                <SidebarMenuButton tooltip={link.title}>
+                  {link.icon}
+                  <span>{link.title}</span>
+                  <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                </SidebarMenuButton>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <SidebarMenuSub>
+                  {link.links?.map((subLink) => (
+                    <SidebarMenuSubItem key={subLink.title}>
+                      <SidebarMenuSubButton asChild>
+                        <Link to={subLink.url}>
+                          <span>{subLink.title}</span>
+                        </Link>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                  ))}
+                </SidebarMenuSub>
+              </CollapsibleContent>
+            </SidebarMenuItem>
+          </Collapsible>
+        );
+      })}
+    </SidebarMenu>
   );
 }
 
@@ -553,8 +428,13 @@ export default function Layout() {
           <SidebarContent>
             <nav aria-label="primary">
               {/* Primary navigation */}
-              <NavLinks links={mainLinks} />
-              <NavItems items={projectsData} />
+              <SidebarGroup>
+                <NavLinks links={mainLinks} />
+              </SidebarGroup>
+              <SidebarGroup>
+                <SidebarGroupLabel>Admin</SidebarGroupLabel>
+                <NavLinks links={adminLinks} />
+              </SidebarGroup>
             </nav>
           </SidebarContent>
           <SidebarFooter className="m-0 p-2">
