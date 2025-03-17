@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type ChangeEvent, useRef, useState } from "react";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router";
 import { z } from "zod";
@@ -29,7 +29,7 @@ const formSchema = z.object({
     .string()
     .regex(
       /^(\d{4}[ .]?\d{2}[ .]?\d{5}|\d{11})$/,
-      "Ugyldig kontonummer-format"
+      "Ugyldig kontonummer-format",
     ),
   profileImage: z.instanceof(File).optional(),
 });
@@ -38,7 +38,6 @@ export default function RedigerProfil() {
   const navigate = useNavigate();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const profile = getProfileData();
-  const profileImageRef = useRef<HTMLInputElement | null>(null);
   const linjerItems = linjer.map((linje) => ({
     value: linje,
     label: linje,
@@ -60,15 +59,7 @@ export default function RedigerProfil() {
     },
   });
 
-  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const previewUrl = URL.createObjectURL(file);
-      setImagePreview(previewUrl);
-    }
-  };
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(_values: z.infer<typeof formSchema>) {
     navigate("/dashboard/profile");
   }
 
@@ -97,17 +88,18 @@ export default function RedigerProfil() {
                           id="picture"
                           type="file"
                           accept="image/png,image/jpeg"
-                          ref={(el) => {
-                            if (!el) return;
-                            profileImageRef.current = el;
-                          }}
                           onChange={(e) => {
-                            const input = profileImageRef.current;
-                            if (input?.files?.length) {
-                              const file = input.files[0];
-                              handleImageChange(e);
-                              field.onChange(file);
-                            }
+                            if (!e.currentTarget.files) return;
+                            if (e.currentTarget.files.length <= 0) return;
+                            const file = e.currentTarget.files[0];
+                            if (
+                              file.type !== "image/jpeg" &&
+                              file.type !== "image/png"
+                            )
+                              return;
+                            const fileUrl = URL.createObjectURL(file);
+                            setImagePreview(fileUrl);
+                            field.onChange(file);
                           }}
                         />
                       </FormControl>
