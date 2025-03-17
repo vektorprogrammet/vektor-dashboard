@@ -1,3 +1,4 @@
+import { ComboBoxResponsive } from "@/components/combobox";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -8,20 +9,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type React from "react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { type ChangeEvent, useRef, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router";
 import { z } from "zod";
-import { dataProfile } from "./data/data-profile";
+import { getProfileData } from "./data/data-profile";
 import { linjer } from "./data/linjer";
 
 const formSchema = z.object({
@@ -31,32 +24,43 @@ const formSchema = z.object({
   phone: z
     .string()
     .regex(/^(\d{3} \d{2} \d{3}|\d{8})$/, "Telefonnummeret er på feil format"),
+  study: z.string(),
   accountNumber: z
     .string()
     .regex(
       /^(\d{4}[ .]?\d{2}[ .]?\d{5}|\d{11})$/,
-      "Ugyldig kontonummer-format",
+      "Ugyldig kontonummer-format"
     ),
   profileImage: z.instanceof(File).optional(),
 });
 
-// biome-ignore lint/style/noDefaultExport: Route Modules require default export https://reactrouter.com/start/framework/route-module
 export default function RedigerProfil() {
   const navigate = useNavigate();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const profile = getProfileData();
+  const profileImageRef = useRef<HTMLInputElement | null>(null);
+  const linjerItems = linjer.map((linje) => ({
+    value: linje,
+    label: linje,
+  }));
+  const studyItem = {
+    value: profile.study,
+    label: profile.study,
+  };
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: dataProfile.firstName,
-      lastName: dataProfile.lastName,
-      email: dataProfile.email,
-      phone: dataProfile.phone,
-      accountNumber: dataProfile.accountNumber,
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      email: profile.email,
+      phone: profile.phone,
+      study: profile.study,
+      accountNumber: profile.accountNumber,
     },
   });
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const previewUrl = URL.createObjectURL(file);
@@ -77,7 +81,7 @@ export default function RedigerProfil() {
               <img
                 className="mb-4 h-40 w-40 justify-self-center rounded-full object-cover"
                 alt="profilbilde"
-                src={imagePreview ?? dataProfile.profileImage}
+                src={imagePreview ?? profile.profileImage}
               />
               <div className="grid max-w-sm items-center gap-1.5 lg:max-w-sm">
                 <FormField
@@ -93,9 +97,14 @@ export default function RedigerProfil() {
                           id="picture"
                           type="file"
                           accept="image/png,image/jpeg"
+                          ref={(el) => {
+                            if (!el) return;
+                            profileImageRef.current = el;
+                          }}
                           onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) {
+                            const input = profileImageRef.current;
+                            if (input?.files?.length) {
+                              const file = input.files[0];
                               handleImageChange(e);
                               field.onChange(file);
                             }
@@ -109,7 +118,7 @@ export default function RedigerProfil() {
               </div>
             </div>
             <div className="w-full space-y-8 justify-self-center rounded-lg bg-gray-50 p-4 sm:max-w-xl lg:col-span-2 lg:mx-20">
-              <div className=" grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <FormField
                     control={form.control}
@@ -118,11 +127,7 @@ export default function RedigerProfil() {
                       <FormItem>
                         <FormLabel>Fornavn</FormLabel>
                         <FormControl>
-                          <Input
-                            className="bg-white"
-                            placeholder={dataProfile.firstName}
-                            {...field}
-                          />
+                          <Input className="bg-white" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -137,11 +142,7 @@ export default function RedigerProfil() {
                       <FormItem>
                         <FormLabel>Etternavn</FormLabel>
                         <FormControl>
-                          <Input
-                            className="bg-white"
-                            placeholder={dataProfile.lastName}
-                            {...field}
-                          />
+                          <Input className="bg-white" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -156,11 +157,7 @@ export default function RedigerProfil() {
                       <FormItem>
                         <FormLabel>E-post</FormLabel>
                         <FormControl>
-                          <Input
-                            className="bg-white"
-                            placeholder={dataProfile.email}
-                            {...field}
-                          />
+                          <Input className="bg-white" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -175,11 +172,7 @@ export default function RedigerProfil() {
                       <FormItem>
                         <FormLabel>Telefon</FormLabel>
                         <FormControl>
-                          <Input
-                            className="bg-white"
-                            placeholder={dataProfile.phone}
-                            {...field}
-                          />
+                          <Input className="bg-white" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -187,19 +180,28 @@ export default function RedigerProfil() {
                   />
                 </div>
                 <div className="sm:col-span-3">
-                  <Select>
-                    <FormLabel>Linje</FormLabel>
-                    <SelectTrigger className="w-[180px] bg-white">
-                      <SelectValue placeholder={dataProfile.study} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {linjer.map((linje) => (
-                        <SelectItem key={linje} value={linje}>
-                          {linje}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <FormField
+                    control={form.control}
+                    name="study"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Linje</FormLabel>
+                        <FormControl>
+                          <Controller
+                            name="study"
+                            control={form.control}
+                            render={({ field }) => (
+                              <ComboBoxResponsive
+                                items={linjerItems}
+                                defaultItem={studyItem}
+                              />
+                            )}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
                 <div className="sm:col-span-full">
                   <FormField
@@ -209,11 +211,7 @@ export default function RedigerProfil() {
                       <FormItem>
                         <FormLabel>Kontonummer</FormLabel>
                         <FormControl>
-                          <Input
-                            className="bg-white"
-                            placeholder={dataProfile.accountNumber}
-                            {...field}
-                          />
+                          <Input className="bg-white" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

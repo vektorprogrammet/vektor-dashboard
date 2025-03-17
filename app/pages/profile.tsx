@@ -9,10 +9,11 @@ import {
 } from "@/components/ui/table";
 import { ChevronRight } from "lucide-react";
 import { NavLink } from "react-router";
-import { dataProfile } from "./data/data-profile";
+import { getProfileData } from "./data/data-profile";
 
 // biome-ignore lint/style/noDefaultExport: Route Modules require default export https://reactrouter.com/start/framework/route-module
 export default function Profile() {
+  const profile = getProfileData();
   return (
     <>
       <div className="mx-10 mt-10 flex flex-col">
@@ -20,19 +21,19 @@ export default function Profile() {
           <img
             className="h-40 w-40 self-end justify-self-center rounded-full object-cover"
             alt="profilbilde"
-            src={dataProfile.profileImage}
+            src={profile.profileImage}
           />
           <div className="flex flex-col items-center self-end lg:items-start">
             <h1 className="mb-2 font-semibold text-2xl lg:mb-4 lg:text-4xl">
-              {dataProfile.firstName} {dataProfile.lastName}
+              {profile.firstName} {profile.lastName}
             </h1>
             <h2 className="font-medium lg:text-xl">Teammedlem</h2>
             <p className="lg:mb-4">
               <a
-                href={`mailto:${dataProfile.vektorEmail}`}
+                href={`mailto:${profile.vektorEmail}`}
                 className="text-blue-600 hover:underline"
               >
-                {dataProfile.vektorEmail}
+                {profile.vektorEmail}
               </a>
             </p>
           </div>
@@ -42,7 +43,7 @@ export default function Profile() {
             <h2 className="mt-2 font-semibold text-xl">
               Aktivitet i vektorprogrammet
             </h2>
-            {dataProfile.boardHistory.length > 0 ? (
+            {profile.boardHistory.length > 0 ? (
               <h3 className="mt-2 font-medium text-lg">Medlem i hovedstyret</h3>
             ) : (
               <h3 className="mt-2 font-medium text-lg">Teamhistorikk</h3>
@@ -74,29 +75,25 @@ export default function Profile() {
                 <TableRow>
                   <TableCell className="w-2/5 font-medium">Avdeling:</TableCell>
                   <TableCell className="truncate">
-                    {dataProfile.department}
+                    {profile.department}
                   </TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="w-2/5 font-medium">Linje:</TableCell>
-                  <TableCell className="truncate">
-                    {dataProfile.study}
-                  </TableCell>
+                  <TableCell className="truncate">{profile.study}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="w-2/5 font-medium">Telefon:</TableCell>
-                  <TableCell className="truncate">
-                    {dataProfile.phone}
-                  </TableCell>
+                  <TableCell className="truncate">{profile.phone}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="w-2/5 font-medium">E-post:</TableCell>
                   <TableCell className="truncate">
                     <a
                       className="text-blue-600 hover:underline"
-                      href={`mailto:${dataProfile.email}`}
+                      href={`mailto:${profile.email}`}
                     >
-                      {dataProfile.email}
+                      {profile.email}
                     </a>
                   </TableCell>
                 </TableRow>
@@ -108,7 +105,7 @@ export default function Profile() {
               <h2 className="mt-2 font-semibold text-xl">
                 Aktivitet i vektorprogrammet
               </h2>
-              {dataProfile.boardHistory.length > 0 ? (
+              {profile.boardHistory.length > 0 ? (
                 <h3 className="mt-4 mb-2 font-medium text-lg">
                   Medlem i hovedstyret
                 </h3>
@@ -116,7 +113,7 @@ export default function Profile() {
                 <h3 className="mt-4 mb-2 font-medium text-lg">Teamhistorikk</h3>
               )}
             </div>
-            {dataProfile.boardHistory.length > 0 && (
+            {profile.boardHistory.length > 0 && (
               <>
                 <Table className="w-full overflow-hidden rounded-lg bg-gray-50">
                   <TableHeader className="rounded-t-lg bg-gray-200 text-left">
@@ -125,7 +122,7 @@ export default function Profile() {
                     <TableHead className="p-2 text-black">Slutt</TableHead>
                   </TableHeader>
                   <TableBody>
-                    {dataProfile.boardHistory.map((row) => (
+                    {profile.boardHistory.map((row) => (
                       <TableRow key={`${row.position}-${row.start}-${row.end}`}>
                         <TableCell className="p-2">{row.position}</TableCell>
                         <TableCell className="p-2">{row.start}</TableCell>
@@ -137,7 +134,7 @@ export default function Profile() {
                 <h3 className="mt-8 mb-2 font-medium text-lg">Teamhistorikk</h3>
               </>
             )}
-            <Table className="mb-8 w-full overflow-hidden rounded-lg bg-gray-50">
+            <Table className="w-full overflow-hidden rounded-lg bg-gray-50">
               <TableHeader className="rounded-t-lg bg-gray-200 text-left">
                 <TableHead className="p-2 text-black">Team</TableHead>
                 <TableHead className="p-2 text-black">Stilling</TableHead>
@@ -145,7 +142,7 @@ export default function Profile() {
                 <TableHead className="p-2 text-black">Slutt</TableHead>
               </TableHeader>
               <TableBody>
-                {dataProfile.teamHistory.map((row) => (
+                {profile.teamHistory.map((row) => (
                   <TableRow
                     key={`${row.team}-${row.position}-${row.start}-${row.end}`}
                     className="border-none"
@@ -167,7 +164,7 @@ export default function Profile() {
                 <TableHead className="p-2 text-black">Semester</TableHead>
               </TableHeader>
               <TableBody>
-                {dataProfile.assistantHistory.map((row) => (
+                {profile.assistantHistory.map((row) => (
                   <TableRow
                     key={`${row.school}-${row.semester}`}
                     className="border-none"
