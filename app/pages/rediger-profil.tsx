@@ -36,7 +36,7 @@ const formSchema = z.object({
 
 export default function RedigerProfil() {
   const navigate = useNavigate();
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const profile = getProfileData();
   const linjerItems = linjer.map((linje) => ({
     value: linje,
@@ -72,7 +72,7 @@ export default function RedigerProfil() {
               <img
                 className="mb-4 h-40 w-40 justify-self-center rounded-full object-cover"
                 alt="profilbilde"
-                src={imagePreview ?? profile.profileImage}
+                src={avatarUrl ?? profile.profileImage}
               />
               <div className="grid max-w-sm items-center gap-1.5 lg:max-w-sm">
                 <FormField
@@ -98,7 +98,7 @@ export default function RedigerProfil() {
                             )
                               return;
                             const fileUrl = URL.createObjectURL(file);
-                            setImagePreview(fileUrl);
+                            setAvatarUrl(fileUrl);
                             field.onChange(file);
                           }}
                         />
