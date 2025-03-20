@@ -5,13 +5,11 @@ import {
 } from "@radix-ui/react-collapsible";
 import { Separator } from "@radix-ui/react-separator";
 import {
-  BadgeCheck,
-  Bell,
   BookUser,
   ChevronRight,
   ChevronsUpDown,
   CircleEllipsis,
-  LifeBuoy,
+  Info,
   LogOut,
   MapPinned,
   NotebookPen,
@@ -106,20 +104,12 @@ function UserMenu({
           >
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <BadgeCheck />
-                Konto
-              </DropdownMenuItem>
-              <DropdownMenuItem>
                 <User />
                 Profil
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Receipt />
-                Utlegg
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notifikasjoner
+                Mine Utlegg
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
@@ -157,7 +147,7 @@ const mainLinks = [
         url: "#",
       },
       {
-        title: "Opptak Statestikk",
+        title: "Statestikk",
         url: "#",
       },
     ],
@@ -189,7 +179,7 @@ const mainLinks = [
     isActive: false,
     links: [
       {
-        title: "Generer Epostliste",
+        title: "Epostliste",
         url: "#",
       },
       {
@@ -459,7 +449,7 @@ export default function Layout() {
                 <SidebarGroupContent>
                   <SidebarMenu>
                     {[
-                      { title: "Support", url: "#", icon: <LifeBuoy /> },
+                      { title: "Slab", url: "#", icon: <Info /> },
                       { title: "Feedback", url: "#", icon: <Send /> },
                     ].map((link) => (
                       <SidebarMenuItem key={link.title}>
