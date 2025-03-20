@@ -38,7 +38,7 @@ export default function Profile() {
             </p>
           </div>
         </section>
-        <div className="hidden gap-8 lg:block lg:grid lg:grid-cols-3">
+        <div className="hidden gap-8 lg:grid lg:grid-cols-3">
           <div className="col-start-2 col-end-4">
             <h2 className="mt-2 font-semibold text-xl">
               Aktivitet i vektorprogrammet

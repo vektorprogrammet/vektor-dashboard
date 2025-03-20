@@ -1,4 +1,4 @@
-type AssisantHistory = {
+type AssistantHistory = {
   school: string;
   semester: string;
 };
@@ -26,12 +26,12 @@ type Profile = {
   department: string;
   accountNumber: string;
   profileImage: string;
-  assistantHistory: Array<AssisantHistory>;
+  assistantHistory: Array<AssistantHistory>;
   teamHistory: Array<TeamHistory>;
   boardHistory: Array<BoardHistory>;
 };
 
-export function getProfileData() {
+export function getProfileData(): Profile {
   return {
     firstName: "Julia",
     lastName: "Dai",

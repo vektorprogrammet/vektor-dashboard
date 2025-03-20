@@ -34,6 +34,7 @@ const formSchema = z.object({
   profileImage: z.instanceof(File).optional(),
 });
 
+// biome-ignore lint/style/noDefaultExport: Route Modules require default export https://reactrouter.com/start/framework/route-module
 export default function RedigerProfil() {
   const navigate = useNavigate();
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
@@ -175,14 +176,14 @@ export default function RedigerProfil() {
                   <FormField
                     control={form.control}
                     name="study"
-                    render={({ field }) => (
+                    render={() => (
                       <FormItem>
                         <FormLabel>Linje</FormLabel>
                         <FormControl>
                           <Controller
                             name="study"
                             control={form.control}
-                            render={({ field }) => (
+                            render={() => (
                               <ComboBoxResponsive
                                 items={linjerItems}
                                 defaultItem={studyItem}
