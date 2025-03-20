@@ -149,7 +149,7 @@ const mainLinks = [
         url: "#",
       },
       {
-        title: "Statestikk",
+        title: "Statistikk",
         url: "#",
       },
     ],
