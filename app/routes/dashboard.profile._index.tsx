@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/table";
 import { ChevronRight } from "lucide-react";
 import { NavLink, href } from "react-router";
-import { getProfileData } from "./data/data-profile";
+import { getProfileData } from "../mock/api/data-profile";
 
 // biome-ignore lint/style/noDefaultExport: Route Modules require default export https://reactrouter.com/start/framework/route-module
 export default function Profile() {

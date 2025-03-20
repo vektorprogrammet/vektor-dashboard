@@ -29,7 +29,7 @@ import {
   User,
 } from "lucide-react";
 import { Fragment, type ReactNode, useState } from "react";
-import { Link, NavLink, Outlet, useLocation } from "react-router";
+import { Link, NavLink, Outlet, href, useLocation } from "react-router";
 
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
@@ -117,7 +117,7 @@ function UserMenu({
                 <BadgeCheck />
                 Konto
               </DropdownMenuItem>
-              <Link to={"dashboard/profile"} prefetch="intent">
+              <Link to={href("/dashboard/profile")} prefetch="intent">
                 <DropdownMenuItem>
                   <User />
                   Profil
@@ -515,7 +515,7 @@ function Breadcrumbs() {
       <Fragment key={fullPath}>
         <BreadcrumbItem>
           <NavLink
-            to={fullPath}
+            to={`/${fullPath}`}
             className={cn(
               isEnd ? "text-black" : "text-gray-500",
               "hover:text-black",
