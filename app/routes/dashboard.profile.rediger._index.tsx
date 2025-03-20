@@ -14,8 +14,8 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { NavLink, href, useNavigate } from "react-router";
 import { z } from "zod";
-import { getProfileData } from "./data/data-profile";
-import { linjer } from "./data/linjer";
+import { getProfileData } from "../mock/api/data-profile";
+import { linjer } from "../mock/api/linjer";
 
 const formSchema = z.object({
   firstName: z.string(),
