@@ -103,10 +103,12 @@ function UserMenu({
             sideOffset={4}
           >
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <User />
-                Profil
-              </DropdownMenuItem>
+              <Link to={"dashboard/profile"} prefetch="intent">
+                <DropdownMenuItem>
+                  <User />
+                  Profil
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem>
                 <Receipt />
                 Mine Utlegg
@@ -273,7 +275,7 @@ function NavLinks({
           return (
             <SidebarMenuItem key={link.title}>
               <SidebarMenuButton asChild>
-                <Link to={link.url}>
+                <Link to={link.url} prefetch="intent">
                   {link.icon}
                   <span>{link.title}</span>
                 </Link>
@@ -301,7 +303,7 @@ function NavLinks({
                   {link.links?.map((subLink) => (
                     <SidebarMenuSubItem key={subLink.title}>
                       <SidebarMenuSubButton asChild>
-                        <Link to={subLink.url}>
+                        <Link to={subLink.url} prefetch="intent">
                           <span>{subLink.title}</span>
                         </Link>
                       </SidebarMenuSubButton>
@@ -387,7 +389,9 @@ function Breadcrumbs() {
       return (
         <div key={fullPath}>
           <BreadcrumbItem key={fullPath} className="hidden md:block">
-            <Link to={fullPath}>{path}</Link>
+            <Link to={fullPath} prefetch="intent">
+              {path}
+            </Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator className="hidden md:block" />
         </div>
@@ -395,7 +399,9 @@ function Breadcrumbs() {
     }
     return (
       <BreadcrumbItem key={fullPath} className="hidden md:block">
-        <Link to={fullPath}>{path}</Link>
+        <Link to={fullPath} prefetch="intent">
+          {path}
+        </Link>
       </BreadcrumbItem>
     );
   });
@@ -458,7 +464,7 @@ export default function Layout() {
                           size="sm"
                           tooltip={link.title}
                         >
-                          <Link to="#">
+                          <Link to={link.url} prefetch="intent">
                             {link.icon}
                             <span>{link.title}</span>
                           </Link>
