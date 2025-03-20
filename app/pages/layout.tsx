@@ -28,9 +28,10 @@ import {
   Trash2,
   User,
 } from "lucide-react";
-import { type ReactNode, useState } from "react";
-import { Link, Outlet, useLocation } from "react-router";
+import { Fragment, type ReactNode, useState } from "react";
+import { Link, NavLink, Outlet, useLocation } from "react-router";
 
+import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import {
   Breadcrumb,
@@ -505,24 +506,27 @@ function Breadcrumbs() {
   const paths = pathname.split("/").filter((path) => path);
   const Paths = paths.map((path, index, arr) => {
     const fullPath = arr.slice(0, index + 1).join("/");
-    if (index !== paths.length - 1) {
-      return (
-        <div key={fullPath}>
-          <BreadcrumbItem key={fullPath} className="hidden md:block">
-            <Link to={fullPath} prefetch="intent">
-              {path}
-            </Link>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator className="hidden md:block" />
-        </div>
-      );
-    }
+
+    const capitalizedPath = path.charAt(0).toUpperCase() + path.slice(1);
+
+    const isEnd = index === paths.length - 1;
+
     return (
-      <BreadcrumbItem key={fullPath} className="hidden md:block">
-        <Link to={fullPath} prefetch="intent">
-          {path}
-        </Link>
-      </BreadcrumbItem>
+      <Fragment key={fullPath}>
+        <BreadcrumbItem>
+          <NavLink
+            to={fullPath}
+            className={cn(
+              isEnd ? "text-black" : "text-gray-500",
+              "hover:text-black",
+            )}
+            prefetch="intent"
+          >
+            {capitalizedPath}
+          </NavLink>
+        </BreadcrumbItem>
+        {!isEnd && <BreadcrumbSeparator />}
+      </Fragment>
     );
   });
 
