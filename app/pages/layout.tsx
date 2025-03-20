@@ -21,7 +21,7 @@ import {
   Users,
 } from "lucide-react";
 import { type ReactNode, useState } from "react";
-import { Link, Outlet, useLocation } from "react-router";
+import { Link, Outlet, href, useLocation } from "react-router";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import {
@@ -134,7 +134,7 @@ const mainLinks = [
     links: [
       {
         title: "Nye Søkere",
-        url: "/dashboard/intervjufordeling",
+        url: href("/dashboard/intervjufordeling"),
       },
       {
         title: "Tidligere Assistenter",
