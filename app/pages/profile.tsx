@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ChevronRight } from "lucide-react";
-import { NavLink } from "react-router";
+import { NavLink, href } from "react-router";
 import { getProfileData } from "./data/data-profile";
 
 // biome-ignore lint/style/noDefaultExport: Route Modules require default export https://reactrouter.com/start/framework/route-module
@@ -57,7 +57,7 @@ export default function Profile() {
                 asChild
                 className="flex flex-row justify-between rounded-t-lg bg-gray-50 px-4 py-2 text-left font-medium text-black hover:bg-gray-100"
               >
-                <NavLink to="/dashboard/profile/rediger">
+                <NavLink to={href("/dashboard/profile/rediger")}>
                   Rediger profil
                   <ChevronRight />
                 </NavLink>

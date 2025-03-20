@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, href, useNavigate } from "react-router";
 import { z } from "zod";
 import { getProfileData } from "./data/data-profile";
 import { linjer } from "./data/linjer";
@@ -213,7 +213,7 @@ export default function RedigerProfil() {
                 </div>
                 <div className="flex justify-between sm:col-span-full">
                   <Button type="button">
-                    <NavLink to="/dashboard/profile">Avbryt</NavLink>
+                    <NavLink to={href("/dashboard/profile")}>Avbryt</NavLink>
                   </Button>
                   <Button type="submit">Lagre</Button>
                 </div>
