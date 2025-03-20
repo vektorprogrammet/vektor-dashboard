@@ -116,10 +116,12 @@ function UserMenu({
                 <BadgeCheck />
                 Konto
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <User />
-                Profil
-              </DropdownMenuItem>
+              <Link to={"dashboard/profile"}>
+                <DropdownMenuItem>
+                  <User />
+                  Profil
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem>
                 <Receipt />
                 Utlegg
