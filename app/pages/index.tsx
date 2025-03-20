@@ -18,7 +18,9 @@ export default function Index() {
   return (
     <main className="grid h-dvh place-items-center">
       <Button variant={"default"} asChild>
-        <Link to={href("/dashboard")}>Log in</Link>
+        <Link to={href("/dashboard")} prefetch="intent">
+          Log in
+        </Link>
       </Button>
     </main>
   );

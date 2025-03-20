@@ -213,7 +213,9 @@ export default function RedigerProfil() {
                 </div>
                 <div className="flex justify-between sm:col-span-full">
                   <Button type="button">
-                    <NavLink to={href("/dashboard/profile")}>Avbryt</NavLink>
+                    <NavLink to={href("/dashboard/profile")} prefetch="intent">
+                      Avbryt
+                    </NavLink>
                   </Button>
                   <Button type="submit">Lagre</Button>
                 </div>
